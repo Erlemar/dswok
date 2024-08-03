@@ -12,9 +12,15 @@ For now, it is quite sparse, but I plan to regularly update it.
 - [[Logistic regression]]
 - [[K-Nearest Neighbors]]
 - [[K-means clustering]]
+- [[SVM]]
 
 ## Model Evaluation and Improvement
 - Metrics
 - [[Regularization]]
 - [[Validation]]
 - [[Bias-Variance Trade-off]]
+
+## General
+- [[Interviews|interview]]
+
+The notes are available in my [Github repository](https://github.com/Erlemar/dswok).
