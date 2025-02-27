@@ -5,7 +5,7 @@ tags:
 ---
 Regularization is a technique used in machine learning to prevent overfitting by adding a penalty term to the loss function. It discourages learning a more complex or flexible model, to favor a simpler, more generalizable one.
 
-Regularization refers to a set of techniques used in machine learning to prevent overfitting and improve the generalization of models. A common way of apply regularization is adding a penalty term to the loss function, but there are many other methods, some of which are model-agnostic. In general, regularization aim to:
+Regularization refers to a set of techniques used in machine learning to prevent overfitting and improve the generalization of models. A common way of applying regularization is adding a penalty term to the loss function, but there are many other methods, some of which are model-agnostic. In general, regularization aims to:
 
 1. Prevent overfitting
 2. Improve model generalization
@@ -27,7 +27,7 @@ Regularization refers to a set of techniques used in machine learning to prevent
 ### Elastic Net
 - Combination of L1 and L2 regularization: $Loss + λ₁ * Σ|w| + λ₂ * Σw²$
 - Balances the benefits of L1 and L2
-- Tends to select groups of correlated variables together, unlike Lasso which may arbitrarily select one
+- Tends to select groups of correlated variables together, unlike Lasso, which may arbitrarily select one
 
 ## Model-specific types of regularization
 * L1, L2, Elastic net in linear models
@@ -51,6 +51,6 @@ Regularization refers to a set of techniques used in machine learning to prevent
 > [!warning] Be careful with using too many types of regularization blindly
 > There are cases when different types of regularization have unexpected interactions.
 > 
-> Weight Decay (L2) and Batch Normalization: when used together with BN an L2 penalty no longer has its original regularizing effect. Instead it becomes essentially equivalent to an adaptive adjustment of the learning rate! [Source](https://blog.janestreet.com/l2-regularization-and-batch-norm/)
+> Weight Decay (L2) and Batch Normalization: when used together with BN an L2 penalty no longer has its original regularizing effect. Instead, it becomes essentially equivalent to an adaptive adjustment of the learning rate! [Source](https://blog.janestreet.com/l2-regularization-and-batch-norm/)
 > 
 > Dropout and Batch Normalization: use BN before Dropout, not after. [Link](https://stackoverflow.com/questions/39691902/ordering-of-batch-normalization-and-dropout) to the discussion.

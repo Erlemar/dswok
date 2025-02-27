@@ -16,8 +16,8 @@ Random Forest is an ensemble learning method (bagging) that constructs a multitu
 - Reduces overfitting compared to individual [[Decision Tree]]s.
 - Handles high-dimensional data well due to the sampling
 ## Disadvantages
-* Less interpretable than a single [[decision tree]].
-* Computationally more intensive than a single [[decision tree]].
+* Less interpretable than a single [[Decision Tree]].
+* Computationally more intensive than a single [[Decision Tree]].
 ## Prerequisites for Good Performance
 - Presence of actual signal in the features
 - Low correlation between predictions (and errors) of individual trees. [[Decision Tree]] has high variance by definition, so using random sampling ensures low correlation between the individual trees.

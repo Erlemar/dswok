@@ -9,7 +9,7 @@ tags:
 ---
 Support Vector Machines (SVM) is a supervised learning algorithm used for classification, regression, and outlier detection. Support vector machines focus only on the points that are the most difficult to tell apart, whereas other classifiers pay attention to all of the points.
 
-The intuition is that if a classifier is good at separating the most challenging points (that are close to each other), then it will be even better at separating other points. SVM searches for the closest points, so-called "support vectors" (the points are like vectors and that the best line "depends on" or is "supported by" them).
+The intuition is that if a classifier is good at separating the most challenging points (that are close to each other), then it will be even better at separating other points. SVM searches for the closest points, so-called "support vectors" (the points are like vectors and the best line "depends on" or is "supported by" them).
 Then SVM draws a line connecting these points. The best separating line is perpendicular to it.
 
 ![[Pasted image 20240723083733.png]]
@@ -27,9 +27,9 @@ Where:
 - $\xi_i$ are slack variables
 
 ## Kernel Trick
-The idea is that the data, which isn’t linearly separable in the given $n$ dimensional space may be linearly separable in a higher dimensional space.
+The idea is that the data, that isn’t linearly separable in the given $n$ dimensional space may be linearly separable in a higher dimensional space.
 ![[Pasted image 20240723084155.png]]
-The kernel trick provides a solution. The “trick” is that kernel methods represent the data only through a set of pairwise similarity comparisons between the original data observations $x$ (with the original coordinates in the lower dimensional space), instead of explicitly applying the transformations $ϕ(x)$ and representing the data by these transformed coordinates in the higher dimensional feature space.
+The kernel trick provides a solution. The "trick" is that kernel methods represent the data only through a set of pairwise similarity comparisons between the original data observations $x$ (with the original coordinates in the lower dimensional space), instead of explicitly applying the transformations $ϕ(x)$ and representing the data by these transformed coordinates in the higher dimensional feature space.
 
 In kernel methods, the data set $X$ is represented by an $n \cdot n$ kernel matrix of pairwise similarity comparisons where the entries $(i, j)$ are defined by the kernel function: $k(xi, xj)$. This kernel function has a special mathematical property. The kernel function acts as a modified dot product. 
 

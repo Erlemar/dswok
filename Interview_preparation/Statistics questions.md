@@ -32,3 +32,5 @@ Q: What is the difference between arithmetic mean and harmonic mean?
 A: The harmonic mean is always lower than or equal to the arithmetic mean. It's useful for averaging rates or speeds.
 - Arithmetic mean: The sum of values divided by the count of values: $\frac {(x₁ + x₂ + ... + xₙ)} {n}$
 - Harmonic mean: The reciprocal of the arithmetic mean of reciprocals: $\frac {n} {(\frac {1}{x₁} + \frac {1}{x₂} + ... + \frac {1}{xₙ})}$
+Q: What is the difference between mean, median and mode?
+A: The mean is the average of all values. It is sensitive to outliers and extreme values. The median is the middle value of an ordered list of values. It is less sensitive to outliers than the mean. The mode is the value that appears most frequently in a dataset. There can be 0, 1 or 2 modes in the data. It can be used for categorical data.

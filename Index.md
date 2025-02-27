@@ -21,6 +21,6 @@ For now, it is quite sparse, but I plan to regularly update it.
 - [[Bias-Variance Trade-off]]
 
 ## General
-- [[Interviews|interview]]
+- [[Interview preparation]]
 
 The notes are available in my [Github repository](https://github.com/Erlemar/dswok).

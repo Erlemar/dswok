@@ -6,7 +6,7 @@ tags:
 aliases:
   - K-means
 ---
-K-means is a unsupervised machine learning algorithm used for partitioning a dataset into K distinct, non-overlapping subgroups (clusters).
+K-means is an unsupervised machine learning algorithm used for partitioning a dataset into K distinct, non-overlapping subgroups (clusters).
 Not to be confused with [[K-Nearest Neighbors|knn]]. KNN is a supervised algorithm for classification/regression finding nearest neighbors, K-means is an unsupervised algorithm for clustering finding cluster centroids.
 
 ## How It Works
@@ -54,7 +54,7 @@ Typically uses Euclidean distance: $d(x, y) = \sqrt{\sum_{i=1}^n (x_i - y_i)^2}$
 
 ## Variations
 ### K-means++
-K-means++ helps the convergence by improving initialization. It selects initial cluster centroids using sampling based on an empirical probability distribution of the points’ contribution to the overall inertia.
+K-means++ helps the convergence by improving initialization. It selects initial cluster centroids using sampling based on an empirical probability distribution of the points' contribution to the overall inertia.
 ### Mini-batch K-means (K-means with buckets)
 Instead of using the entire dataset in each iteration, Mini-Batch K-means uses small, random batches of data. The process repeats until convergence or a maximum number of iterations is reached.
 

@@ -8,14 +8,14 @@ A Decision Tree is a supervised learning algorithm used for both classification 
 
 ## Structure 
 * **Root Node**: The topmost node representing the entire dataset.
-* **Internal Nodes**: Nodes that  represent the features of the dataset and are used to make decisions.
+* **Internal Nodes**: Nodes that represent the dataset's features and are used to make decisions.
 * **Branches**: Connections between nodes, representing decision rules.
 * **Leaf Nodes**: Terminal nodes that provide the final output (class label (mode of the training instances) or value (mean of the training instances)).
 
 ## Training Process
 1. Feature Selection: Choose the best attribute to split the data.
 2. Split Point Decision: Determine the best split point for the chosen feature.
-3. Splitting: Divide the dataset based on the chosen feature and split point: left child note contains data points where the feature value is less then the split point, right child node - with values more than the split point.
+3. Splitting: Divide the dataset based on the chosen feature and split point: left child note contains data points where the feature value is less than the split point, right child node - with values more than the split point.
 4. Recursion: Repeat steps 1-3 for each child node until stopping criteria are met.
 
 ### Splitting Criteria
@@ -47,9 +47,9 @@ A Decision Tree is a supervised learning algorithm used for both classification 
 
 ## [[Regularization]]
 * Pruning: Removing branches that provide little predictive power
-* Setting minimum number of samples required at a leaf node
-* Setting maximum depth of the tree
-* Setting maximum number of features to consider for splitting
+* Setting a minimum number of samples required at a leaf node
+* Setting a maximum depth of the tree
+* Setting a maximum number of features to consider for splitting
 
 ## Feature Importance
 Decision Trees provide built-in feature importance: Importance is calculated based on how much each feature decreases the weighted impurity.
@@ -61,3 +61,4 @@ Now 13 balls: 8 blue and 5 yellow: $S_1 = -\frac{5}{13}\log_2{\frac{5}{13}}-\fra
 
 ## Links
 * [Explained.ai: Decision Tree](https://mlu-explain.github.io/decision-tree/)
+* [A visual introduction to machine learning: Decision Tree example](http://www.r2d3.us/visual-intro-to-machine-learning-part-1/)

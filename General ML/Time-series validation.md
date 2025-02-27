@@ -7,7 +7,7 @@ tags:
 ---
 This is one of the types of [[Validation]], which deserves a special explanation due to the sheer variability and complexity.
 
-The basic idea is straightforward: imitate the real world and maintain temporal relationship between the subsets - the train dataset contains samples with period strictly before the validation dataset, the validation dataset contains samples with period strictly before the test dataset. For example, training dataset has data for weeks 1-4, validation dataset has data for week 5, test has data for dataset 6.
+The basic idea is straightforward: imitate the real world and maintain a temporal relationship between the subsets - the train dataset contains samples with a period strictly before the validation dataset, and the validation dataset contains samples with a period strictly before the test dataset. For example, the training dataset has data for weeks 1-4, the validation dataset has data for week 5, and the test dataset has data for dataset 6.
 
 But we could go even further. In the example above, there is no gap between the training data and validation data, but the gap between the training and the test data is one week. To ensure the same difference between the datasets, we could use only weeks 1-3 for for initial training and tune model hyperparameters on week 5; after the tuning is done, we can retrain the model with the optimal parameters on weeks 2-4 and measure the performance on week 6 for test data.
 

@@ -5,7 +5,7 @@ tags:
   - supervised
 ---
 
-Linear regression is a supervised algorithm or a statistical method that learns to model a dependent variable (target) as a function of some independent variables (features) by finding a line (or surface) that best "fits" the data. For linear regression, we assume the target to be continuous (a number), for [[Logistic regression]] we assume target to be discrete (has a finite number of classes).
+Linear regression is a supervised algorithm or statistical method that learns to model a dependent variable (target) as a function of some independent variables (features) by finding a line (or surface) that best "fits" the data. For linear regression, we assume the target to be continuous (a number), for [[Logistic regression]] we assume target to be discrete (has a finite number of classes).
 
 ### Simple Linear Regression
 $y = β₀ + β₁x + ε$
@@ -39,7 +39,7 @@ Properties of OLS estimators under the classical assumptions:
 ### Estimation of σ²
 $σ̂² = \frac{ESS}{n}$
 **Coefficient validity**
-In statistics, the coefficients are usually paired with their p-values. These p-values come from null hypothesis statistical tests: t-tests are used to measure whether a given coefficient is significantly different than zero (the null hypothesis that a particular coefficient $βi$​ equals zero), while F tests are used to measure whether _any_ of the terms in a regression model are significantly different from zero.
+In statistics, the coefficients are usually paired with their p-values. These p-values come from null hypothesis statistical tests: t-tests are used to measure whether a given coefficient is significantly different than zero (the null hypothesis that a particular coefficient $βi$​ equals zero), while F-tests are used to measure whether _any_ of the terms in a regression model are significantly different from zero.
 
 ### Maximum Likelihood Estimation (MLE)
 
@@ -65,7 +65,7 @@ When dealing with large datasets, the analytical solution may be computationally
 - Linearity: The relationship between $X$ and $Y$ is linear.
 - Homoscedasticity: Constant variance of residuals $(Var(ε|X) = σ²)$. This means that error distribution is consistent or all values of the features, there should be no discernible patterns.
 - No Multicollinearity: Independent variables shouldn't be highly correlated with each other. This can be checked using correlation matrices or Variance Inflation Factor (VIF).
-- Normality: Residuals are normally distributed $(ε ~ N(0, σ²))$. This can be checked Q-Q plots of the residuals or by histograms, or through statistical tests such as the Kolmogorov-Smirnov test. Relevant for MLE only
+- Normality: Residuals are normally distributed $(ε ~ N(0, σ²))$. This can be checked through Q-Q plots of the residuals or by histograms, or through statistical tests such as the Kolmogorov-Smirnov test. Relevant for MLE only
 - Independence: Observations are independent of each other
 - No Exogeneity: $E(ε|X) = 0$, meaning the errors are uncorrelated with the predictors
 

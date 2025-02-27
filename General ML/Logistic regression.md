@@ -5,7 +5,7 @@ tags:
   - supervised
 ---
 Logistic regression is a statistical method used for binary classification problems, modeling the probability of an instance belonging to a particular class. Common variations of Logistic regression: Binary (two possible outcomes), Multinomial (more than two unordered outcomes), Ordinal (more than two ordered outcomes).
-Logistic regression is similar to [[Linear Regression]] but uses logistic (sigmoid) function on the top of it.
+Logistic regression is similar to [[Linear Regression]] but uses a logistic (sigmoid) function on the top of it.
 
 $p(y=1|x) = \frac{1}{1 + e^{-z}}$
 where $z = β₀ + β₁x₁ + β₂x₂ + ... + βₙxₙ$

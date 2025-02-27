@@ -21,7 +21,7 @@ Not to be confused with [[K-means clustering]]. KNN is a supervised algorithm fo
    - Aggregate the values of K neighbors
    - Return the mean value as the prediction $\hat{y} = \frac{1}{K} \sum_{i \in K \text{ nearest neighbors}} y_i$
 
-As KNN algorithm does not build a model during the training phase, it is called a lazy learner. The algorithm memories the entire training dataset and performs action on the dataset at the time of prediction.
+As KNN algorithm does not build a model during the training phase, it is called a lazy learner. The algorithm memories the entire training dataset and performs an action on the dataset at the time of prediction.
 ![[Pasted image 20240720174904.png]]
 ### Distance Metrics
 

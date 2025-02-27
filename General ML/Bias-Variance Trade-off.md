@@ -6,21 +6,21 @@ tags:
 The bias-variance trade-off is a fundamental concept in machine learning that describes the balance between a model's ability to fit the training data (low bias) and its ability to generalize to new, unseen data (low variance).
 
 ### Bias
-- Bias is the difference between the average prediction of the model and the correct value which we are trying to predict.
-- A different explanation: imagine we train model on different datasets, bias measures how far off the predictions of these different models from the correct values.
-- Model with a high bias is too simple and underfits the data, has strong model assumptions.
+- Bias is the difference between the model's average prediction and the correct value we are trying to predict.
+- A different explanation: imagine we train the models on different datasets; bias measures how far off the predictions of these different models are from the correct values.
+- A Model with a high bias is too simple and underfits the data, has strong model assumptions.
 - Examples of high-bias models: [[Linear Regression]], [[Logistic regression]], linear discriminant analysis.
 
 ### Variance
 - Variance is the variability of model prediction for a given data point or a value which tells us the spread of our data.
-- A different explanation: imagine we train model on different datasets, variance measures how much the predictions for a certain sample differ between different models
-- Model with a high variance is too complex and overfits the data, does not generalize well to unseen data.
-- Examples of high-variance models: [[Decision tree]]s (when deep), [[K-Nearest Neighbors]] with small k, [[SVM|Support Vector Machine]]s.
+- A different explanation: imagine we train models on different datasets; variance measures how much the predictions for a certain sample differ between different models
+- A model with a high variance is too complex and overfits the data, does not generalize well to unseen data.
+- Examples of high-variance models: [[Decision Tree]]s (when deep), [[K-Nearest Neighbors]] with small k, [[SVM|Support Vector Machine]]s.
 
 ### Trade-off
 - As bias decreases, variance tends to increase, and vice versa. The goal is to find the "sweet spot" that minimizes both bias and variance.
 - This trade-off in complexity is why there is a trade-off between bias and variance. An algorithm can't be more complex and less complex at the same time.
-- Bagging ([[Random Forest]]) has higher bias and lower variance: averaging multiple [[Decision Tree]] aims to reduce variance at the cost of the small bias increase. Two independent trees will have the same bias (and their average will be the same), but models make different mistakes, so averaging them reduced the overall error - variance.
+- Bagging ([[Random Forest]]) has higher bias and lower variance: averaging multiple [[Decision Tree]] aims to reduce variance at the cost of the slight bias increase. Two independent trees will have the same bias (and their average will be the same), but models make different mistakes, so averaging them reduces the overall error - variance.
 - Boosting ([[Gradient boosting]]) has lower bias and higher variance: models are complex, so they are prone to overfitting, but each model is optimized (starts from better points), so they are less likely to introduce bias
 
 ## Total Error Decomposition
@@ -38,8 +38,8 @@ https://mlu-explain.github.io/bias-variance/
 
 ![[Pasted image 20240707190658.png]]
 ## Underfitting vs. Overfitting
-- Underfitting: Models with high bias and low variance. Unable to capture the underlying pattern of the data.
-- Overfitting: Models with low bias and high variance. Captures the noise along with the underlying pattern in data.
+- Underfitting: Models with high bias and low variance. They are unable to capture the underlying pattern of the data.
+- Overfitting: Models with low bias and high variance. They can capture the noise along with the underlying pattern in data.
 ![[Pasted image 20240707190740.png]]
 ![[Pasted image 20240707192228.png]]
 

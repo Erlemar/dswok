@@ -3,17 +3,17 @@ tags:
   - interview
   - concept
 ---
-Behavioral interview is a stage of job [[Interviews|interview]] process where candidates are asked to describe specific situations from their past experiences to demonstrate their skills, abilities, and character traits.
+Behavioral interview is a stage of the job [[Interview preparation|interview]] process in which candidates are asked to describe specific situations from their past experiences to demonstrate their skills, abilities, and character traits.
 ## Key suggestions:
-- Focus on real-life examples from past experience. You can focus on different aspects of these experiences, but don't lie
+- Focus on real-life examples from experience. You can focus on different aspects of these experiences, but don't lie
 - Use the STAR method (Situation (context), Task (your responsibility), Action (what you did), Result (outcomes and learnings)) for structuring responses
 - Prepare the answers to the common questions beforehand
-- Align your answers with the values / mission of the company
+- Align your answers with the values/mission of the company
 - Align your answers with the expected position: IC - how you delivered the project end-to-end by yourself; techlead - how you organized technical part of the project and helped the team deliver it; manager - how you organized communications and handled requirements and limitations; any level higher than senior - how you handled cross-team communications, how you managed and created processes.
 
-This interview often includes a short intro about yourself, but it is possible that other stages will include it, so it is worth preparing it as well:
+This interview often includes a short intro about yourself, but other stages may include it, so it is worth preparing it as well:
 * Most relevant/important job experience and specific projects, including the technologies used
-* What are you interested in (production vs R&D, classical ML vs Deep Learning, technical side vs business side, etc)
+* What are you interested in (production vs. R&D, classical ML vs. Deep Learning, technical side vs. business side, etc)
 
 ## Example questions and basic templates for answering
 
