@@ -6,6 +6,7 @@ tags:
   - algorithm
   - model
   - recsys
+  - architecture
 ---
 Neural Collaborative Filtering (NCF) is a deep learning approach to collaborative filtering for recommendation systems that aims to learn the complex user-item interaction function using neural networks. NCF addresses the limitations of traditional [[matrix factorization]] methods by using non-linear neural networks to model user-item interactions.
 
@@ -16,32 +17,6 @@ Neural Collaborative Filtering (NCF) is a deep learning approach to collaborativ
 * Generalized Matrix Factorization (GMF): element-wise product of user and item embeddings with sigmoid after it
 * Multi-Layer Perceptron (MLP): concatenates user and item embeddings and applies multiple hidden layers with [[ReLU]] activation function with sigmoid after them
 * Neural Matrix Factorization (NeuMF): concatenates the outputs of GMF and MLP, applies a projection layer and sigmoid
-
-```mermaid
-flowchart TD
-    subgraph Input
-        U[User ID] --> UE[User Embedding]
-        I[Item ID] --> IE[Item Embedding]
-    end
-    
-    subgraph GMF
-        UE --> EP[Element-wise Product]
-        IE --> EP
-        EP --> GMF_Out[GMF Output]
-    end
-    
-    subgraph MLP
-        UE --> Concat[Concatenation]
-        IE --> Concat
-        Concat --> FC1[Hidden Layer 1]
-        FC1 --> FC2[Hidden Layer 2]
-        FC2 --> MLP_Out[MLP Output]
-    end
-    
-    GMF_Out --> NeuMF[NeuMF Concatenation]
-    MLP_Out --> NeuMF
-    NeuMF --> Output[Prediction Layer]
-```
 
 ![[Pasted image 20250228114800.png]]
 The approach uses binary cross-entropy loss for implicit feedback (interaction between the user and the item). [[Negative sampling]]: uniform sampling or popularity-based sampling strategies

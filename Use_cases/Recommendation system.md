@@ -1,6 +1,8 @@
 ---
 aliases:
   - RecSys
+tags:
+  - recsys
 ---
 This note is similar to [[ML System design]] but it is more practical and with less focus on the interviews. This note is about practical approaches to developing a recommendation system.
 
@@ -15,7 +17,7 @@ The business objective:
 - Maximizing revenue per user
 
 The business metrics:
-* Click-Through Rate (CTR)
+- Click-Through Rate (CTR)
 - Daily/Monthly Active Users (DAU/MAU)
 - Session duration and depth
 - Conversion rate
