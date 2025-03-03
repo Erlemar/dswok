@@ -186,7 +186,6 @@ Videos are usually are treated as a sequence of frames. Categories can be encode
 - [[Neural Collaborative Filtering]]
 - [[Deep & Cross Network]]
 - [[Wide & Deep Learning]]
-- [[Deep Interest Network]]
 - [[Deep Learning Recommendation Model]]
 
 Many recommendation systems optimize for more than one objective simultaneously (e.g. predicting clicks, likes, and long-term retention)
@@ -251,8 +250,7 @@ Scheduled retraining: Daily, weekly, or monthly updates
 **Feedback Loop Management:**
 - Bias correction in logged data
 - Counterfactual evaluation
-- Exploration policies to prevent feedback loops (force show diverse content, random exploration, bandits, simply insert random items into recommendations
-)
+- Exploration policies to prevent feedback loops (force show diverse content, random exploration, bandits, simply insert random items into recommendations)
 
 ### Links
 - [](https://github.com/khangich/machine-learning-interview/tree/master?tab=readme-ov-file#recommendations)
@@ -260,7 +258,7 @@ Scheduled retraining: Daily, weekly, or monthly updates
 - [TikTok recommendation](https://newsroom.tiktok.com/en-us/how-tiktok-recommends-videos-for-you)
 - [Deep Neural Networks for YouTube Recommendations](https://storage.googleapis.com/pub-tools-public-publication-data/pdf/45530.pdf)
 - [Wide & Deep Learning for Recommender Systems](https://arxiv.org/pdf/1606.07792.pdf%29/)
-- 1. Snap's Spotlight system: https://eng.snap.com/embedding-based-retrieval
-1. Instacart Search system: https://tech.instacart.com/how-instacart-uses-embeddings-to-improve-search-relevance-e569839c3c36
-2. AirBnb Journey Ranker for Multi-stage ranking: https://arxiv.org/pdf/2305.18431
-3. Muti-task RecSys: https://blog.reachsumit.com/posts/2024/01/multi-task-learning-recsys/
+- Snap's Spotlight system: https://eng.snap.com/embedding-based-retrieval
+- Instacart Search system: https://tech.instacart.com/how-instacart-uses-embeddings-to-improve-search-relevance-e569839c3c36
+- AirBnb Journey Ranker for Multi-stage ranking: https://arxiv.org/pdf/2305.18431
+- Muti-task RecSys: https://blog.reachsumit.com/posts/2024/01/multi-task-learning-recsys/
