@@ -34,3 +34,16 @@ A: The harmonic mean is always lower than or equal to the arithmetic mean. It's 
 - Harmonic mean: The reciprocal of the arithmetic mean of reciprocals: $\frac {n} {(\frac {1}{x₁} + \frac {1}{x₂} + ... + \frac {1}{xₙ})}$
 Q: What is the difference between mean, median and mode?
 A: The mean is the average of all values. It is sensitive to outliers and extreme values. The median is the middle value of an ordered list of values. It is less sensitive to outliers than the mean. The mode is the value that appears most frequently in a dataset. There can be 0, 1 or 2 modes in the data. It can be used for categorical data.
+
+Q: There are two boxes with balls. The first box has 3 green balls and 7 red balls. The second box has 6 green balls and 4 red balls. The probability of choosing the first box is 40%. We pulled one green ball at random. What is the probability that it was from the first box?
+A: $P(B_1) = 0.40$, $P(B_2) = 0.60$, $P(G \mid B_1) = \frac{3}{3+7} = 0.30$, $P(G \mid B_2) = \frac{6}{6+4} = 0.60$. $P(B_1 \mid G)=\frac{ P(B_1) \, P(G \mid B_1) }{ P(B_1) \, P(G \mid B_1) + P(B_2) \, P(G \mid B_2) }=\frac{0.40 \times 0.30}{ 0.40 \times 0.30 + 0.60 \times 0.60 }=0.25$
+
+Q: Disease Testing. A rare disease that affects 2% of the population. The test for this disease is 90% accurate:
+- If a person has the disease, the test will correctly return positive 90% of the time.
+- If a person does not have the disease, the test will correctly return negative 90% of the time.
+If a person tests positive, what is the probability that they actually have the disease?
+A: $P(\text{Disease}) = 0.02$. $P(\text{No Disease}) = 1 - 0.02 = 0.98$. $P(\text{Test Positive} \mid \text{Disease}) = 0.90$ (true positive rate). $P(\text{Test Positive} \mid \text{No Disease}) = 1 - 0.90 = 0.10$ (false positive rate).
+
+$P(\text{Disease} \mid \text{Test Positive})=\frac{P(\text{Disease}) \cdot P(\text{Test Positive} \mid \text{Disease})}{P(\text{Disease}) \cdot P(\text{Test Positive} \mid \text{Disease}) + P(\text{No Disease}) \cdot P(\text{Test Positive} \mid \text{No Disease})}$
+$\frac{0.02 \times 0.90}{0.02 \times 0.90 \;+\; 0.98 \times 0.10}=0.155$
+  

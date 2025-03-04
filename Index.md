@@ -23,4 +23,7 @@ For now, it is quite sparse, but I plan to regularly update it.
 ## General
 - [[Interview preparation]]
 
+## Use cases
+- [[Recommendation system]]
+
 The notes are available in my [Github repository](https://github.com/Erlemar/dswok).
