@@ -46,4 +46,10 @@ A: $P(\text{Disease}) = 0.02$. $P(\text{No Disease}) = 1 - 0.02 = 0.98$. $P(\tex
 
 $P(\text{Disease} \mid \text{Test Positive})=\frac{P(\text{Disease}) \cdot P(\text{Test Positive} \mid \text{Disease})}{P(\text{Disease}) \cdot P(\text{Test Positive} \mid \text{Disease}) + P(\text{No Disease}) \cdot P(\text{Test Positive} \mid \text{No Disease})}$
 $\frac{0.02 \times 0.90}{0.02 \times 0.90 \;+\; 0.98 \times 0.10}=0.155$
-  
+
+Q: Covariance vs. correlation.
+A: Covariance measures the linear relationship between two variables. $\text{Cov}(X, Y) = \frac{1}{n} \sum_{i=1}^{n} (X_i - \bar{X})(Y_i - \bar{Y})$. If positive, they increase together; if 0, there is no linear relationship; if negative, when one variable increases, the other decreases. Covariance is scale-dependent
+Correlation standardizes covariance by dividing by the product of standard deviations, it is unitless. $\text{Corr}(X, Y) = \frac{\text{Cov}(X, Y)}{\sigma_X \sigma_Y}$ Correlation is between -1 and 1.
+
+Q: What’s the difference between t-test and z-test?
+A: Use a z-test when n is large or population variance is known, t-test, when n is small or population variance is unknown. At large n, they become nearly equivalent.
