@@ -12,4 +12,4 @@ But the [[Word2Vec]] paper [Efficient Estimation of Word Representations in Vect
 
 [[fastText]] [Enriching Word Vectors with Subword Information](https://arxiv.org/abs/1607.04606) extended Word2Vec by representing each word as a bag of character n-grams, enabling the model to generate vectors for rare or misspelled words by composing subword information​
 
-Later, [[BERT]]-like models started being used for word embeddings.
+Later, [[BERT]]-like models started being used for word embeddings. [[ELMo]] produces contextual embeddings.

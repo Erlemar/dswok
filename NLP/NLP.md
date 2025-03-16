@@ -13,7 +13,7 @@ Some examples:
 - applying Hidden Markov Models to part-of-speech tagging and Conditional Random Fields to NER
 - applying Naïve Bayes and SVM to word counts (including [[TF-IDF]]) and n-grams
 
-In 2010s, [[Word Embeddings]] were introduced - [[Word2Vec]], [[GloVe]], [[FastText]] and [[recurrent models]] became more widely used. While [[RNN]] and LSTM [[were]] proposed earlier, people started using them more together with word embeddings. Later, [[GRU]] variation became popular.
+In 2010s, [[Word Embeddings]] were introduced - [[Word2Vec]], [[GloVe]], [[fastText]] and [[recurrent models]] became more widely used. While [[RNN]] and LSTM [[were]] proposed earlier, people started using them more together with word embeddings. Later, [[GRU]] variation became popular.
 
 In 2017, the paper [Attention is all you need](https://arxiv.org/abs/1706.03762) appeared and started the era of [[Transformers]]. [[BERT]]- and [[GPT]]-style transformers became the core of the further approaches.
 The appearance of [[Large Language Models]] was another significant step. The criteria of LLM can be vague, so even [[BERT]] can be called an LLM, but if by LLM we mean large models that can do a variety of tasks through prompting and without fine-tuning (or minimal fine-tuning), then GPT-2 or GPT-3 can be called the first LLMs.

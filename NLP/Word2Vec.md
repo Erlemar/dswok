@@ -1,13 +1,13 @@
 ---
 aliases:
   - word2vec
+  - w2v
 tags:
   - algorithm
   - model
   - nlp
   - embeddings
 ---
-
 Word2Vec is a approach for learning word embeddings. It became the first popular approach to representing words as dense vectors in a continuous vector space where semantically similar words are positioned closer together.
 
 Word2Vec uses shallow neural networks with a single hidden layer to learn vector representations by predicting words from their context (Continuous Bag-of-Words) or predicting context words from a target word (Skip-gram).
