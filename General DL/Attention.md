@@ -15,12 +15,12 @@ A fundamental type is Scaled Dot-Product Attention (used in [[Transformer]]). It
 
 Attention calculation step-by-step:
 1. We measure how relevant each key $K_i$ is to our query $Q$ using a dot product: $\text{scores} = Q \times K^T$
-2. To keep the values stable for large embeddings, we divide by $\sqrt{d_k}$, where $d_k$ is the dimensionality of the key vectors: $\text{scaled\_scores} = \frac{Q \times K^T}{\sqrt{d_k}}$
+2. To keep the values stable for large embeddings, we divide by $\sqrt{d_k}$, where $d_k$ is the dimensionality of the key vectors: $\text{scaled\_scores} = \frac{Q \times K^T}{\sqrt{d_k}}$. When the $d_k$ is large, the dot product can grow large in magnitude, pushing the softmax function into regions where it has extremely small gradients. That's why the square root is used instead.
 3. Convert the scores into a probability distribution to see how much attention should be given to each element: $\alpha = \text{softmax}(\text{scaled\_scores})$.
 4. Multiply each value $V_i$ by its attention weight $alpha_i$ and sum to get the final output: $\text{Attention}(Q, K, V) = \alpha \times V$
 This yields a context vector that highlights the most relevant information from $V$ for the query $Q$.
 
-In short:attention computes a weighted sum of input elements (values) where the weights are determined by a compatibility function between a query and corresponding keys: $Attention(Q,K,V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V$
+In short: attention computes a weighted sum of input elements (values) where the weights are determined by a compatibility function between a query and corresponding keys: $Attention(Q,K,V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V$
 
 >[!hint]
 > Imagine you're at a large party trying to focus on a specific conversation. You're asking yourself about each person: "How relevant is what this person is saying to what I want to know?" (computing attention scores). Then you focus more on people providing useful information (applying the attention weights) while still maintaining some awareness of everyone else. Your brain combines all this information, giving more weight to important sources (weighted sum of values).
