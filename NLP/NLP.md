@@ -41,6 +41,19 @@ Raw texts need to be processed in order to be used in ML models. This processing
 - Instruction Learning
 - Reinforcement Learning from Human Feedback (RLHF)
 - Direct Preference Optimization (DPO)
+- Tokenization
+- Parameter Efficient Fine-tuning (LoRA, QLoRA, Prefix Tuning)
+- Prompting
+
+prompt-tuning = добавляем виртуальные токены в начало промпта p-tuning = добавляем виртуальные токены куда-нибудь в промт (например, в середину) prefix-tuning = добавляем префиксы во все слои.
+
+> **Prompt Tuning**: Tunes a set of concatenated input embeddings vectors (generally called "soft prompts", but not referring to the soft prompts here). Initially applied to T5-LM models.
+
+> **Prefix Tuning**: Tunes KV cache (soft prefixes) for every layer, and can be casually described as "prompt tuning, but in every layer", although that is slightly inaccurate. In practice, uses an auxiliary MLP to generate the soft prefixes to help training. Initially applied to GPT-2 and BART models.
+
+> **P-Tuning**: Uses LSTMs to generate soft prompts (not prefixes). Initially applied to GPT-2 and BERT/RoBERTa/MegatronLM models.
+
+> **P-Tuning v2:** Essentially Prefix Tuning applied to BERT-type models.
 ## NLP Tasks
 
 - Named Entity Recognition
@@ -50,6 +63,7 @@ Raw texts need to be processed in order to be used in ML models. This processing
 - Machine Translation
 - Text Generation
 - Chat-bots
+- [[RAG]]
 - Information Retrieval and Extraction
 	- Search
 	- Question answering
@@ -60,6 +74,8 @@ Raw texts need to be processed in order to be used in ML models. This processing
 - ROUGE
 - METEOR
 - Perplexity
+- Human Evaluation Methods  
+- Benchmark Datasets
 
 ## Links
 * [NLP for Supervised Learning - A Brief Survey](https://eugeneyan.com/writing/nlp-supervised-learning-survey/)

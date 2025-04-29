@@ -15,7 +15,7 @@ A fundamental type is Scaled Dot-Product Attention (used in [[Transformer]]). It
 
 Attention calculation step-by-step:
 1. We measure how relevant each key $K_i$ is to our query $Q$ using a dot product: $\text{scores} = Q \times K^T$
-2. To keep the values stable for large embeddings, we divide by $\sqrt{d_k}$, where $d_k$ is the dimensionality of the key vectors: $\text{scaled\_scores} = \frac{Q \times K^T}{\sqrt{d_k}}$. When the $d_k$ is large, the dot product can grow large in magnitude, pushing the softmax function into regions where it has extremely small gradients. That's why the square root is used instead.
+2. To keep the values stable for large embeddings, we divide by $\sqrt{d_k}$, where $d_k$ is the dimensionality of the key vectors: $\text{scaled\_scores} = \frac{Q \times K^T}{\sqrt{d_k}}$. When the $d_k$ is large, the dot product can grow large in magnitude, pushing the softmax function into regions where it has extremely small gradients. For dot products, the variance grows with $d_k$. That's why the square root is used instead - we normalize the scale.
 3. Convert the scores into a probability distribution to see how much attention should be given to each element: $\alpha = \text{softmax}(\text{scaled\_scores})$.
 4. Multiply each value $V_i$ by its attention weight $alpha_i$ and sum to get the final output: $\text{Attention}(Q, K, V) = \alpha \times V$
 This yields a context vector that highlights the most relevant information from $V$ for the query $Q$.
@@ -37,6 +37,14 @@ In short: attention computes a weighted sum of input elements (values) where the
 ### Multi-Head Attention
 - Runs multiple attention mechanisms in parallel
 - Each "head" projects inputs into different subspaces
+
+### Multi-token attention
+- [Link](https://arxiv.org/abs/2504.00927)
+- 
+
+### Grouped-Query Attention
+
+### MultiQuery Attention
 
 ### Global vs. Local Attention
 - **Global**: Attends to all positions in the sequence

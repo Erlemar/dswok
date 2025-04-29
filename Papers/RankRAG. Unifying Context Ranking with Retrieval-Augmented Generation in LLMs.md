@@ -4,10 +4,12 @@ tags:
   - llm
   - rag
   - ranking
+aliases:
+  - RankRAG
 ---
 [Paper link](https://arxiv.org/abs/2407.02485)
 
-RankRAG by NVIDIA is a novel instruction fine-tuning framework for RAG that allows a single LLM to handle both context ranking and answer generation. By incorporating a small amount of ranking data into the training mix, RankRAG significantly outperforms existing expert ranking models, even those fine-tuned on extensive ranking data. In evaluations, Llama3-RankRAG surpasses models like Llama3-ChatQA-1.5 and various versions of GPT-4 on nine knowledge-intensive benchmarks and performs comparably to GPT-4 on five biomedical RAG benchmarks, demonstrating exceptional generalization without the need for domain-specific fine-tuning.
+RankRAG by NVIDIA is a novel instruction fine-tuning framework for [[RAG]] that allows a single LLM to handle both context ranking and answer generation. By incorporating a small amount of ranking data into the training mix, RankRAG significantly outperforms existing expert ranking models, even those fine-tuned on extensive ranking data. In evaluations, Llama3-RankRAG surpasses models like Llama3-ChatQA-1.5 and various versions of GPT-4 on nine knowledge-intensive benchmarks and performs comparably to GPT-4 on five biomedical RAG benchmarks, demonstrating exceptional generalization without the need for domain-specific fine-tuning.
 
 RankRAG is a novel instruction fine-tuning framework for large language models (LLMs) in retrieval-augmented generation (RAG). It trains a single LLM to both rank contexts and generate answers, performing well with minimal ranking data in the training mix. RankRAG outperforms existing expert ranking models and strong baselines like GPT-4 and ChatQA-1.5 on various knowledge-intensive benchmarks. Notably, Llama3-RankRAG shows impressive performance across domains, including biomedical RAG tasks, without specific fine-tuning. This approach demonstrates significant potential for improving LLM performance in RAG tasks and generalizing to new areas.
 
