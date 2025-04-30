@@ -246,3 +246,6 @@ A: Inspired by https://medium.com/@pashashaik/natural-language-generation-from-s
 >
 >    return generated_text
 >```
+
+Q: What are the trade-offs between using weights in Cross-Entropy Loss vs using Focal Loss?
+A: The weights in Cross-Entropy Loss weight classes statically based on the number of samples in them, this approach focuses on minority classes. Focal loss focuses on hard-to-classify examples and requires tuning a hyperparameter.
