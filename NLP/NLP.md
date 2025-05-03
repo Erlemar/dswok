@@ -11,11 +11,11 @@ Some examples:
 - checking if a word (or it's stem/lemma) are present in a dictionary
 - checking if a part of the text follows a pattern of pre-defined grammatical rules
 - applying Hidden Markov Models to part-of-speech tagging and Conditional Random Fields to NER
-- applying Naïve Bayes and SVM to word counts (including [[TF-IDF]]) and n-grams
+- applying Naïve Bayes and SVM to word counts (including [[Term Frequency-Inverse Document Frequency|TF-IDF]]) and n-grams
 
 In 2010s, [[Word Embeddings]] were introduced - [[Word2Vec]], [[GloVe]], [[fastText]] and [[recurrent models]] became more widely used. While [[RNN]] and LSTM [[were]] proposed earlier, people started using them more together with word embeddings. Later, [[GRU]] variation became popular.
 
-In 2017, the paper [Attention is all you need](https://arxiv.org/abs/1706.03762) appeared and started the era of [[Transformers]]. [[BERT]]- and [[GPT]]-style transformers became the core of the further approaches.
+In 2017, the paper [Attention is all you need](https://arxiv.org/abs/1706.03762) appeared and started the era of [[Transformer]]. [[BERT]]- and [[GPT]]-style transformers became the core of the further approaches.
 
 There was another pivotal paper in 2017 - [[Universal Language Model Fine-tuning for Text Classification]], which introduced fine-tuning as we know it: general pre-training, target-task fine-tuning and target-task classifier fine-tuning.
 

@@ -2,6 +2,10 @@
 aliases:
   - Retrieval-Augmented Generation
   - Retrieval Augmented Generation
+tags:
+  - nlp
+  - approach
+  - llm
 ---
 Retrieval-Augmented Generation (RAG) is a hybrid approach that combines LLM's generative abilities with real-time information retrieval from external knowledge sources​. RAG enhances LLMs by first retrieving relevant information from a knowledge base or corpus, then using this information to augment the context provided to the generative model before generating the final response.
 RAG is designed to mutigate multiple limitations of LLM: improving factual accuracy, providing source attribution, mitigating knowledge cutoff issues, and reducing hallucinations.
