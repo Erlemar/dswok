@@ -22,5 +22,5 @@ Random Forest is an ensemble learning method (bagging) that constructs a multitu
 - Presence of actual signal in the features
 - Low correlation between predictions (and errors) of individual trees. [[Decision Tree]] has high variance by definition, so using random sampling ensures low correlation between the individual trees.
 
-**Links**
+### Links
 * [Explained.ai: Random Forest](https://mlu-explain.github.io/random-forest/)

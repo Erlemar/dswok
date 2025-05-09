@@ -7,10 +7,10 @@ tags:
 A Decision Tree is a supervised learning algorithm used for both classification and regression tasks. It creates a model that predicts the value of a target variable by learning simple decision rules inferred from the data features.
 
 ## Structure 
-* **Root Node**: The topmost node representing the entire dataset.
-* **Internal Nodes**: Nodes that represent the dataset's features and are used to make decisions.
-* **Branches**: Connections between nodes, representing decision rules.
-* **Leaf Nodes**: Terminal nodes that provide the final output (class label (mode of the training instances) or value (mean of the training instances)).
+* Root Node: The topmost node representing the entire dataset.
+* Internal Nodes: Nodes that represent the dataset's features and are used to make decisions.
+* Branches: Connections between nodes, representing decision rules.
+* Leaf Nodes: Terminal nodes that provide the final output (class label (mode of the training instances) or value (mean of the training instances)).
 
 ## Training Process
 1. Feature Selection: Choose the best attribute to split the data.
@@ -40,7 +40,7 @@ A Decision Tree is a supervised learning algorithm used for both classification 
 * Requires little data preprocessing
 * Can handle both numerical and categorical data - Can be visualized easily ## Disadvantages - Can create overly complex trees that do not generalize well (overfitting) - Can be unstable; small variations in the data can result in a completely different tree - Biased towards features with more levels (in categorical variables) - Cannot predict beyond the range of the training data (for regression tasks)
 
-**Disadvantages**
+## Disadvantages
 - Can create overly complex trees that do not generalize well (overfitting)
 - Can be unstable; small variations in the data can result in a completely different tree
 - Cannot predict beyond the range of the training data (for regression tasks)

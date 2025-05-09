@@ -4,7 +4,6 @@ tags:
   - model
   - supervised
 ---
-
 Linear regression is a supervised algorithm or statistical method that learns to model a dependent variable (target) as a function of some independent variables (features) by finding a line (or surface) that best "fits" the data. For linear regression, we assume the target to be continuous (a number), for [[Logistic regression]] we assume target to be discrete (has a finite number of classes).
 
 ### Simple Linear Regression
@@ -69,8 +68,7 @@ When dealing with large datasets, the analytical solution may be computationally
 - Independence: Observations are independent of each other
 - No Exogeneity: $E(ε|X) = 0$, meaning the errors are uncorrelated with the predictors
 
-
-Consequences of violating assumptions:
+### Consequences of violating assumptions:
 - Violating linearity: Biased and inconsistent estimates
 - Violating independence: Incorrect standard errors, inefficient estimates
 - Violating homoscedasticity: Inefficient estimates, incorrect standard errors

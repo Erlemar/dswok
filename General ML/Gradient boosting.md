@@ -8,8 +8,6 @@ aliases:
   - GBM
   - Gradient Boosting Machine
 ---
-# Gradient Boosting
-
 Gradient Boosting is an ensemble machine learning technique (boosting) that combines weak learners (typically shallow [[Decision Tree]]s) sequentially to create a strong predictive model. Each new tree is trained using gradient descent to correct errors made by previously trained trees.
 
 ## How It Works
@@ -47,13 +45,13 @@ Gradient Boosting is an ensemble machine learning technique (boosting) that comb
 - Split-based Importance: Measures how often a feature is used to split the data across all trees; weighted by the improvement in the model as a result of each split.
 - Gain-based Importance: Measures the average gain of splits that use the feature.
 
-**Data processing**
+### Data processing
 - Learns the best direction (left or right child) for missing values in each split
 - Categorical features: one-hot encoding is inefficient; label encoding or target encoding is better. CatBoost has in-built specialized handling
 
 ## Classification vs Regression
-- **Regression**: Typically uses a mean squared error or mean absolute error as a loss function
-- **Classification**: Often uses log loss (binary) or multi-class log loss
+- Regression: Typically uses a mean squared error or mean absolute error as a loss function
+- Classification: Often uses log loss (binary) or multi-class log loss
 
 ## Popular Implementations
 
@@ -79,7 +77,7 @@ Gradient Boosting is an ensemble machine learning technique (boosting) that comb
 - Gradient Boosting is more flexible in terms of loss function choice, AdaBoost was initially designed for binary classification but can be adapted for other tasks.
 - AdaBoost uses an exponential loss function
 
-**Other types of boosting**:
+### Other types of boosting
 * Newton Boosting uses both first and second-order derivatives of the loss function
 - Stochastic Gradient Boosting introduces randomness by using a random subset of the training data to build each tree
 - Extreme Gradient Boosting (like XGBoost) uses both approaches, uses a more regularized model formalization to control overfitting

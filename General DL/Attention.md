@@ -9,9 +9,9 @@ tags:
 Attention is a mechanism that lets neural networks focus on specific parts of an input sequence. 
 
 A fundamental type is Scaled Dot-Product Attention (used in [[Transformer]]). It has three inputs:
-- **Query (Q)**: The current token trying to gather information.
-- **Key (K)**: A representation of each token in the sequence that’s available to be attended to.
-- **Value (V)**: What each token provides if selected by the attention mechanism.
+- Query (Q): The current token trying to gather information.
+- Key (K): A representation of each token in the sequence that’s available to be attended to.
+- Value (V): What each token provides if selected by the attention mechanism.
 
 Attention calculation step-by-step:
 1. We measure how relevant each key $K_i$ is to our query $Q$ using a dot product: $\text{scores} = Q \times K^T$
@@ -30,25 +30,30 @@ In short: attention computes a weighted sum of input elements (values) where the
 ### Self-Attention
 - Keys, queries, and values all come from the same source sequence
 - Allows each position to attend to all positions in the sequence
-
 ### Cross-Attention
 - The queries come from one sequence (e.g., the decoder in a seq2seq model), while the keys and values come from another (e.g., the encoder).
 - Often used in machine translation and generative tasks where one sequence attends to another.
 ### Multi-Head Attention
 - Runs multiple attention mechanisms in parallel
-- Each "head" projects inputs into different subspaces
+- Allows the model to jointly attend to information from different representation subspaces at different positions. Each head can potentially learn to focus on different types of relationships or features.
+### MultiQuery Attention (MQA)
+- All query heads share the same key and value matrices, only query matrices are different
+- Significantly reduces memory requirements and inference time
+- Can lead to quality degradation compared to MHA
+### Grouped-Query Attention (GQA)
+- Introduced to balance the efficiency of MQA and the quality in MHA
+- In MHA, each query head has its own key-value heads (maximum quality but high memory usage). In MQA, all query heads share just one key-value head (maximum efficiency but lower quality). GQA divides query heads into groups, where each group shares a set of key-value heads.
+- The number of groups (G) is a hyperparameter - more groups is closer to MHA, fewer is closer to MQA
+- Used in models like Llama 2-70B, Mistral 7B, and Falcon 40B. Particularly useful in multi-GPU environments with tensor parallelism
+### Global vs. Local Attention
+- Global Attention attends to all positions in the sequence (standard approach). It helps maintain long-range dependencies that local attention might miss.
+- Local Attention attends only to a window of positions around the current position. It reduces computational complexity from O(n²) to O(n).
+- Architectures like Longformer and BigBird use hybrid approaches combining both: local attention for most tokens, augmented with some form of global attention (specific tokens attending globally, or sparse global attention patterns) to retain the ability to capture long-range dependencies where needed.
 
 ### Multi-token attention
-- [Link](https://arxiv.org/abs/2504.00927)
-- 
+- Addresses limitations of single-token attention where individual weights are determined by similarity of just one query-key pair
+- Applies convolution operations over queries, keys, and heads to allow neighboring tokens to influence each other's attention weights    
 
-### Grouped-Query Attention
-
-### MultiQuery Attention
-
-### Global vs. Local Attention
-- **Global**: Attends to all positions in the sequence
-- **Local**: Attends only to a window of positions around the current position
 
 > [!example]- Scaled dot attention code
 > ```python
