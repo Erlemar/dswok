@@ -34,10 +34,10 @@ For multi-class problems, the matrix expands to n×n dimensions, where n is the 
    $$\text{Error Rate} = \frac{FP + FN}{TP + TN + FP + FN} = 1 - \text{Accuracy}$$
 
 
-3. **Precision** (Positive Predictive Value): The proportion of actually positive instances among all instances predicted as positive. Suitable when the cost of a False Positive is high, for example spam detection.
+3. **Precision** (Positive Predictive Value): The proportion of actually positive instances among all instances predicted as positive (how many retrieved items are relevant). Suitable when the cost of a False Positive is high, for example spam detection.
    $$\text{Precision} = \frac{TP}{TP + FP}$$
 
-4. **Recall** (Sensitivity, True Positive Rate): The proportion of correctly instances samples among all positive instances. Suitable when the cost of a False Negative is high, for example medical diagnosis or fraud detection.
+4. **Recall** (Sensitivity, True Positive Rate): The proportion of correctly instances samples among all positive instances (how many relevant items were retrieved). Suitable when the cost of a False Negative is high, for example medical diagnosis or fraud detection.
    $$\text{Recall} = \frac{TP}{TP + FN}$$
 
 5. **Specificity** (True Negative Rate): The proportion of correctly instances samples among all negative instances. Suitable when correctly identifying negative instances is crucial, for example in medicine.
