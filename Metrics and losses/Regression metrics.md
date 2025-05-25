@@ -71,3 +71,4 @@ In this case, R² equals the square of the multiple correlation coefficient, whi
 ## Links
 - [Scikit-learn Regression Metrics](https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics)
 - [Paper: R-squared is More Informative than SMAPE, MAE, MAPE, MSE and RMSE](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8279135/)
+- [The Little Book of ML Metrics](https://github.com/NannyML/The-Little-Book-of-ML-Metrics)

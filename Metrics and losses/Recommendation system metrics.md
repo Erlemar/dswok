@@ -74,14 +74,7 @@ $$\text{Conversion Rate} = \frac{\text{Number of recommendations resulting in co
 
 $$\text{CTR} = \frac{\text{Number of clicks on recommendations}}{\text{Number of recommendation impressions}}$$
 
-### User Satisfaction
-
-Direct measurement of user satisfaction with recommendations, often collected through surveys or feedback mechanisms.
-
-**Properties**:
-- Directly measures user perception
-- Difficult to collect at scale
-- Most comprehensive indicator of recommendation quality
+13. **User Satisfaction**: direct measurement of user satisfaction with recommendations, often collected through surveys or feedback mechanisms.
 
 ## Links
 - [Evaluating Recommendation Systems: A Guide](https://www.evidentlyai.com/ranking-metrics/evaluating-recommender-systems)
