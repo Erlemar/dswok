@@ -101,7 +101,7 @@ The target variable is a certain action (view, click, order). Positive samples a
 ### Data preparation, analysis and feature engineering
 For candidate generation/retrieval, modern approaches usually use [[Two tower]] architecture. It has separate towers for users and items.
 
-Usually, the items are represented as [[embeddings]] for the item tower. Text descriptions can be embedded with any common embedder from the [MTEB: Massive Text Embedding Benchmark](https://huggingface.co/spaces/mteb/leaderboard) or by openai API. Images can be embedded using [[CLIP]]. 
+Usually, the items are represented as [[embeddings]] for the item tower. Text descriptions can be embedded with any common embedder from the [MTEB: Massive Text Embedding Benchmark](https://huggingface.co/spaces/mteb/leaderboard) or by openai API. Images can be embedded using [[Contrastive Language-Image Pre-training|CLIP]]. 
 
 User tower can have various ways of representing the users:
 - Treating user_ids as separate tokens and training their embeddings from scratch. This is simple, but it is possible that there is not enough data; the "vocab" size could be too large and it won't generalize for the new users.
@@ -151,7 +151,7 @@ The features may include: embedding extraction, user/item/creator features (nume
 **Item/content Features**
 
 - Textual Features: Keywords, topics, the texts [[embeddings]]
-- Visual Features: Image embeddings (for example, [[CLIP]])
+- Visual Features: Image embeddings (for example, [[Contrastive Language-Image Pre-training|CLIP]])
 - Popularity Metrics: Global popularity, popularity within segments, virality scores
 - Temporal Features: Recency, seasonality
 - Creator/Brand Features: Authorship, brand reputation, connections, categories
