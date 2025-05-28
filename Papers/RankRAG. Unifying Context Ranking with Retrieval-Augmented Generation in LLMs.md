@@ -16,26 +16,26 @@ RankRAG is a novel instruction fine-tuning framework for large language models (
 ## Preliminaries
 ![Context sizes](https://andlukyane.com/images/paper_reviews/rankrag/2024-07-21_18-54-18.jpeg)  
 In RAG, a retriever model first selects the top-k relevant contexts from a document collection, after which a language model generates the final answer. Current RAG systems face limitations, including the limited capacity of retrievers and the trade-off in selecting the top-k contexts. Retrievers often use sparse models or moderate-size embedding models for efficiency, but these models' independent encoding of questions and documents constrains their ability to accurately estimate textual relevance. Additionally, while SOTA long-context language models can process many retrieved contexts, their performance saturates with increased k. Research indicates that the optimal number of context chunks is around 10 for long document QA tasks. Smaller k values risk missing relevant information, reducing recall, whereas larger k values introduce irrelevant content, which hampers the language model's accuracy.  
-  
+
 ## The approach
 ![RankRAG](https://andlukyane.com/images/paper_reviews/rankrag/2024-07-21_19-04-18.jpeg)  
 ### Stage-I: Supervised Fine-Tuning  
 In Stage-I, RankRAG uses SFT on a blend of high-quality instruction-following datasets (128K examples) to establish basic instruction-following capabilities.  
-  
+
 ### Stage-II: Unified Instruction-Tuning for Ranking and Generation  
 ![Instruction template](https://andlukyane.com/images/paper_reviews/rankrag/2024-07-21_19-18-49.jpeg)  
   Stage-I's SFT provides basic instruction-following capabilities, but LLMs still perform suboptimally on RAG tasks. RankRAG addresses this by instruction-tuning the LLM for both context ranking and answer generation. This involves:  
-  
+
 * **SFT data from Stage-I** to maintain instruction-following capabilities.  
 * **Context-rich QA data** to improve the LLM’s use of context for generation.  
 * **Retrieval-augmented QA data** to enhance robustness against irrelevant contexts.  
 * **Context ranking data** to empower LLMs with ranking capabilities.  
 * **Retrieval-augmented ranking data** to train the LLM to determine the relevance of multiple contexts simultaneously, closer to real-world RAG scenarios.  
-  
+
 All tasks are standardized into a QA format (question, context, answer), allowing mutual enhancement and resulting in a unified model capable of various knowledge-intensive tasks.
 
 ### RankRAG Inference: Retrieve-Rerank-Generate Pipeline  
-  
+
 The inference pipeline for RankRAG is a three-step process:  
 * The retriever model retrieves top-N contexts from the corpus.   
 * The RankRAG model calculates the relevance scores between the question and the N contexts, retaining only the top-k contexts.   
