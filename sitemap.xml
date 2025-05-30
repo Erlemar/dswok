@@ -29,7 +29,15 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://dswok.com/General%20DL/Two-tower</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://dswok.com/General%20DL/Wide%20%26%20Deep%20Learning</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dswok.com/General%20DL/logQ%20correction</loc>
     <priority>0.8</priority>
   </url>
   <url>
@@ -293,23 +301,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://dswok.com/Transformers</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://dswok.com/Two%20tower</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://dswok.com/index%20small</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://dswok.com/logQ%20correction</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://dswok.com/negative%20sampling</loc>
     <priority>0.8</priority>
   </url>
   <url>

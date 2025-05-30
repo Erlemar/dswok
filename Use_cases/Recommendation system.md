@@ -99,7 +99,7 @@ Initial candidate selection (before candidate generation) can be done using filt
 
 The target variable is a certain action (view, click, order). Positive samples are cases when the user had a positive interaction with an item. [[Negative sampling]] is a separate topic, but in general we can sample randomly from all available candidates, sample items from the user history they didn't interact with or do in-batch sampling. For in-batch sampling, it can be important to apply [[logQ correction]] to tackle bias.
 ### Data preparation, analysis and feature engineering
-For candidate generation/retrieval, modern approaches usually use [[Two tower]] architecture. It has separate towers for users and items.
+For candidate generation/retrieval, modern approaches usually use [[Two-tower]] architecture. It has separate towers for users and items.
 
 Usually, the items are represented as [[embeddings]] for the item tower. Text descriptions can be embedded with any common embedder from the [MTEB: Massive Text Embedding Benchmark](https://huggingface.co/spaces/mteb/leaderboard) or by openai API. Images can be embedded using [[Contrastive Language-Image Pre-training|CLIP]]. 
 
@@ -178,7 +178,7 @@ Videos are usually are treated as a sequence of frames. Categories can be encode
 - Item-Item / User-User [[Collaborative Filtering]], [[Content-Based Filtering]]
 - [[Matrix Factorization]]
 - Clustering-based methods
-- [[Two tower]] which is usually trained using [[contrastive learning]]
+- [[Two-tower]] which is usually trained using [[contrastive learning]]
 
 **Ranking models:**
 - [[Logistic regression]], [[Gradient boosting]], [[Factorization Machines]]
