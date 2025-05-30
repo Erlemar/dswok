@@ -5,22 +5,6 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://dswok.com/Coding%20assistants</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://dswok.com/Data%20Drift</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://dswok.com/Dimensionality%20Reduction</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://dswok.com/Direct%20Preference%20Optimization</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://dswok.com/General%20DL/Attention</loc>
     <priority>0.8</priority>
   </url>
@@ -54,6 +38,10 @@
   </url>
   <url>
     <loc>https://dswok.com/General%20ML/Decision%20Tree</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dswok.com/General%20ML/Dimensionality%20Reduction</loc>
     <priority>0.8</priority>
   </url>
   <url>
@@ -102,10 +90,6 @@
   </url>
   <url>
     <loc>https://dswok.com/Index</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://dswok.com/Intent%20classification</loc>
     <priority>0.8</priority>
   </url>
   <url>
@@ -221,10 +205,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://dswok.com/P-value</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://dswok.com/Papers/Agentic%20Retrieval-Augmented%20Generation%20for%20Time%20Series%20Analysis</loc>
     <priority>0.8</priority>
   </url>
@@ -310,10 +290,6 @@
   </url>
   <url>
     <loc>https://dswok.com/README</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://dswok.com/Tokenization</loc>
     <priority>0.8</priority>
   </url>
   <url>
