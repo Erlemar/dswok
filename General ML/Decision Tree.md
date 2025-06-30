@@ -38,11 +38,12 @@ A Decision Tree is a supervised learning algorithm used for both classification 
 ## Advantages
 * Easy to understand and interpret
 * Requires little data preprocessing
-* Can handle both numerical and categorical data - Can be visualized easily ## Disadvantages - Can create overly complex trees that do not generalize well (overfitting) - Can be unstable; small variations in the data can result in a completely different tree - Biased towards features with more levels (in categorical variables) - Cannot predict beyond the range of the training data (for regression tasks)
+* Can handle both numerical and categorical data - Can be visualized easily
 
 ## Disadvantages
 - Can create overly complex trees that do not generalize well (overfitting)
 - Can be unstable; small variations in the data can result in a completely different tree
+- Biased towards features with more levels (in categorical variables)
 - Cannot predict beyond the range of the training data (for regression tasks)
 
 ## [[Regularization]]
