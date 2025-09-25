@@ -7,6 +7,7 @@ ML System Design interview is a stage of the job [[Interview preparation|intervi
 * a brief overview of the system development process at a high level
 * asking clarifying questions
 * describing every stage of the system development in detail, suggesting various approaches and explaining their trade-offs
+
 In other words, you are being tested for:
 - Understanding the end-to-end process of ML model lifecycle
 - Being able to clearly communicate the steps necessary to deliver the solution

@@ -1,7 +1,6 @@
 ---
 tags:
-  - algorithm
-  - model
+  - clustering
   - unsupervised
 aliases:
   - K-means

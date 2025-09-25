@@ -1,7 +1,6 @@
 ---
 tags:
-  - algorithm
-  - model
+  - classification
   - supervised
 ---
 Logistic regression is a statistical method used for binary classification problems, modeling the probability of an instance belonging to a particular class. Common variations of Logistic regression: Binary (two possible outcomes), Multinomial (more than two unordered outcomes), Ordinal (more than two ordered outcomes).
@@ -56,7 +55,7 @@ Where $α$ is the learning rate and $∇J(β)$ is the gradient of the cost funct
 >import numpy as np
 >
 >class LogisticRegression:
->    def __init__(self, learning_rate: float=0.01, n_iterations: int=1000, threshold: int=0.5):
+>    def __init__(self, learning_rate: float=0.01, n_iterations: int=1000, threshold: float=0.5):
 >        self.learning_rate = learning_rate
 >        self.n_iterations = n_iterations
 >        self.weights = None

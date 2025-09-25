@@ -3,7 +3,8 @@ aliases:
   - Low-Rank Adaptation
 tags:
   - nlp
-  - approach
+  - fine-tuning
+  - optimization
 ---
 LoRA (Low-Rank Adaptation) is a parameter-efficient fine-tuning technique that allows to adapt large pre-trained models to specific tasks while minimizing computational resources.
 

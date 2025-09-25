@@ -3,7 +3,6 @@ tags:
   - interview
 aliases:
   - interview
-  - Interview
 ---
 This note is for interview questions that can't be easily moved to other notes.
 [[Deep Learning questions]]

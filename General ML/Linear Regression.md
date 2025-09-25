@@ -1,7 +1,6 @@
 ---
 tags:
-  - algorithm
-  - model
+  - regression
   - supervised
 ---
 Linear regression is a supervised algorithm or statistical method that learns to model a dependent variable (target) as a function of some independent variables (features) by finding a line (or surface) that best "fits" the data. For linear regression, we assume the target to be continuous (a number), for [[Logistic regression]] we assume target to be discrete (has a finite number of classes).
@@ -120,7 +119,7 @@ $y = β₀ + β₁x₁ + β₂x₂ + β₃(x₁*x₂) + ε$
 > 
 >     def fit(self, X, y):
 >         n_samples, n_features = X.shape
->         self.weights = np.zeros((1, n_features))
+>         self.weights = np.zeros(n_features)
 >         self.bias = 0
 > 
 >         for _ in range(self.n_iterations):

@@ -1,9 +1,9 @@
 ---
 tags:
-  - algorithm
-  - model
-  - architecture
   - nlp
+  - architecture
+  - transformer
+  - pre-trained
 ---
  Most of the information is available in the paper: [[BERT. Pre-training of Deep Bidirectional Transformers forLanguage Understanding|BERT paper]].
  

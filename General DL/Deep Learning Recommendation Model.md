@@ -3,9 +3,8 @@ aliases:
   - DLRM
 tags:
   - recsys
-  - model
   - architecture
-  - algorithm
+  - neural-network
 ---
 Deep Learning Recommendation Model is a neural network architecture developed by Facebook to handle large-scale recommendation tasks efficiently. It focuses on combining numerical features and categorical embeddings in a computationally optimized manner. It explicitly models pairwise feature interactions using dot products, creating both first-order and higher-order feature interactions.
 ## Architecture

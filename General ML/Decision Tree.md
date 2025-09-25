@@ -1,8 +1,8 @@
 ---
 tags:
-  - algorithm
-  - model
+  - tree-based
   - supervised
+  - interpretable
 ---
 A Decision Tree is a supervised learning algorithm used for both classification and regression tasks. It creates a model that predicts the value of a target variable by learning simple decision rules inferred from the data features.
 
@@ -38,7 +38,8 @@ A Decision Tree is a supervised learning algorithm used for both classification 
 ## Advantages
 * Easy to understand and interpret
 * Requires little data preprocessing
-* Can handle both numerical and categorical data - Can be visualized easily
+* Can handle both numerical and categorical data
+* Can be visualized easily
 
 ## Disadvantages
 - Can create overly complex trees that do not generalize well (overfitting)

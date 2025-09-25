@@ -1,10 +1,8 @@
 ---
 tags:
   - recsys
-  - recommendation
   - architecture
-  - approach
-  - algorithm
+  - neural-network
   - embeddings
 ---
 Two-tower architecture is a neural network approach used in recommendation systems for candidate generation and retrieval. It consists of two separate neural networks (towers) that independently encode users and items into dense embeddings in a shared vector space, where similarity between embeddings indicates relevance.
