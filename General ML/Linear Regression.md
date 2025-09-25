@@ -1,7 +1,6 @@
 ---
 tags:
-  - algorithm
-  - model
+  - regression
   - supervised
 ---
 Linear regression is a supervised algorithm or statistical method that learns to model a dependent variable (target) as a function of some independent variables (features) by finding a line (or surface) that best "fits" the data. For linear regression, we assume the target to be continuous (a number), for [[Logistic regression]] we assume target to be discrete (has a finite number of classes).

@@ -1,8 +1,7 @@
 ---
 tags:
-  - algorithm
   - ensemble
-  - model
+  - tree-based
   - supervised
 aliases:
   - GBM

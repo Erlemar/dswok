@@ -3,10 +3,9 @@ aliases:
   - NCF
   - Neural CF
 tags:
-  - algorithm
-  - model
   - recsys
   - architecture
+  - neural-network
 ---
 Neural Collaborative Filtering (NCF) is a deep learning approach to collaborative filtering for recommendation systems that aims to learn the complex user-item interaction function using neural networks. NCF addresses the limitations of traditional [[matrix factorization]] methods by using non-linear neural networks to model user-item interactions.
 

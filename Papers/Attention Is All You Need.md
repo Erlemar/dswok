@@ -4,8 +4,8 @@ aliases:
 tags:
   - nlp
   - attention
-  - approach
   - architecture
+  - transformer
 ---
 [Paper](https://arxiv.org/abs/1706.03762)
 The Transformer is a neural network architecture for sequence transduction tasks that relies entirely on [[attention]] mechanisms, removing the need for recurrence and convolutions. It outperforms previous models in machine translation tasks, while being more parallelizable and faster to train. The Transformer also generalizes well to other tasks like English constituency parsing.

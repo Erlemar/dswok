@@ -2,7 +2,8 @@
 tags:
   - nlp
   - attention
-  - approach
+  - optimization
+  - efficiency
 ---
 ## Paper Review: Linformer: Self-Attention with Linear Complexity  
   

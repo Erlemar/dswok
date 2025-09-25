@@ -3,7 +3,6 @@ aliases: []
 tags:
   - evaluation
   - metric
-  - recommendation
   - recsys
 ---
 Recommendation system metrics are quantitative measures used to evaluate the performance and effectiveness of recommendation algorithms. These metrics help assess how well a system can predict user preferences, rank items, and provide valuable recommendations.
