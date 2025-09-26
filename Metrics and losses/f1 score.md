@@ -11,6 +11,7 @@ The F1 score is an evaluation metric for classification models that combines pre
 The F1 score is calculated as the harmonic mean of precision and recall:
 
 $$F1 = 2 \cdot \frac{\text{precision} \cdot \text{recall}}{\text{precision} + \text{recall}} = \frac{2 \cdot \text{TP}}{2 \cdot \text{TP} + \text{FP} + \text{FN}}$$
+
 F1 score varies from 0 to 1, where 1 represents perfect precision and recall. F1 uses the harmonic mean instead of arithmetic mean to punish extreme values. Precision 1 and recall 0 result in a mean of 0.5, but f1 of 0.
 
 F1 is usually used for imbalanced datasets, when both precision and recall are important. But it ignores TN, so it can't be used when TN is important. And it is necessary to tune the classification threshold

@@ -8,7 +8,7 @@ tags:
 
 ![Main image](https://andlukyane.com/images/paper_reviews/swin_v2/2021-11-19_15-31-46.jpg)
 
-Swin Transformers was an interesting architecture that got great results on many benchmarks, and the authors present a newer version - it is scaled up to 3 billion parameters and can be trained on images up to 1536x1536 resolution.
+Swin [[Transformer]]s was an interesting architecture that got great results on many benchmarks, and the authors present a newer version - it is scaled up to 3 billion parameters and can be trained on images up to 1536x1536 resolution.
 
 Vision models have the following difficulties when trying to scale them up: instability issues at scale, high GPU memory consumption for high-resolution images, and the fact that downstream tasks usually require high-resolution images/windows, while the models are pretrained on lower resolutions and the transfer isn't always efficient.
 
@@ -26,7 +26,7 @@ Swin Transformer V2 sets new records on four representative vision benchmarks: 8
 
 ![Architecture](https://andlukyane.com/images/paper_reviews/swin_v2/2021-11-19_14-25-58.jpg)
 
-The authors say that their experiments with large vision models reveal an instability issue in training. Larger models have a larger discrepancy of activation amplitudes across layers. This is caused by residual connections and leads to the accumulation of activation values layer by layer. The authors propose a new normalization configuration (post-norm) to deal with this problem: it moves the LN layer from the beginning of each residual unit to the backend. They also use scaled cosine attention instead of a dot product attention - this makes the computation irrelevant to amplitudes of block inputs, and the attention values are less likely to fall into extremes.
+The authors say that their experiments with large vision models reveal an instability issue in training. Larger models have a larger discrepancy of activation amplitudes across layers. This is caused by residual connections and leads to the accumulation of activation values layer by layer. The authors propose a new normalization configuration (post-norm) to deal with this problem: it moves the LN layer from the beginning of each residual unit to the backend. They also use scaled cosine [[attention]] instead of a dot product [[attention]] - this makes the computation irrelevant to amplitudes of block inputs, and the [[attention]] values are less likely to fall into extremes.
 
 Another issue is that many downstream tasks require high-resolution input images or large attention windows, but the models are pretrained on lower-resolution images. The current common practice is to perform a bi-cubic interpolation of the position bias maps. The authors use a log-spaced continuous position bias (Log-CPB), which generates bias values for arbitrary coordinate ranges by applying a small meta-network on the log-spaced coordinate inputs. A pre-trained model will be able to freely transfer across window sizes by sharing weights of the meta-network, as the meta-network takes any coordinates. It is very important to transform the coordinates into the log-space so that the extrapolation ratio can be low even when differences between the windows sizes are large.
 

@@ -10,16 +10,16 @@ tags:
   
 ![Main image](https://andlukyane.com/images/paper_reviews/spert/image.png)  
   
-The authors introduce an attention model for span-based joint entity and relation extraction. The key is using BERT: they use BERT embeddings, localized context, and strong negative sampling.  
+The authors introduce an attention model for span-based joint entity and relation extraction. The key is using [[BERT]]: they use [[BERT]] embeddings, localized context, and strong negative sampling.  
 
 A span-based approach means that any token subsequence (= span) can be an entity, and a relation can be between any pair of spans. This approach also works for overlapping entities, like "codeine" inside of "codeine intoxication". Note the difference with the usual NER, where each token has a single tag under the BIO scheme (or some other).  
   
-Bert is a big model, so while training, they run each sentence through BERT only once. And use some simple downstream processing with a basic entity/relation classifier.  
+[[BERT]] is a big model, so while training, they run each sentence through [[BERT]] only once. And use some simple downstream processing with a basic entity/relation classifier.  
 ### The approach  
   
 The idea is the following:  
 * tokenize input sentence into BPE tokens. Get N tokens  
-* get embeddings using BERT. length of embedding sequence is N + 1 (the last token represents a special token, capturing the context of the whole sentence)  
+* get embeddings using [[BERT]]. length of embedding sequence is N + 1 (the last token represents a special token, capturing the context of the whole sentence)  
 * classify each span (sequence of tokens, max length is 10) into entities  
 * filter non-entities  
 * classify remaining pairs into relations  
@@ -27,7 +27,7 @@ The idea is the following:
   
 ### Span Classification  
   
-Bert embeddings of all words in spans are combines using fusion = maxpooling (but it is possible to use other approaches).  
+[[BERT]] embeddings of all words in spans are combines using fusion = maxpooling (but it is possible to use other approaches).  
   
 Width embeddings are concatenated to the span embedding. For each span length, there is a separate width embedding (like we have different width embeddings for spans with widths 1, 2, 3, and so on). And these embeddings are trainable.  
   

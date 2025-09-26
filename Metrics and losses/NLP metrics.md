@@ -26,7 +26,7 @@ Where:
 - $F_{mean}$ is a weighted harmonic mean of precision and recall
 - Penalty accounts for fragmentation (poor word order)
 
-3. **ROUGE (Recall-Oriented Understudy for Gisting Evaluation)**: Measures n-gram recall (and sometimes precision/F1) between generated and reference texts.
+3. **ROUGE (Recall-Oriented Understudy for Gisting Evaluation)**: Measures n-gram recall (and sometimes precision/[[f1 score|F1]]) between generated and reference texts.
     
     - **ROUGE-N**: Measures n-gram overlap.
     

@@ -3,7 +3,7 @@ aliases:
 tags:
   - interview
 ---
-Q: You have three independent binary classifiers with 80% accuracy. What is the accuracy of the majority-vote classifier?
+Q: You have three independent binary classifiers with 80% f1 score. What is the accuracy of the majority-vote classifier?
 A: The majority vote will be correct if at least two out of the three classifiers are correct. This can be calculated as the sum of probabilities:
 * All three classifiers are correct: $0.8×0.8×0.8=0.512$
 * Two classifiers are correct, and one is incorrect: $3×0.8×0.8×0.2=0.384$

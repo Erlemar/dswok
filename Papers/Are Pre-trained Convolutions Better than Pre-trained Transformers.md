@@ -7,17 +7,17 @@ tags:
 [Paper link](https://arxiv.org/abs/2105.03322)
 ![Main image](https://andlukyane.com/images/paper_reviews/cnnbettertransformers/2021-05-10_14-56-46.jpg)
 
-In this paper, the authors from Google Research wanted to investigate whether CNN architectures can be competitive compared to [[Transformer]]s on NLP problems. It turns out that pre-trained CNN models outperform pre-trained Transformers on some tasks; they also train faster and scale better to longer sequences.
+In this paper, the authors from Google Research wanted to investigate whether CNN architectures can be competitive compared to [[Transformer]]s on NLP problems. It turns out that pre-trained CNN models outperform pre-trained [[Transformer]]s on some tasks; they also train faster and scale better to longer sequences.
 
 -------
 
 The authors say that previously there were no works on rigorously running experiments for pre-training and fine-tuning CNN for texts.
 
 The possible benefits of CNNs are:
-* no self-attention, so less memory required;
+* no [[attention|self-attention]], so less memory required;
 * they operate locally and thus don't need positional embeddings.
 
-On the other hand, CNNs can't access global information; for example, they can't do something like a cross-attention across multiple sequences.
+On the other hand, CNNs can't access global information; for example, they can't do something like a [[attention|cross-attention]] across multiple sequences.
 
 ### The modeling approach
 
@@ -29,7 +29,7 @@ On the other hand, CNNs can't access global information; for example, they can't
 
 The authors don't share the exact architectures, but here is the general description:
 
-* Seq2Seq architecture, but convolutional blocks replace multi-head attention;
+* Seq2Seq architecture, but convolutional blocks replace [[attention|multi-head attention]];
 * gated linear unit projections instead of query-key-value transforms;
 * different experiments try lightweight convolutions, dynamic convolutions, and dilated convolutions;
 * each submodule is wrapped with residual connections and layer norm;

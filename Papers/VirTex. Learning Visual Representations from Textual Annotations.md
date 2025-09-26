@@ -10,7 +10,7 @@ tags:
   
 ![Main image](https://andlukyane.com/images/paper_reviews/virtex/image.png)  
   
-The authors offer an alternative approach to pre-training backbones for CV tasks - using semantically dense captions to learn visual representations. VirTex (CNN + Transformer) is pre-trained on COCO captions. On downstream tasks, it can reach performance similar to pre-training on ImageNet, but with 10x fewer images.
+The authors offer an alternative approach to pre-training backbones for CV tasks - using semantically dense captions to learn visual representations. VirTex (CNN + [[Transformer]]) is pre-trained on COCO captions. On downstream tasks, it can reach performance similar to pre-training on ImageNet, but with 10x fewer images.
   
 Language has higher semantic density than images. Therefore we expect that textual annotations can be used to learn visual representations using fewer images than other approaches. Also, it is easier to get data annotations this way.  
   

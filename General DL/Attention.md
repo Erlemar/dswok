@@ -6,7 +6,7 @@ tags:
 ---
 [The original paper](https://arxiv.org/abs/1706.03762)
 
-Attention is a mechanism that lets neural networks focus on specific parts of an input sequence. 
+Attention is a mechanism that lets neural networks focus on specific parts of an input sequence. This mechanism has been explored in various architectures like [[Hyena Hierarchy. Towards Larger Convolutional Language Models|Hyena]] and [[Linformer. Self-Attention with Linear Complexity|Linformer]] for efficiency improvements. Attention is also widely used in computer vision, as seen in [[Swin Transformer V2. Scaling Up Capacity and Resolution|Swin Transformers]] and object detection models like [[End-to-End Object Detection with Transformers|DETR]]. 
 
 A fundamental type is Scaled Dot-Product Attention (used in [[Transformer]]). It has three inputs:
 - Query (Q): The current token trying to gather information.

@@ -12,7 +12,7 @@ Regression metrics are quantitative measures used to evaluate the performance of
 1. **Mean Absolute Error (MAE)**: average of the absolute differences between predicted and actual values. It is easy to understand as it is expressed in the same units as the target variable.
 
 $$\text{MAE} = \frac{1}{n} \sum_{i=1}^{n} |y_i - \hat{y}_i|$$
-2. **Mean Squared Error (MSE)**: the average of the squared differences between predicted and actual values. More sensitive to outliers. Differentiable, hence often used as a loss function.
+2. **Mean Squared Error (MSE)**: the average of the squared differences between predicted and actual values. More sensitive to outliers. Differentiable, hence often used as a [[Losses|loss function]].
 
 $$\text{MSE} = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2$$
 

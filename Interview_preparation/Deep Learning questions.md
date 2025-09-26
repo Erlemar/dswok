@@ -6,7 +6,7 @@ Q: What is the number of the parameters of convolution?
 A: $(3*3*3 + 1) *3$ 
 
 Q: We have a multiclass neural net, what should we change in it, if we want to make it multilabel?
-A: Change the output activation function from softmax to sigmoid.
+A: Change the output activation function from softmax to sigmoid and the [[Losses|loss function]] from categorical cross-entropy to binary cross-entropy.
 
 Q: Here is a pseudocode for a neural net. Explain how it works, point out mistakes or inefficiencies in the architecture:
 ```

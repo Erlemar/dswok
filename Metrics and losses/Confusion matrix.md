@@ -55,7 +55,7 @@ The proportion of incorrectly instances samples among all negative instances. Su
 The proportion of incorrectly instances samples among all positive instances.
    $$\text{FNR} = \frac{FN}{TP + FN} = 1 - \text{Recall}$$
 
-#### F1 Score
+#### [[f1 score|F1 Score]]
 Harmonic mean of precision and recall. Suitable when you need a balance between Precision and Recall, especially useful for imbalanced datasets where one might be high at the expense of the other.
    $$\text{F1} = 2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}} = \frac{2 \cdot TP}{2 \cdot TP + FP + FN}$$
 

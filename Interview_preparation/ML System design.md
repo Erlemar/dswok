@@ -3,7 +3,7 @@ tags:
   - interview
   - concept
 ---
-ML System Design interview is a stage of the job [[Interview preparation|interview]] process focused on assessing a candidate's ability to design and implement machine learning systems at scale. It involves open-ended questions about designing ML solutions for real-world problems. A typical question is "Design a recommendation/fraud detection/image classification/etc system at a bank/telecom/etc". The expected answer includes:
+ML System Design interview is a stage of the job [[Interview preparation|interview]] process focused on assessing a candidate's ability to design and implement machine learning systems at scale. It involves open-ended questions about designing ML solutions for real-world problems. A typical question is "Design a [[Recommendation system|recommendation]]/fraud detection/image classification/etc system at a bank/telecom/etc". The expected answer includes:
 * a brief overview of the system development process at a high level
 * asking clarifying questions
 * describing every stage of the system development in detail, suggesting various approaches and explaining their trade-offs
@@ -31,7 +31,7 @@ Discuss possible optimizations, like pre-calculating or caching predictions, usi
 ### High-level design and diagrams
 At this step, you are expected to describe a high-level design of the system and, if possible, provide a flowchart.
 
-Mention a possible baseline solution, such as one based on simple rules and statistics. For recommendations, use the most popular items or a previous item the user interacted with. For texts/images, use a pre-trained model without tuning/instructions, etc.
+Mention a possible baseline solution, such as one based on simple rules and statistics. For [[Recommendation system|recommendations]], use the most popular items or a previous item the user interacted with. For texts/images, use a pre-trained model without tuning/instructions, etc.
 
 Prepare a diagram, it should include data collection for training and during the inference, training flow (data collection, model training, deployment), the general logic of the pipeline in production.
 ### Data preparation and analysis

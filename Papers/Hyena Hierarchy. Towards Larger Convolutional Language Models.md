@@ -9,17 +9,17 @@ tags:
 [Project link](https://hazyresearch.stanford.edu/blog/2023-03-07-hyena)
 ![Main image](https://andlukyane.com/images/paper_reviews/hyena/2023-03-19_19-01-37.jpg)
 
-Transformers are currently widely used in deep learning thanks to their ability to learn at scale. However, attention exhibits quadratic cost in sequence length, limiting the amount of context accessible. Current subquadratic methods, like low-rank and sparse approximations, require dense attention layers to achieve comparable performance.
+[[Transformer]]s are currently widely used in deep learning thanks to their ability to learn at scale. However, [[attention]] exhibits quadratic cost in sequence length, limiting the amount of context accessible. Current subquadratic methods, like low-rank and sparse approximations, require dense attention layers to achieve comparable performance.
 
-The authors introduce Hyena, a subquadratic drop-in replacement for attention, which combines implicitly parametrized long convolutions and data-controlled gating. Hyena significantly improves accuracy in recall and reasoning tasks on long sequences, matching attention-based models.
+The authors introduce Hyena, a subquadratic drop-in replacement for [[attention]], which combines implicitly parametrized long convolutions and data-controlled gating. Hyena significantly improves accuracy in recall and reasoning tasks on long sequences, matching [[attention]]-based models.
 
-It sets a new state-of-the-art for dense-attention-free architectures in language modeling, reaching Transformer quality with 20% less training compute at sequence length 2K. Furthermore, Hyena operators are twice as fast as optimized attention at sequence length 8K and 100x faster at sequence length 64K.
+It sets a new state-of-the-art for dense-attention-free architectures in language modeling, reaching [[Transformer]] quality with 20% less training compute at sequence length 2K. Furthermore, Hyena operators are twice as fast as optimized [[attention]] at sequence length 8K and 100x faster at sequence length 64K.
 
 ### General approach
 
 ![Overview](https://andlukyane.com/images/paper_reviews/hyena/2023-03-19_18-26-11.jpg)
 
-While attention mechanisms are effective for language processing, the paper suggests that there may be subquadratic operators that can match its quality at scale. Based on targeted reasoning tasks, the authors distill three properties of attention that contribute to its performance: data control, sublinear parameter scaling, and unrestricted context. Then they introduce the Hyena hierarchy, a new operator that combines long convolutions and element-wise multiplicative gating to match the quality of attention at scale while reducing computational cost. Empirically, the Hyena hierarchy is shown to significantly shrink the quality gap with attention, reaching similar performance with a smaller computational budget and without hybridization.
+While [[attention]] mechanisms are effective for language processing, the paper suggests that there may be subquadratic operators that can match its quality at scale. Based on targeted reasoning tasks, the authors distill three properties of [[attention]] that contribute to its performance: data control, sublinear parameter scaling, and unrestricted context. Then they introduce the Hyena hierarchy, a new operator that combines long convolutions and element-wise multiplicative gating to match the quality of [[attention]] at scale while reducing computational cost. Empirically, the Hyena hierarchy is shown to significantly shrink the quality gap with [[attention]], reaching similar performance with a smaller computational budget and without hybridization.
 
 ### Hyena
 
@@ -27,7 +27,7 @@ While attention mechanisms are effective for language processing, the paper sugg
 
 ![Recurrence](https://andlukyane.com/images/paper_reviews/hyena/2023-03-19_18-41-30.jpg)
 
-The Hyena operator involves taking a set of linear projections of the input, and combining them using long convolutions and element-wise multiplication. The operator alternatively applies convolutions in the time and frequency domain, or element-wise multiplication in the time and frequency domain. This helps the model to better understand the context of the input and select specific parts of it. This new approach is more efficient than the traditional attention mechanism, which is widely used in deep learning models, and can provide similar performance with less computational cost.
+The Hyena operator involves taking a set of linear projections of the input, and combining them using long convolutions and element-wise multiplication. The operator alternatively applies convolutions in the time and frequency domain, or element-wise multiplication in the time and frequency domain. This helps the model to better understand the context of the input and select specific parts of it. This new approach is more efficient than the traditional [[attention]] mechanism, which is widely used in deep learning models, and can provide similar performance with less computational cost.
 
 #### Hyena Matrices
 
