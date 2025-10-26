@@ -1,6 +1,7 @@
 ---
 tags:
 - cv
+- transformer
 ---
 [Paper link](https://arxiv.org/abs/2304.02643)
 [Code link](https://github.com/facebookresearch/segment-anything)
@@ -29,7 +30,7 @@ The promptable segmentation task offers a natural pre-training algorithm that si
 <img src="https://andlukyane.com/images/paper_reviews/sam/2023-04-07_08-45-08.jpg">
 </div>
 
-SAM has three components: an image encoder (MAE pre-trained (ViT)), a flexible prompt encoder, and a fast mask decoder.
+SAM has three components: an image encoder (MAE pre-trained Vision [[Transformer]] (ViT)), a flexible prompt encoder, and a fast mask decoder.
 
 The authors consider two sets of prompts for segmentation: sparse (points, boxes, text) and dense (masks). Points and boxes are represented using positional encodings combined with learned embeddings for each prompt type, while free-form text uses a text encoder from CLIP. Dense prompts, such as masks, are embedded using convolutions and summed element-wise with the image embedding.
 

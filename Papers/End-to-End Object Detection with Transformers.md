@@ -4,12 +4,14 @@ aliases:
 tags:
   - cv
   - object_detection
+  - transformer
+  - architecture
 ---
 [Paper link](https://arxiv.org/abs/2005.12872)
 [Code link](https://github.com/facebookresearch/detr) (PyTorch)
 
 ![Main image](https://andlukyane.com/images/paper_reviews/detr/image.png)
-The authors treat this task as a direct set prediction problem and use a transformer.
+The authors treat this task as a direct set prediction problem and use a [[Transformer]].
 
 DETR predicts all objects at once and trains on a set loss function which performs bipartite matching between predicted and ground-truth objects. There is no need for anchors or non-maximal suppression.
 
