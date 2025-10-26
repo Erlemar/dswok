@@ -2,6 +2,7 @@
 tags:
 - llm
 - nlp
+- transformer
 ---
 [Paper link](https://arxiv.org/abs/2303.17564)
 
@@ -29,7 +30,7 @@ The authors use a parallel tokenizer training method to handle the large Pile da
 
 ![Hyperparameters](https://andlukyane.com/images/paper_reviews/bloomberggpt/2023-04-03_08-50-52.jpg)
 
-The authors base their BloombergGPT model on BLOOM, using a decoder-only causal language model with 70 layers of transformer decoder blocks. The architecture includes multi-head [[attention|self-attention]], layer normalization, and a feed-forward network with a single hidden layer using GELU as the non-linear function. [ALiBi positional encoding](https://paperswithcode.com/method/alibi) (Attention with Linear Biases) is applied, and input token embeddings are tied to the linear mapping before the final softmax. The model has an additional layer normalization after token embeddings.
+The authors base their BloombergGPT model on BLOOM, using a decoder-only causal language model with 70 layers of [[Transformer]] decoder blocks. The architecture includes multi-head [[attention|self-attention]], layer normalization, and a feed-forward network with a single hidden layer using GELU as the non-linear function. [ALiBi positional encoding](https://paperswithcode.com/method/alibi) (Attention with Linear Biases) is applied, and input token embeddings are tied to the linear mapping before the final softmax. The model has an additional layer normalization after token embeddings.
 
 #### Model scaling
 

@@ -27,7 +27,7 @@ The baseline of the approach is YOLOv3 with Darknet53 as a baseline.
 * lr is 0.01 * batch size (128) / 64, cosine scheduler;
 * the input size is evenly drawn from 448 to 832 with 32 strides;
 * EMA weight updating;
-* [[Losses|BCE loss]] for cls and object branch, IoU for reg branch;
+* [[Losses#Cross-Entropy Loss|BCE loss]] for cls and object branch, IoU for reg branch;
 * RandomHorizontalFlip, ColorJitter and multi-scale for data augmentation;
 
 #### Decoupled head

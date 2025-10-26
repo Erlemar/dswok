@@ -1,6 +1,7 @@
 ---
 tags:
   - cv
+  - transformer
 ---
 [Paper link](https://arxiv.org/abs/2006.06666)  
   

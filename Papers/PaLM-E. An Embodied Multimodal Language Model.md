@@ -3,6 +3,7 @@ tags:
 - nlp
 - llm
 - embeddings
+- transformer
 ---
 [Paper link](https://arxiv.org/abs/2303.03378)
 [Project link](https://palm-e.github.io/)

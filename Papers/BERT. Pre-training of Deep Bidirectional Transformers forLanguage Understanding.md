@@ -3,6 +3,8 @@ aliases:
   - BERT paper
 tags:
   - nlp
+  - transformer
+  - architecture
 ---
 [Paper](https://arxiv.org/abs/1810.04805)
 BERT is designed to pretrain deep bidirectional representations from unlabeled text by jointly conditioning on both left and right context in all layers.
@@ -11,7 +13,7 @@ BERT is designed to pretrain deep bidirectional representations from unlabeled t
 ![[Pasted image 20250328183623.png]]
 BERT is trained in two phases: pre-training and fine-tuning. During pre-training, BERT learns from large amounts of unlabeled text using language modeling tasks. In the fine-tuning phase, the model is initialized with these pre-trained parameters and then further trained on labeled data specific to a downstream task, such as question answering.
 
-A key characteristic of BERT is its unified architecture across various tasks. BERT is based on the Transformer encoder and uses bidirectional self-attention, which allows each token to attend to both its left and right context.
+A key characteristic of BERT is its unified architecture across various tasks. BERT is based on the [[Transformer]] encoder and uses bidirectional [[Attention#Self-Attention|self-attention]], which allows each token to attend to both its left and right context.
 
 The authors create two model sizes: $BERT_{BASE}$ and $BERT_{LARGE}$. $BERT_{BASE}$ has 12 Transformer layers, a hidden size of 768, and 12 self-attention heads, totaling about 110 million parameters. $BERT_{LARGE}$ is a deeper and wider version with 24 layers, a hidden size of 1024, 16 attention heads, and approximately 340 million parameters. $BERT_{BASE}$ was designed to match the size of OpenAI's GPT for comparison purposes.
 

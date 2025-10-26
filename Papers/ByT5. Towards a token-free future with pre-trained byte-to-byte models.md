@@ -1,6 +1,8 @@
 ---
 tags:
 - nlp
+- transformer
+- architecture
 ---
 [Paper link](https://arxiv.org/abs/2105.13626)
 [Code link](https://github.com/google-research/byt5)

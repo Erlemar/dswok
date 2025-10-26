@@ -1,6 +1,7 @@
 ---
 tags:
 - cv
+- transformer
 ---
 [Project link](https://dinov2.metademolab.com/)
 
@@ -12,7 +13,7 @@ This paper demonstrates that pretraining computer vision models on large, divers
 
 ![Data Processing](https://andlukyane.com/images/paper_reviews/dinov2/2023-04-20_15-51-05.jpg)
 
-The researchers assemble a curated dataset called LVD-142M by retrieving images from uncurated sources that are similar to those in several curated datasets (ImageNet-22k, the train split of ImageNet-1k, Google Landmarks, and several fine-grained datasets). They use publicly available web data to create a raw unfiltered dataset of 1.2 billion unique images, and apply a [copy detection pipeline](https://arxiv.org/abs/2202.10261) to remove near-duplicates. To build the curated pretraining dataset, they compute image embeddings using a self-supervised ViT-H/16 network and perform k-means clustering on the uncurated data. Nearest neighbors or images from corresponding clusters are retrieved based on the query dataset. The deduplication and retrieval stages use the Faiss library for efficient indexing and batch searches. The entire process is distributed on a compute cluster of 20 nodes with 8 V100 each and takes less than two days to produce the LVD-142M dataset.
+The researchers assemble a curated dataset called LVD-142M by retrieving images from uncurated sources that are similar to those in several curated datasets (ImageNet-22k, the train split of ImageNet-1k, Google Landmarks, and several fine-grained datasets). They use publicly available web data to create a raw unfiltered dataset of 1.2 billion unique images, and apply a [copy detection pipeline](https://arxiv.org/abs/2202.10261) to remove near-duplicates. To build the curated pretraining dataset, they compute image embeddings using a self-supervised Vision [[Transformer]] (ViT-H/16) network and perform k-means clustering on the uncurated data. Nearest neighbors or images from corresponding clusters are retrieved based on the query dataset. The deduplication and retrieval stages use the Faiss library for efficient indexing and batch searches. The entire process is distributed on a compute cluster of 20 nodes with 8 V100 each and takes less than two days to produce the LVD-142M dataset.
 
 ### Discriminative Self-supervised Pre-training
 

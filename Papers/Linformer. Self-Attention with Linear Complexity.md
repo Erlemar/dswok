@@ -4,6 +4,7 @@ tags:
   - attention
   - optimization
   - efficiency
+  - transformer
 ---
 ## Paper Review: Linformer: Self-Attention with Linear Complexity  
   
