@@ -38,7 +38,7 @@ SAM 3 generalizes SAM 2 by supporting the new PCS task alongside earlier point-b
 
 #### Detector (image-level)
 
-The detector is based on [DETR](https://andlukyane.com/blog/paper-review-detr):
+The detector is based on [[End-to-End Object Detection with Transformers|DETR]]:
 
 * Encodes the image, text prompts, and image exemplars. 
 * Fuses them through cross-attention. 
