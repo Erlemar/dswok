@@ -5,7 +5,7 @@ tags:
   - transformer
   - pre-trained
 ---
- Most of the information is available in the paper: [[BERT. Pre-training of Deep Bidirectional Transformers forLanguage Understanding|BERT paper]].
+ Most of the information is available in the [BERT paper](https://arxiv.org/abs/1810.04805).
  
 Key details:
 - Multi-head attention. [[Transformer]] encoder. Two model sizes: BASE and LARGE

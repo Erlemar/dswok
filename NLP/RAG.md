@@ -55,9 +55,9 @@ When a user submits a query, the system retrieves relevant information and gener
 - Multi-model RAG to work with images, audio, video.
 - Multi-hop RAG (Iterative Retrieval) breaks down a query into sub-queries or performs multiple rounds of retrieval and generation​. It may retrieve an initial context, use the LLM to generate a follow-up query based on that context, retrieve again, and so on, chaining evidence. This mimics how a human might answer a complex question by gathering facts step-by-step. In practice, this is implemented via query decomposition and chained retrieval, then having the LLM synthesize a final answer from all the gathered chunks. This is especially useful, when the query answering requires information from multiple documents.
 - Having router models after the query and having different models for different query types/domains
-- It is possible to use any techniques applicable to generation in general - [[Self-RAG. Learning to Retrieve, Generate, and Critique through Self-Reflection|SelfRAG]] for self-reflection, chain-of-thought, [[Agentic Retrieval-Augmented Generation for Time Series Analysis]] with agents, etc
+- It is possible to use any techniques applicable to generation in general - [SelfRAG](https://andlukyane.com/blog/paper-review-selfrag) for self-reflection, chain-of-thought, [Agentic Retrieval-Augmented Generation for Time Series Analysis](https://andlukyane.com/blog/paper-review-agentic_rag) with agents, etc
 - Late-chunking: embed the entire document, then chunk the embeddings - a long context embedding model creates token embeddings for every token, then they are broken up and pooled into chunk embeddings.
-- [[RankRAG. Unifying Context Ranking with Retrieval-Augmented Generation in LLMs|RankRAG]] uses a single LLM to both rank contexts and generate answers by incorporating a small amount of ranking data into the training.
+- [RankRAG](https://andlukyane.com/blog/paper-review-rankrag) uses a single LLM to both rank contexts and generate answers by incorporating a small amount of ranking data into the training.
 
 ### Evaluation
 
