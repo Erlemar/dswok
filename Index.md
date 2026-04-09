@@ -28,7 +28,7 @@ Start with: [[Recommendation system]]
 
 ## Looking for paper reviews?
 
-I've written 190+ paper reviews on [andlukyane.com](https://andlukyane.com/blog).
+I've written 190+ paper reviews on [andlukyane.com](https://andlukyane.com/tag/paperreview).
 
 ---
 
