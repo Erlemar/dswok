@@ -1,29 +1,35 @@
-# Machine Learning and Data Science Knowledge Base
+# DSWoK — Data Science Well of Knowledge
 
-Welcome to my Obsidian notes on ML/DS. I have spent many years passively collecting knowledge in the form of text snippets and links and recently decided to go through all of it and structure it.
-This obsidian vault will have notes about general ML theory, the approaches to specific business cases, interview preparations and other things.
-For now, it is quite sparse, but I plan to regularly update it.
+An interconnected ML reference for practitioners: core algorithms, deep learning, NLP, metrics, system design, and interview prep.
 
-## Core Machine Learning
-- [[Decision Tree|Decision Trees]]
-- [[Random Forest]]
-- [[Gradient boosting]]
-- [[Linear Regression]]
-- [[Logistic regression]]
-- [[K-Nearest Neighbors]]
-- [[K-means clustering]]
-- [[SVM]]
+Maintained by [Andrey Lukyanenko](https://andlukyane.com/) — Machine Learning Engineer at Meta (London), Kaggle Competition Master and Notebook Grandmaster, Google Developer Expert.
 
-## Model Evaluation and Improvement
-- Metrics
-- [[Regularization]]
-- [[Validation]]
-- [[Bias-Variance Trade-off]]
+> [!tip] New here? Start with [[Recommendation system]] — it's the most comprehensive example of how I approach an end-to-end ML problem.
 
-## General
-- [[Interview preparation]]
+## Browse by topic
 
-## Use cases
-- [[Recommendation system]]
+**Core ML** — classical algorithms, validation, regularization, bias-variance trade-off.
+Start with: [[Gradient boosting]]
 
-The notes are available in my [Github repository](https://github.com/Erlemar/dswok).
+**Deep Learning** — attention, recommendation architectures, parameter-efficient training.
+Start with: [[Attention]]
+
+**NLP** — from word embeddings to Transformers, BERT, and Retrieval-Augmented Generation.
+Start with: [[RAG]] or [[Transformer]]
+
+**Metrics and losses** — classification, regression, ranking, recommendation, computer vision, NLP.
+Start with: [[Losses]]
+
+**Interview preparation** — ML, DL, statistics, system design, behavioral, Leetcode templates.
+Start with: [[ML System design]]
+
+**Use cases** — deep-dive design walkthroughs for production ML problems.
+Start with: [[Recommendation system]]
+
+## Looking for paper reviews?
+
+I've written 190+ paper reviews on [andlukyane.com](https://andlukyane.com/blog).
+
+---
+
+Open-source on [GitHub](https://github.com/Erlemar/dswok).
