@@ -14,7 +14,7 @@ Start with: [[Gradient boosting]]
 **Deep Learning** — attention, recommendation architectures, parameter-efficient training.
 Start with: [[Attention]]
 
-**NLP** — from word embeddings to Transformers, BERT, and Retrieval-Augmented Generation.
+**[[NLP]]** — from word embeddings to Transformers, BERT, and Retrieval-Augmented Generation.
 Start with: [[RAG]] or [[Transformer]]
 
 **Metrics and losses** — classification, regression, ranking, recommendation, computer vision, NLP.
