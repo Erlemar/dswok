@@ -17,8 +17,8 @@ Start with: [[Attention]]
 **[[NLP]]** — from word embeddings to Transformers, BERT, and Retrieval-Augmented Generation.
 Start with: [[RAG]] or [[Transformer]]
 
-**Metrics and losses** — classification, regression, ranking, recommendation, computer vision, NLP.
-Start with: [[Losses]]
+**[[Metrics and losses]]** — classification, regression, ranking, recommendation, computer vision, NLP.
+Start with: [[General losses]] or [[f1 score]]
 
 **Interview preparation** — ML, DL, statistics, system design, behavioral, Leetcode templates.
 Start with: [[ML System design]]
