@@ -1,0 +1,34 @@
+name: Trigger Quartz rebuild
+
+# When content in DSWoK changes, ping the Cloudflare Pages deploy hook
+# for the dswok-quartz build, which clones the latest DSWoK content and
+# rebuilds dswok.com.
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      # Only rebuild on content changes, not on meta/infrastructure files
+      - "**.md"
+      - "images/**"
+      - "!improvement_plan.md"
+      - "!missing_notes.md"
+
+  # Allow manual trigger from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  trigger-rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Cloudflare Pages deploy hook
+        env:
+          DEPLOY_HOOK: ${{ secrets.CLOUDFLARE_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$DEPLOY_HOOK" ]; then
+            echo "::error::CLOUDFLARE_DEPLOY_HOOK secret is not set"
+            exit 1
+          fi
+          curl -fsSL -X POST "$DEPLOY_HOOK"
+          echo "Deploy hook triggered successfully"

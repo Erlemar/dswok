@@ -13,11 +13,11 @@ Some examples:
 - applying Hidden Markov Models to part-of-speech tagging and Conditional Random Fields to NER
 - applying Naïve Bayes and SVM to word counts (including [[Term Frequency-Inverse Document Frequency|TF-IDF]]) and n-grams
 
-In 2010s, [[Word Embeddings]] were introduced - [[Word2Vec]], [[GloVe]], [[fastText]] and [[recurrent models]] became more widely used. While [[RNN]] and LSTM [[were]] proposed earlier, people started using them more together with word embeddings. Later, [[GRU]] variation became popular.
+In 2010s, [[Word Embeddings]] were introduced - [[Word2Vec]], [[GloVe]], [[fastText]] and [[RNN|recurrent models]] became more widely used. While [[RNN]] and [[LSTM]] were proposed earlier, people started using them more together with word embeddings. Later, [[GRU]] variation became popular.
 
 In 2017, the paper [Attention is all you need](https://arxiv.org/abs/1706.03762) appeared and started the era of [[Transformer]]. [[BERT]]- and [[GPT]]-style transformers became the core of the further approaches.
 
-There was another pivotal paper in 2017 - [[Universal Language Model Fine-tuning for Text Classification]], which introduced fine-tuning as we know it: general pre-training, target-task fine-tuning and target-task classifier fine-tuning.
+There was another pivotal paper in 2018 - [Universal Language Model Fine-tuning for Text Classification (ULMFiT)](https://arxiv.org/abs/1801.06146), which introduced fine-tuning as we know it: general pre-training, target-task fine-tuning and target-task classifier fine-tuning.
 
 There were some other papers which explored similar ideas. In [Large Language Models in Machine Translation](https://aclanthology.org/D07-1090/) the authors trained a model on up to 2T tokens with up to 300B n-grams (up to 5-gram). And [Semi-supervised Sequence Learning](https://arxiv.org/abs/1511.01432) suggested pretraining a sequence autoencoder and then fine-tuning it for classification.
 
@@ -45,8 +45,6 @@ Raw texts need to be processed in order to be used in ML models. This processing
 - Parameter Efficient Fine-tuning (LoRA, QLoRA, Prefix Tuning)
 - Prompting
 
-prompt-tuning = добавляем виртуальные токены в начало промпта p-tuning = добавляем виртуальные токены куда-нибудь в промт (например, в середину) prefix-tuning = добавляем префиксы во все слои.
-
 > **Prompt Tuning**: Tunes a set of concatenated input embeddings vectors (generally called "soft prompts", but not referring to the soft prompts here). Initially applied to T5-LM models.
 
 > **Prefix Tuning**: Tunes KV cache (soft prefixes) for every layer, and can be casually described as "prompt tuning, but in every layer", although that is slightly inaccurate. In practice, uses an auxiliary MLP to generate the soft prefixes to help training. Initially applied to GPT-2 and BART models.
@@ -60,7 +58,6 @@ prompt-tuning = добавляем виртуальные токены в нач
 - Machine Translation
 - Text Classification
 	- Topic modeling - a special type of text classification, when text gets assigned certain topics
-- Machine Translation
 - Text Generation
 - Chat-bots
 - [[RAG]]
@@ -79,4 +76,3 @@ prompt-tuning = добавляем виртуальные токены в нач
 
 ## Links
 * [NLP for Supervised Learning - A Brief Survey](https://eugeneyan.com/writing/nlp-supervised-learning-survey/)
-* 
