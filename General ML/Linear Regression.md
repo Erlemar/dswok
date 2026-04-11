@@ -22,12 +22,12 @@ Where:
 
 OLS is the most common method for estimating the parameters of a linear regression model.
 Objective: Minimize the sum of squared residuals: $min Σ(yᵢ - (β₀ + β₁x₁ᵢ + ... + βₚxₚᵢ))²$
-$β̂ = (X'X)^{⁻¹}X'y$
+$β̂ = (X'X)^{-1}X'y$
 
 Where:
 - $β̂$ is the vector of estimated coefficients
 - $X'$ is the transpose of $X$
-- $(X'X)^{⁻¹}$ is the inverse of $X'X$
+- $(X'X)^{-1}$ is the inverse of $X'X$
 
 Properties of OLS estimators under the classical assumptions:
 1. Best Linear Unbiased Estimator (BLUE)
@@ -45,7 +45,7 @@ Maximum Likelihood Estimation is an alternative method to OLS for estimating the
 
 **Likelihood Function for Linear Regression**
 Assuming normally distributed errors:
-$L(β, σ² | y, X) = ∏ᵢ (\frac{1}{√(2πσ²)}) * exp(\frac{-(yᵢ - xᵢ'β)²}{(2σ²)})$
+$L(β, σ² | y, X) = ∏ᵢ (\frac{1}{\sqrt{2πσ²}}) * exp(\frac{-(yᵢ - xᵢ'β)²}{(2σ²)})$
 
 Log-likelihood:
 $ln L(β, σ² | y, X) = -n/2 * ln(2π) - n/2 * ln(σ²) - 1/(2σ²) * Σᵢ (yᵢ - xᵢ'β)²$
@@ -77,9 +77,9 @@ When dealing with large datasets, the analytical solution may be computationally
 ## Model Evaluation Metrics
 1. R-squared (Coefficient of Determination): $R² = 1 - \frac{SSR}{SST}$ Where SSR is the sum of squared residuals and SST is the total sum of squares
 2. Adjusted R-squared: $Adj R² = 1 - [(1 - R²)(n - 1) / (n - p - 1)]$
-3. Mean Squared Error (MSE): $MSE = Σ\frac{(yᵢ - ŷᵢ)²}{n}$
-4. Root Mean Squared Error (RMSE): $RMSE = √MSE$
-5. Mean Absolute Error (MAE): $MAE = Σ\frac{|yᵢ - ŷᵢ|}{n}$
+3. Mean Squared Error (MSE): $MSE = Σ\frac{(yᵢ - \hat{y}_i)²}{n}$
+4. Root Mean Squared Error (RMSE): $RMSE = \sqrt{MSE}$
+5. Mean Absolute Error (MAE): $MAE = Σ\frac{|yᵢ - \hat{y}_i|}{n}$
 
 ## Hypothesis Testing
 1. t-test for individual coefficients:

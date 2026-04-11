@@ -1,4 +1,6 @@
-# DSWoK — Data Science Well of Knowledge
+---
+title: DSWoK — Data Science Well of Knowledge
+---
 
 An interconnected ML reference for practitioners: core algorithms, deep learning, NLP, metrics, system design, and interview prep.
 
