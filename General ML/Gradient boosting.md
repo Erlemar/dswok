@@ -7,7 +7,7 @@ aliases:
   - GBM
   - Gradient Boosting Machine
 ---
-Gradient Boosting is an ensemble machine learning technique (boosting) that combines weak learners (typically shallow [[Decision Tree]]s) sequentially to create a strong predictive model. Each new tree is trained using gradient descent to correct errors made by previously trained trees.
+Gradient Boosting is an ensemble machine learning technique (boosting) that combines weak learners (typically shallow [[Decision Tree]]) sequentially to create a strong predictive model. Each new tree is trained using gradient descent to correct errors made by previously trained trees.
 
 ## How It Works
 1. Initialize the model with a constant value
