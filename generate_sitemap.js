@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { execSync } = require('child_process');
 
 // Configuration
 const baseUrl = 'https://dswok.com/';
@@ -8,36 +9,89 @@ const outputFile = path.join(rootDir, 'sitemap.xml');
 
 // Directories and files to exclude
 const excludeDirs = [
-  '.git', 
-  '.idea', 
-  '.obsidian', 
-  '.smart-connections', 
+  '.git',
+  '.idea',
+  '.obsidian',
+  '.smart-connections',
+  '.claude',
   'smart-chats',
   'update_later',
-  'images',
-  'Use_cases'
+  'images'
+];
+
+// Individual files to exclude (meta files, README, working docs)
+const excludeFiles = [
+  'README.md',
+  'claude.md',
+  'ideas_1.md',
+  'improvement_plan.md',
+  'missing_notes.md'
 ];
 
 // Function to find all markdown files
 function findMarkdownFiles(dir, fileList = []) {
   const files = fs.readdirSync(dir);
-  
+
   files.forEach(file => {
     const filePath = path.join(dir, file);
     const stat = fs.statSync(filePath);
-    
+
     if (stat.isDirectory()) {
       // Skip excluded directories
       if (!excludeDirs.includes(file)) {
         findMarkdownFiles(filePath, fileList);
       }
-    } else if (file.endsWith('.md')) {
-      // Add markdown files to the list
+    } else if (file.endsWith('.md') && !excludeFiles.includes(file)) {
+      // Add markdown files to the list (unless in exclude list)
       fileList.push(filePath);
     }
   });
-  
+
   return fileList;
+}
+
+// Load list of currently-staged files once, so files about to be committed
+// get today's date instead of the stale "previous commit" date from git log.
+let stagedFiles = new Set();
+try {
+  const staged = execSync('git diff --cached --name-only', {
+    cwd: rootDir,
+    encoding: 'utf8'
+  }).trim();
+  if (staged) {
+    stagedFiles = new Set(staged.split('\n').filter(Boolean));
+  }
+} catch (e) {
+  // Not in a git repo or git unavailable — fine, proceed without staged info
+}
+
+// Function to get last-modified date (ISO 8601) for the sitemap
+function getLastMod(filePath) {
+  const relPath = path.relative(rootDir, filePath);
+
+  // If file is staged in the current commit, use today's date — otherwise
+  // git log returns the PREVIOUS commit date for this file, which would be
+  // stale the moment the new commit lands.
+  if (stagedFiles.has(relPath)) {
+    return new Date().toISOString().split('T')[0];
+  }
+
+  // Otherwise use the last commit date from git log
+  try {
+    const isoDate = execSync(
+      `git log -1 --format=%cI -- "${filePath}"`,
+      { cwd: rootDir, encoding: 'utf8' }
+    ).trim();
+    if (isoDate) {
+      return isoDate.split('T')[0];
+    }
+  } catch (e) {
+    // Not in git or git unavailable — fall through
+  }
+
+  // Fallback: filesystem mtime
+  const stat = fs.statSync(filePath);
+  return stat.mtime.toISOString().split('T')[0];
 }
 
 // Function to convert file path to URL
@@ -78,8 +132,10 @@ function generateSitemap(files) {
   // Add all markdown files
   files.forEach(file => {
     const url = filePathToUrl(file);
+    const lastmod = getLastMod(file);
     xml += '  <url>\n';
     xml += `    <loc>${url}</loc>\n`;
+    xml += `    <lastmod>${lastmod}</lastmod>\n`;
     xml += '    <priority>0.8</priority>\n';
     xml += '  </url>\n';
   });

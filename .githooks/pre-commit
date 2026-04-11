@@ -1,0 +1,18 @@
+#!/bin/sh
+#
+# Pre-commit hook: regenerate sitemap.xml and include it in the commit.
+#
+# Uses the staged-files logic in generate_sitemap.js so that files being
+# committed get today's date in <lastmod>, not the previous commit date.
+#
+# To enable this hook on a fresh clone, run once from the repo root:
+#     git config core.hooksPath .githooks
+
+set -e
+
+# Only regenerate if any .md files are staged — skip for pure config/asset commits
+if git diff --cached --name-only --diff-filter=ACMR | grep -q '\.md$'; then
+  echo "[pre-commit] Regenerating sitemap.xml..."
+  node generate_sitemap.js > /dev/null
+  git add sitemap.xml
+fi
