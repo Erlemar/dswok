@@ -1,13 +1,10 @@
 ---
-
 aliases:
-
-- FastText tags:
-- algorithm
-- model
-- nlp
-- embeddings
-
+tags:
+  - algorithm
+  - model
+  - nlp
+  - embeddings
 ---
 fastText is a library for efficient text classification and word representation learning by Facebook. It extends [[Word2Vec]] by incorporating subword information, which allows it to generate meaningful embeddings for rare and out-of-vocabulary words.
 
