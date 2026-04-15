@@ -5,6 +5,11 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://dswok.com/Excalidraw/Topic%20Modeling%20Mixture.excalidraw</loc>
+    <lastmod>2026-04-15</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://dswok.com/General%20DL/Attention</loc>
     <lastmod>2026-04-11</lastmod>
     <priority>0.8</priority>
@@ -220,13 +225,23 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://dswok.com/NLP/BERTopic</loc>
+    <lastmod>2026-04-15</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://dswok.com/NLP/GloVe</loc>
     <lastmod>2025-05-03</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://dswok.com/NLP/LDA</loc>
+    <lastmod>2026-04-15</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://dswok.com/NLP/NLP</loc>
-    <lastmod>2026-04-11</lastmod>
+    <lastmod>2026-04-15</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -242,6 +257,16 @@
   <url>
     <loc>https://dswok.com/NLP/Term%20Frequency-Inverse%20Document%20Frequency</loc>
     <lastmod>2025-09-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dswok.com/NLP/Topic%20Modeling%20Methods</loc>
+    <lastmod>2026-04-15</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dswok.com/NLP/Topic%20Modeling</loc>
+    <lastmod>2026-04-15</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -267,6 +292,21 @@
   <url>
     <loc>https://dswok.com/Use_cases/Recommendation%20system</loc>
     <lastmod>2025-05-30</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dswok.com/content_plan</loc>
+    <lastmod>2026-04-11</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dswok.com/drafts/excalidraw_quartz_setup</loc>
+    <lastmod>2026-04-14</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dswok.com/drafts/note_improvements</loc>
+    <lastmod>2026-04-14</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
