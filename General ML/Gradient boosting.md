@@ -1,8 +1,9 @@
 ---
 tags:
-  - ensemble
+  - tabular-ml
+  - algorithm
   - tree-based
-  - supervised
+  - ensemble
 aliases:
   - GBM
   - Gradient Boosting Machine

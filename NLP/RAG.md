@@ -4,6 +4,7 @@ aliases:
   - Retrieval Augmented Generation
 tags:
   - nlp
+  - concept
   - llm
   - retrieval
 ---

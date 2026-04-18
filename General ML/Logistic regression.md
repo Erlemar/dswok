@@ -1,6 +1,7 @@
 ---
 tags:
-  - classification
+  - tabular-ml
+  - algorithm
   - supervised
 ---
 Logistic regression is a statistical method used for binary classification problems, modeling the probability of an instance belonging to a particular class. Common variations of Logistic regression: Binary (two possible outcomes), Multinomial (more than two unordered outcomes), Ordinal (more than two ordered outcomes).

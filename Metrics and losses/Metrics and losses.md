@@ -1,7 +1,4 @@
 ---
-tags:
-  - metrics
-  - loss
 aliases:
   - metrics
 ---

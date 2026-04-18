@@ -1,7 +1,6 @@
 ---
 tags:
   - nlp
-  - metric
   - evaluation
 ---
 ### Machine Translation & Text Generation Metrics (Summarization, Image Captioning, Dialogue)

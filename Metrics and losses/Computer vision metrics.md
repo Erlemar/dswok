@@ -1,7 +1,6 @@
 ---
 tags:
   - cv
-  - metric
   - evaluation
 ---
 ### Object Detection Metrics

@@ -1,6 +1,7 @@
 ---
 tags:
   - interview
+  - concept
 ---
 During the interview process, it is important not just to answer questions but also to ask your own questions. This will not only give you valuable information but also show that you are interested in various aspects of the job.
 

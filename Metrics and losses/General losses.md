@@ -1,6 +1,7 @@
 ---
 tags:
   - loss
+  - concept
 aliases:
   - loss function
   - loss functions

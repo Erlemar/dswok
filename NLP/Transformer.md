@@ -1,8 +1,9 @@
 ---
 tags:
-  - attention
-  - architecture
   - nlp
+  - architecture
+  - transformer
+  - attention
 ---
 The first Transformer was introduced in the [[Attention|Attention Is All You Need]] paper, soon after that [[BERT]] was published.
 This note will cover different ways of building Transformers and how they evolved over time.

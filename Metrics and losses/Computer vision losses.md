@@ -1,7 +1,7 @@
 ---
 tags:
+  - cv
   - loss
-  - computer-vision
 ---
 Loss functions commonly used in computer vision tasks. For general losses (Cross-Entropy, MSE, KL Divergence), see [[General losses]]. For CV evaluation metrics, see [[Computer vision metrics]].
 

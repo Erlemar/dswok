@@ -3,10 +3,9 @@ aliases:
   - RNN
   - Recurrent Neural Net
 tags:
-  - algorithm
-  - model
-  - architecture
   - nlp
+  - algorithm
+  - architecture
 ---
 Recurrent Neural Networks are a type of neural networks designed for processing sequential data. Unlike feedforward networks, RNNs have connections that form directed cycles, allowing them to maintain an internal state that captures information about previous inputs in a sequence.
 

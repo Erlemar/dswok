@@ -3,7 +3,8 @@ aliases:
   - support vector machine
   - support vector machines
 tags:
-  - classification
+  - tabular-ml
+  - algorithm
   - supervised
 ---
 Support Vector Machines (SVM) is a supervised learning algorithm used for classification, regression, and outlier detection. Support vector machines focus only on the points that are the most difficult to tell apart, whereas other classifiers pay attention to all of the points.

@@ -2,8 +2,7 @@
 aliases:
   - knn
 tags:
-  - classification
-  - regression
+  - algorithm
   - supervised
 ---
 K-Nearest Neighbors (KNN) is a simple, non-parametric algorithm used for both classification and regression tasks. It makes predictions for a new data point based on the K closest data points (neighbors).

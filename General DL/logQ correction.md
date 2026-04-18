@@ -1,8 +1,7 @@
 ---
 tags:
   - recsys
-  - bias-correction
-  - sampling
+  - concept
 ---
 LogQ correction is a bias correction technique used in recommendation systems to account for non-uniform sampling during training. When negative samples are not drawn uniformly at random (in case of popularity-based sampling, in-batch sampling), the model learns a biased representation that favors frequently sampled items.
 

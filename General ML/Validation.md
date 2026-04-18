@@ -5,7 +5,6 @@ aliases:
 tags:
   - concept
   - evaluation
-  - optimization
 ---
 Model validation is the process of assessing how well a trained machine learning model performs on unseen data. It's crucial for evaluating the model's generalization ability and ensuring it's not overfitting or underfitting. It involves splitting the dataset into two or more parts, training the model on one of them, and calculating metrics on all of them.
 

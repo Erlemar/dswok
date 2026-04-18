@@ -2,9 +2,8 @@
 aliases:
   - glove
 tags:
-  - algorithm
-  - model
   - nlp
+  - algorithm
   - embeddings
 ---
 GloVe (Global Vectors for Word Representation) is a word embedding technique developed in 2014. While [[Word2Vec]] learns word co-occurrence via a sliding window (local statistics), GloVe learns via a co-occurrence matrix (global statistics). GloVe then trains word vectors so their differences predict co-occurrence ratios. Even though Word2Vec and GloVe have different starting points, their word representations turn out to be similar.

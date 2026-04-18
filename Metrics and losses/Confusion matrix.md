@@ -3,8 +3,7 @@ aliases:
   - CM
 tags:
   - evaluation
-  - metric
-  - classification
+  - concept
 ---
 A Confusion Matrix is a table used to evaluate the performance of a classification model on a set of data for which the true values are known. It provides a detailed breakdown of how well the model predicts the classes.
 ## Basic Structure

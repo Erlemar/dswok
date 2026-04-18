@@ -1,9 +1,8 @@
 ---
 aliases: 
 tags:
+  - tabular-ml
   - evaluation
-  - metric
-  - regression
 ---
 Regression metrics are quantitative measures used to evaluate the performance of regression models, which predict continuous values rather than discrete classes.
 

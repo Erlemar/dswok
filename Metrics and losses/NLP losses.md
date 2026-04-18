@@ -1,7 +1,7 @@
 ---
 tags:
-  - loss
   - nlp
+  - loss
 ---
 Loss functions commonly used in NLP tasks. For general losses (Cross-Entropy, MSE, KL Divergence), see [[General losses]]. For NLP evaluation metrics, see [[NLP metrics]].
 

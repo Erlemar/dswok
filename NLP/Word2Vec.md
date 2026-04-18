@@ -3,9 +3,8 @@ aliases:
   - word2vec
   - w2v
 tags:
-  - algorithm
-  - model
   - nlp
+  - algorithm
   - embeddings
 ---
 Word2Vec is a approach for learning word embeddings. It became the first popular approach to representing words as dense vectors in a continuous vector space where semantically similar words are positioned closer together.
