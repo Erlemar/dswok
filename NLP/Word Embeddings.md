@@ -1,3 +1,10 @@
+---
+tags:
+  - nlp
+  - concept
+  - embeddings
+---
+
 Word embedding is a representation of a word, usually with a vector of values.
 
 The simplest way to represent words is by using one-hot encoding - i-th word in the vocabulary will have a vector with 1 in i-th position and 0 in all the others. But this isn't efficient: such vectors are too sparse, too long and provide too little information.

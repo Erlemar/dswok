@@ -2,11 +2,11 @@
 aliases:
   - CLIP
 tags:
-  - nlp
   - cv
+  - nlp
+  - architecture
   - multimodal
-  - embeddings
-  - contrastive
+  - pre-trained
 ---
 CLIP (Contrastive Language-Image Pre-training) is a neural net model developed by OpenAI that efficiently learns visual concepts from natural language supervision. It's a dual-encoder model that jointly trains an image encoder and a text encoder to produce similar embeddings for corresponding pairs. It has good zero-shot learning capabilities, allowing it to work for many tasks without being explicitly trained for them.
 

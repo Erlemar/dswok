@@ -1,5 +1,7 @@
 ---
 tags:
+  - tabular-ml
+  - algorithm
   - clustering
   - unsupervised
 aliases:

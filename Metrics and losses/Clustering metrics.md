@@ -1,7 +1,6 @@
 ---
 tags:
   - evaluation
-  - metric
   - clustering
   - unsupervised
 ---

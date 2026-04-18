@@ -1,6 +1,4 @@
 ---
-tags:
-  - interview
 aliases:
   - interview
 ---

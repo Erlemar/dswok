@@ -1,3 +1,8 @@
+---
+tags:
+  - concept
+---
+
 * Cosine similarity measures the cosine of the angle between two vectors, effectively capturing their orientation similarity while ignoring their magnitude.
 * Euclidean Distance calculates the straight-line distance between the endpoints of two vectors in the vector space. Highly sensitive to vector magnitude.
 * Manhattan Distance calculates the sum of the absolute differences between the components of two vectors. Can be more robust to outliers than Euclidean distance.

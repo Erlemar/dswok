@@ -57,7 +57,10 @@ Raw texts need to be processed in order to be used in ML models. This processing
 - Named Entity Recognition
 - Machine Translation
 - Text Classification
-	- Topic modeling - a special type of text classification, when text gets assigned certain topics
+	- [[Topic Modeling]] - discovering abstract themes in a document collection without supervision
+		- [[Topic Modeling Methods]] - catalogue of methods with decision framework
+		- [[LDA]] - classical probabilistic generative model
+		- [[BERTopic]] - modern embedding-based pipeline
 - Text Generation
 - Chat-bots
 - [[RAG]]

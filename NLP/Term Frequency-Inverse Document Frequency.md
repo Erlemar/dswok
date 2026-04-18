@@ -1,8 +1,7 @@
 ---
 tags:
   - nlp
-  - feature-extraction
-  - text-analysis
+  - algorithm
 aliases:
   - TF-IDF
 ---

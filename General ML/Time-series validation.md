@@ -3,7 +3,6 @@ aliases:
 tags:
   - concept
   - evaluation
-  - optimization
 ---
 This is one of the types of [[Validation]], which deserves a special explanation due to the sheer variability and complexity.
 

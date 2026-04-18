@@ -1,6 +1,7 @@
 ---
 tags:
   - interview
+  - interview-questions
 ---
 Q: What is the number of the parameters of convolution?
 A: $(3*3*3 + 1) *3$ 

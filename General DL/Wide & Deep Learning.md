@@ -5,7 +5,6 @@ aliases:
 tags:
   - recsys
   - architecture
-  - neural-network
 ---
 Wide & Deep Learning is a joint model architecture developed by Google for recommendation systems and search ranking. It combines a linear (wide) model with a deep neural network to achieve both memorization and generalization.
 - Memorization: Learning the frequent co-occurrence of items or features to capture direct, explicit relationships in historical data

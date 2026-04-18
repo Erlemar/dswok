@@ -1,8 +1,9 @@
 ---
 tags:
+  - nlp
   - architecture
   - attention
-  - nlp
+  - transformer
 ---
 [The original paper](https://arxiv.org/abs/1706.03762)
 

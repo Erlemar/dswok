@@ -1,5 +1,6 @@
 ---
 tags:
+  - concept
   - unsupervised
 ---
 Dimensionality reduction is the process of reducing the number of features (dimensions) in a dataset while preserving as much relevant information as possible. It transforms high-dimensional data into a lower-dimensional representation that captures the essential structure and patterns in the original data.

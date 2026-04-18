@@ -1,9 +1,9 @@
 ---
 tags:
   - nlp
+  - algorithm
   - architecture
   - transformer
-  - pre-trained
 ---
  Most of the information is available in the [BERT paper](https://arxiv.org/abs/1810.04805).
  

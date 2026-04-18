@@ -3,8 +3,6 @@ aliases:
   - f1
 tags:
   - evaluation
-  - metric
-  - classification
 ---
 The F1 score is an evaluation metric for classification models that combines precision and recall into a single value, providing a balanced assessment of model performance. It is particularly useful for imbalanced datasets where accuracy alone might be misleading.
 

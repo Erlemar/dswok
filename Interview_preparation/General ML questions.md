@@ -1,6 +1,7 @@
 ---
 tags:
   - interview
+  - interview-questions
 ---
 Q: What is model cannibalization?
 A: Model cannibalization occurs when a new/updated ML model negatively impacts the existing models within the same system. This happens when models have overlapping functionalities (for example, both models recommend something, and users prefer one of them). It can lead to reduced effectiveness of existing models, potential resource waste, and confusion in model selection.
