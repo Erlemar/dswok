@@ -53,26 +53,26 @@ Formal plate notation (with $D$ documents, $K$ topics, $N_d$ words per document)
 Inference recovers the hidden $\theta_d$ and $\phi_k$ from the observed words. Three common approaches:
 
 - Collapsed Gibbs sampling — analytically integrates out $\theta$ and $\phi$, then iteratively reassigns each word's topic by sampling from the conditional posterior. Used in Mallet and Gensim's `LdaModel`. More accurate, but slow on large corpora.
-- Variational Bayes — approximates the posterior with a tractable family and optimises the Evidence Lower Bound (ELBO). Used in scikit-learn. Faster, but the approximation can bias results.
+- Variational Bayes — approximates the posterior with a tractable family and optimizes the Evidence Lower Bound (ELBO). Used in scikit-learn. Faster, but the approximation can bias results.
 - Online Variational Bayes ([Hoffman et al., 2010](https://papers.nips.cc/paper/2010/hash/71f6278d140af599e06ad9bf1ba03cb0-Abstract.html)) — processes documents in mini-batches, enabling streaming updates. The default for `LdaModel` in recent Gensim versions.
 
-Mallet's Gibbs sampler tends to produce the best-looking topics in practice. If you have a medium-sized corpus and care about quality, use Mallet via Gensim's wrapper.
+Mallet is often preferred when users want collapsed Gibbs sampling and are willing to trade speed for topic quality.
 
 ## Hyperparameters
 
-| Parameter | Meaning | Default | Effect |
-|---|---|---|---|
-| $K$ | number of topics | must specify | too few → merged themes; too many → duplicated topics |
-| $\alpha$ | document-topic concentration | $1/K$ | low (0.01–0.1) → each document concentrates on a few topics |
-| $\beta$ (or $\eta$) | topic-word concentration | $1/V$ | low → each topic concentrates on a few characteristic words |
+| Parameter                            | Meaning                      | Default      | Effect                                                      |
+| ------------------------------------ | ---------------------------- | ------------ | ----------------------------------------------------------- |
+| $K$                                  | number of topics             | must specify | too few → merged themes; too many → duplicated topics       |
+| $\alpha$                             | document-topic concentration | $1/K$        | low (0.01–0.1) → each document concentrates on a few topics |
+| $\beta$ /$\eta$/eta/topic_word_prior | topic-word concentration     | $1/V$        | low → each topic concentrates on a few characteristic words |
 
 For short texts (tweets, product titles), default $\alpha$ produces near-uniform topic distributions and renders the model useless. Manually set $\alpha$ below default and consider letting Gensim auto-tune it (`alpha='auto'`).
 
 ## Why counts instead of TF-IDF
 
-LDA is a probabilistic generative model over words sampled from multinomial distributions, which means the math requires integer counts. TF-IDF values are real-valued weights, so they don't fit the generative story. Using TF-IDF with LDA technically runs but breaks the probabilistic interpretation and typically gives worse topics than raw counts.
+LDA is a probabilistic generative model over words sampled from multinomial distributions, which means the math requires integer counts. TF-IDF values are real-valued weights, so they don't fit the generative story. Using TF-IDF with LDA technically works but typically gives worse topics than raw counts.
 
-Contrast with [[Topic Modeling Methods#Non-negative Matrix Factorization (NMF)|NMF]], which is a matrix factorisation objective with no distributional assumptions, so TF-IDF works well there.
+Contrast with [[Topic Modeling Methods#Non-negative Matrix Factorization (NMF)|NMF]], which is a matrix factorization objective with no distributional assumptions, so TF-IDF works well there.
 
 ## Inductive inference on new documents
 

@@ -86,10 +86,10 @@ Automated metrics catch errors but may approve topics that a human reader would 
 - Topic intrusion: show a document with its assigned topics plus one random topic; humans identify the misfit.
 - Direct rating: judges rate topic quality on a Likert scale for coherence, usefulness, and interpretability.
 
-### Visualisation
+### Visualization
 
-- pyLDAvis — the standard interactive tool for classical models (LDA). Shows topic distances in a 2D PCA plane and compares term frequencies within-topic vs corpus-wide. See the [pyLDAvis demo](https://github.com/bmabey/pyLDAvis) for an example screenshot.
-- BERTopic built-in visualizations — UMAP projections of the document space overlaid with cluster boundaries, intertopic distance maps, topic hierarchies, and topics-over-time. See the [BERTopic vizualisation gallery](https://maartengr.github.io/BERTopic/getting_started/visualization/visualization.html).
+- pyLDAvis — the standard interactive tool for classical models (LDA). Projects topics into 2D via Jensen-Shannon divergence + Principal Coordinate Analysis (`js_PCoA`, the default `mds` option) and compares within-topic term frequencies against corpus-wide frequencies. See the [pyLDAvis demo](https://github.com/bmabey/pyLDAvis) for an example screenshot.
+- BERTopic built-in visualizations — UMAP projections of the document space overlaid with cluster boundaries, intertopic distance maps, topic hierarchies, and topics-over-time. See the [BERTopic visualization gallery](https://maartengr.github.io/BERTopic/getting_started/visualization/visualization.html).
 ![[Pasted image 20260415205906.png]]
 ## Choosing the number of topics
 
@@ -98,7 +98,7 @@ For methods that require $K$ (LDA, NMF, ProdLDA):
 - Run multiple values, plot coherence vs $K$, look for a peak or elbow.
 - Coherence plots often plateau rather than peak — there are usually several reasonable values depending on desired granularity.
 - Inspect topics manually at candidate $K$ values. Repeated keywords across topics signal too many; merged themes signal too few.
-- Cross-validate: train on a subset, evaluate coherence on held-out documents.
+- Compare candidate $K$ values on a train/validation split, but rely mainly on coherence plus manual inspection.
 - Starting range: try $K \in [5, 50]$.
 
 BERTopic and Top2Vec sidestep this via HDBSCAN, where `min_cluster_size` indirectly controls granularity. Hierarchical merging allows post-hoc reduction.
@@ -173,4 +173,4 @@ When retraining on a newer corpus, the topic IDs produced by the new model do no
 - [Chang et al. — Reading Tea Leaves: How Humans Interpret Topic Models (2009)](https://papers.nips.cc/paper/2009/hash/f92586a25bb3145facd64ab20fd554ff-Abstract.html)
 - [Hoyle et al. — Is Automated Topic Model Evaluation Broken? (2021)](https://arxiv.org/abs/2107.02173)
 - [pyLDAvis](https://github.com/bmabey/pyLDAvis)
-- [BERTopic vizualisation gallery](https://maartengr.github.io/BERTopic/getting_started/visualization/visualization.html)
+- [BERTopic visualization gallery](https://maartengr.github.io/BERTopic/getting_started/visualization/visualization.html)
