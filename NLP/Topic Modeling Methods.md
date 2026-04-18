@@ -7,7 +7,7 @@ tags:
 aliases:
   - Topic Modeling Algorithms
 ---
-A survey of the main topic modeling methods, ordered roughly by historical development (matrix factorization → probabilistic generative models → neural → embedding-based). For information on when to use topic modeling, how to evaluate results, and other things — see [[Topic Modeling]].
+A survey of the main topic modeling methods, ordered roughly by historical development (matrix factorization → probabilistic generative models → neural → embedding-based). For information on when to use topic modeling, how to evaluate results, and other things, see [[Topic Modeling]].
 
 ## Classical Methods
 

@@ -70,7 +70,7 @@ For short texts (tweets, product titles), default $\alpha$ produces near-uniform
 
 ## Why counts instead of TF-IDF
 
-LDA is a probabilistic generative model over words sampled from multinomial distributions, which means the math requires integer counts. TF-IDF values are real-valued weights, so they don't fit the generative story. Using TF-IDF with LDA technically works but typically gives worse topics than raw counts.
+LDA is a probabilistic generative model over words sampled from multinomial distributions, which means the math requires integer counts. TF-IDF values are real-valued weights, so they don't fit the generative story. Using TF-IDF with LDA technically works, but typically gives worse topics than raw counts.
 
 Contrast with [[Topic Modeling Methods#Non-negative Matrix Factorization (NMF)|NMF]], which is a matrix factorization objective with no distributional assumptions, so TF-IDF works well there.
 
@@ -98,8 +98,8 @@ If you mainly want interpretable themes biased by a seed list, CorEx is frequent
 
 - You want explicit probabilistic per-document topic mixtures (not hard cluster assignments).
 - Your documents are medium-length and well-formed (news articles, papers, reports).
-- You need a model that's cheap to train and serve, with predictable inference cost per document.
-- You have an established pipeline and changing tools would cost more than improving LDA.
+- You need a model that's cheap to train and serve, with a predictable inference cost per document.
+- You have an established pipeline, and changing tools would cost more than improving LDA.
 - You want topic distributions as features for a downstream classifier — LDA's $\theta_d$ vectors are natural inputs.
 
 When LDA fails, the next steps are: NMF (for cleaner topics on short/noisy text), BERTopic (for semantic similarity), or ETM (for large vocabularies with rare words).
