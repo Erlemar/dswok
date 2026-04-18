@@ -1,17 +1,16 @@
 ---
 tags:
   - nlp
-  - unsupervised-learning
   - algorithm
-  - probabilistic-model
+  - topic-modeling
+  - unsupervised
 aliases:
   - Latent Dirichlet Allocation
   - LDA
 ---
-
 Latent Dirichlet Allocation ([Blei, Ng, Jordan, 2003](https://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf)) is the canonical probabilistic topic model. It fixes the overfitting of its predecessor [[Topic Modeling Methods#Probabilistic LSA (pLSA)|pLSA]] by placing Dirichlet priors on both the document-topic and topic-word distributions. Every modern topic model still gets compared to LDA as a baseline.
 
-For the broader picture — when LDA makes sense versus other methods — see the [[Topic Modeling]] hub.
+For the broader picture — when LDA makes sense versus other methods — see the [[Topic Modeling]].
 
 ## Generative process
 
@@ -69,29 +68,25 @@ Mallet's Gibbs sampler tends to produce the best-looking topics in practice. If 
 
 For short texts (tweets, product titles), default $\alpha$ produces near-uniform topic distributions and renders the model useless. Manually set $\alpha$ below default and consider letting Gensim auto-tune it (`alpha='auto'`).
 
-## Why counts, not TF-IDF
+## Why counts instead of TF-IDF
 
-LDA is a probabilistic generative model over words sampled from multinomial distributions — the math requires integer counts. TF-IDF values are real-valued weights, so they don't fit the generative story. Using TF-IDF with LDA technically runs but breaks the probabilistic interpretation and typically gives worse topics than raw counts.
+LDA is a probabilistic generative model over words sampled from multinomial distributions, which means the math requires integer counts. TF-IDF values are real-valued weights, so they don't fit the generative story. Using TF-IDF with LDA technically runs but breaks the probabilistic interpretation and typically gives worse topics than raw counts.
 
 Contrast with [[Topic Modeling Methods#Non-negative Matrix Factorization (NMF)|NMF]], which is a matrix factorisation objective with no distributional assumptions, so TF-IDF works well there.
 
 ## Inductive inference on new documents
 
-A common production question: how do you assign topics to a new document without retraining?
-
-LDA uses folding-in: freeze the topic-word distributions $\phi_k$ learned during training, then run variational inference (or a few Gibbs sweeps) on the new document alone to infer its topic distribution $\theta_{\text{new}}$. Gensim exposes this as `lda[new_doc_bow]`.
-
-Folding-in is cheap — a few hundred milliseconds per document — but it's not free; you still pay an inference step per document. Contrast with [[BERTopic]], where assignment is a single nearest-centroid lookup after the embedding is computed.
+LDA uses folding-in: freeze the topic-word distributions $\phi_k$ learned during training, then run variational inference (or a few Gibbs sweeps) on the new document alone to infer its topic distribution $\theta_{\text{new}}$.  Contrast with [[BERTopic]], where assignment is a single nearest-centroid lookup after the embedding is computed.
 
 ## Guided and supervised variants
 
-Real-world projects often have partial domain knowledge — you know one topic should be about *payments* and another about *refunds*, and you want the model to respect that.
+Real-world projects often have partial domain knowledge — you know one topic should be about "payments" and another about "refunds", and you want the model to respect that.
 
-- Seeded LDA (a.k.a. Guided LDA) — pre-set a few words per topic as anchors. The model is biased toward producing topics that contain those anchor words, while still discovering the remaining topics freely. Python library: `GuidedLDA`.
+- Seeded/Guided LDA — pre-set a few words per topic as anchors. The model is biased toward producing topics that contain those anchor words, while still discovering the remaining topics freely. Python library: `GuidedLDA`.
 - CorEx (Correlation Explanation) — not strictly LDA, but an information-theoretic alternative that accepts anchor words per topic and is often easier to steer than Seeded LDA. Library: `corextopic`.
 - Labeled LDA / SLDA — supervised variants that condition topics on document labels. Useful when you have partial labels and want topic discovery within each labeled group.
 
-If you mainly want interpretable themes biased by a seed list, CorEx is frequently the best starting point; if you want a probabilistic LDA-style model with anchors, Seeded LDA.
+If you mainly want interpretable themes biased by a seed list, CorEx is frequently the best starting point; if you want a probabilistic LDA-style model with anchors, use Seeded LDA.
 
 ## Advantages and disadvantages
 
@@ -107,7 +102,7 @@ If you mainly want interpretable themes biased by a seed list, CorEx is frequent
 - You have an established pipeline and changing tools would cost more than improving LDA.
 - You want topic distributions as features for a downstream classifier — LDA's $\theta_d$ vectors are natural inputs.
 
-When LDA fails, the honest next steps are: NMF (for cleaner topics on short/noisy text), BERTopic (for semantic similarity), or ETM (for large vocabularies with rare words).
+When LDA fails, the next steps are: NMF (for cleaner topics on short/noisy text), BERTopic (for semantic similarity), or ETM (for large vocabularies with rare words).
 
 > [!example]- Code example (gensim, including folding-in for new documents)
 > ```python

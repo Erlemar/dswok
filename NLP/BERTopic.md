@@ -1,14 +1,14 @@
 ---
 tags:
   - nlp
-  - unsupervised-learning
   - algorithm
-  - embedding-based
+  - topic-modeling
+  - unsupervised
 aliases:
   - BERTopic
 ---
 
-BERTopic ([Grootendorst, 2022](https://arxiv.org/abs/2203.05794)) is a modular topic modelling pipeline that has become the default choice for new projects. Instead of a single generative model, it composes four independently swappable steps: embed, reduce, cluster, and label. The label step uses a class-based variant of TF-IDF that Grootendorst introduced specifically for cluster-derived topics.
+[BERTopic](https://arxiv.org/abs/2203.05794) is a modular topic modelling pipeline. Instead of being a single generative model, it composes four independently swappable steps: embed, reduce, cluster, and label. The label step uses a class-based variant of TF-IDF that was introduced specifically for cluster-derived topics.
 
 For the broader picture — when BERTopic makes sense versus [[LDA]], NMF, or just clustering — see the [[Topic Modeling]] hub.
 
@@ -48,7 +48,7 @@ where:
 The `+1` smoothing keeps the weight non-negative and acts like Laplace smoothing. The result: words that are frequent in this cluster and relatively rare across all clusters.
 
 > [!note]
-> The original 2022 paper and earlier versions of the library used $\log(m / \sum_i tf_{t,i})$ where $m$ is the number of classes. If you see that formula in older references, it is the same idea but without the smoothing that the current library applies. When citing the formula, match whichever version of BERTopic you are actually running.
+> The original 2022 paper and earlier versions of the library used $\log(m / \sum_i tf_{t,i})$ where $m$ is the number of classes. If you see that formula in older references, it is the same idea but without the smoothing that the current library applies.
 
 BERTopic also supports a BM25-weighted variant via `bm25_weighting=True` in `ClassTfidfTransformer`, which can help when class sizes are very uneven.
 
@@ -65,25 +65,18 @@ For visual examples of these features, the [BERTopic visualisation docs](https:/
 
 ## Failure modes
 
-- UMAP is stochastic. Different runs produce different topic counts. Fix `random_state` and accept the outcome rather than chasing variations.
-- HDBSCAN's noise cluster can swallow the corpus. Topic `-1` (outliers) is not a real topic — it's documents that didn't fit any cluster. If `min_cluster_size` is too high, most of the corpus ends up there. Investigate outliers before dismissing them; they may represent a genuine under-clustered theme rather than noise.
-- Topics inherit embedding model biases. A general-purpose English-trained sentence transformer collapses distinctions that matter in other languages, domains, or subpopulations. Mitigations in roughly increasing effort:
-  - Pick a domain-relevant encoder (biomedical, legal, multilingual).
-  - Fine-tune the encoder on your corpus with a contrastive or masked-language objective before clustering (domain-adaptive pretraining).
-  - Use task-specific embeddings — e.g., if your corpus is customer support tickets, start from an encoder trained on similar data.
-- c-TF-IDF labels can be generic. Top words may be frequent stop-like terms that survived the generic vectoriser. Use a representation model (`KeyBERTInspired`, `MaximalMarginalRelevance`, or an LLM) to produce cleaner labels.
+- UMAP is stochastic, this means different runs produce different topic counts. You need to fix `random_state`.
+- HDBSCAN's noise cluster can get too many documents. You need to relax settings
+- Topics inherit embedding model biases. You may need to find a domain-relevant encoder, fine-tune it on your corpus, use task-specific encodings
 
 ## Inductive inference on new documents
 
 Assigning a topic to a new document is a single nearest-centroid lookup: embed the document, project it through the already-fitted UMAP (`transform`, not `fit_transform`), then call HDBSCAN's `approximate_predict` to get the closest cluster. This is typically one to two orders of magnitude faster than [[LDA]]'s folding-in at inference time.
 
-The tradeoff: the fitted UMAP is part of the model state, so you must keep it around (not just the cluster centroids) and cannot drop it to save space.
 
 ## Mixed membership
 
-BERTopic returns a single topic per document by default. This is less natural than LDA when a document genuinely mixes multiple themes at once (e.g., a long news article covering economics *and* international relations).
-
-`.approximate_distribution(docs)` works around this by returning a topic-probability vector per document, computed via a sliding window over tokens. It's a post-hoc approximation, not a probabilistic model, but it's usually enough to identify documents with meaningful secondary topics.
+BERTopic returns a single topic per document by default. This is less natural than LDA when a document genuinely mixes multiple themes at once. `.approximate_distribution(docs)` returns a topic-probability vector per document, computed via a sliding window over tokens. It's a post-hoc approximation, not a probabilistic model, but it's usually enough to identify documents with meaningful secondary topics.
 
 ## Guided BERTopic
 
@@ -101,9 +94,9 @@ The pipeline biases the vectoriser and c-TF-IDF computation toward these seeds, 
 
 ## Advantages and disadvantages
 
-**Advantages:** state-of-the-art coherence on most English corpora, minimal preprocessing (the transformer handles semantics), automatic $K$ via HDBSCAN, rich ecosystem (dynamic / hierarchical / guided / online modes in one library), clean API, active development.
+Advantages: state-of-the-art coherence on most English corpora, minimal preprocessing (the transformer handles semantics), automatic $K$ via HDBSCAN, rich ecosystem (dynamic / hierarchical / guided / online modes in one library), clean API, active development.
 
-**Disadvantages:** hard clustering by default (soft assignment requires the extra `.approximate_distribution()` step), computationally heavier than classical methods (embedding compute is the main cost — GPU-hours per million documents), UMAP memory grows roughly quadratically (fails around 1–2M docs without `low_memory=True` or approximate nearest neighbours), embedding quality is the bottleneck for specialised domains.
+Disadvantages: hard clustering by default (soft assignment requires the extra `.approximate_distribution()` step), computationally heavier than classical methods, UMAP memory grows roughly quadratically, embedding quality is the bottleneck for specialised domains.
 
 > [!example]- Code example (BERTopic with LLM-based topic labels)
 > ```python
