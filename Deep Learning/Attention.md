@@ -4,6 +4,8 @@ tags:
   - architecture
   - attention
   - transformer
+prereqs:
+  - "[[Word Embeddings]]"
 ---
 [The original paper](https://arxiv.org/abs/1706.03762)
 

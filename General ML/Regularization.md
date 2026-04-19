@@ -2,6 +2,8 @@
 tags:
   - concept
   - regularization
+prereqs:
+  - "[[Bias-Variance Trade-off]]"
 ---
 Regularization is a technique used in machine learning to prevent overfitting by adding a penalty term to the loss function. It discourages learning a more complex or flexible model, to favor a simpler, more generalizable one.
 

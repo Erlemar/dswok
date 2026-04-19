@@ -4,6 +4,8 @@ aliases:
 tags:
   - recsys
   - architecture
+prereqs:
+  - "[[Wide & Deep Learning]]"
 ---
 Deep & Cross Network (DCN) is a neural network architecture developed by Google that combines a cross network with a deep network to efficiently learn explicit and implicit feature interactions. The original DCN was introduced in 2017, with an improved version, DCN v2, released in 2020.
 ## Architecture

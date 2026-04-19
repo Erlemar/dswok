@@ -7,12 +7,15 @@ tags:
 aliases:
   - Topic Modeling
   - Topic Models
+prereqs:
+  - "[[Term Frequency-Inverse Document Frequency]]"
+  - "[[Word Embeddings]]"
 ---
 Topic modeling is an unsupervised technique for discovering abstract themes in a document collection, where a document is whatever unit of text you are analyzing (article, review, tweet, paragraph, support ticket). Each theme (topic) is expressed through a distribution over words (classical methods) or a cluster in embedding space labeled by representative words (embedding-based methods).
 
 The key contrast with classification: classification uses predefined labels, whereas topic modeling discovers them from scratch. As a result, you get structure without supervision, but you have to decide afterward whether it's the one you wanted.
 
-The field evolved from matrix factorization (LSA, NMF) through probabilistic generative models (pLSA, LDA) to modern neural and embedding-based approaches ([[BERTopic]], ETM). Find the list of the approaches in [[Topic Modeling Methods]]. [[LDA]] and [[BERTopic]] have separate notes due to their significance.
+The field evolved from matrix factorization (LSA, NMF) through probabilistic generative models (pLSA, LDA) to modern neural and embedding-based approaches ([[BERTopic]], ETM). Find the list of approaches in [[Topic Modeling Methods]]. [[LDA]] and [[BERTopic]] have separate notes due to their significance.
 
 ## Key assumptions
 
@@ -26,7 +29,7 @@ The field evolved from matrix factorization (LSA, NMF) through probabilistic gen
 
 - You already have labels. Use supervised classification, or zero-shot classification with an LLM.
 - You want stable, reproducible labels. Most topic models drift between runs and across retraining; downstream consumers hate that.
-- You can afford an LLM to label everything. If the corpus fits in a context window (or you can pay per-document), prompt the LLM for theme summaries directly. Alternatively, use an LLM to generate synthetic labels on a subset and train a cheap supervised classifier, this can be better than raw topics.
+- You can afford an LLM to label everything. If the corpus fits in a context window (or you can pay per-document), prompt the LLM for theme summaries directly. Alternatively, use an LLM to generate synthetic labels on a subset and train a cheap supervised classifier; this can be better than raw topics.
 - Your corpus is small (fewer than a few thousand documents). Embed with a sentence transformer and do clustering.
 - You mainly need semantic similarity, not interpretable themes. Use embeddings and retrieval.
 - Very short texts (tweets, queries, chat snippets). Classical topic models will struggle due to sparsity. Embedding-based methods or specialized short-text models (Biterm Topic Model) handle this better.
@@ -110,7 +113,7 @@ Classical methods (LDA, NMF, LSA):
 - Tokenize, lowercase, remove punctuation.
 - Remove stopwords — use domain-specific lists, not just generic ones (e.g., "patient" in medical corpora; "thanks", "regards", "http" in email; company boilerplate).
 - Lemmatize (optional; improves interpretability).
-- Filter rare terms and overly frequent ones
+- Filter rare terms and overly frequent ones.
 - Consider bigrams/trigrams for multi-word concepts.
 - NMF and LSA work best with [[Term Frequency-Inverse Document Frequency|TF-IDF]] weighting; LDA uses raw counts.
 

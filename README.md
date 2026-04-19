@@ -10,7 +10,7 @@ DSWoK is an [Obsidian](https://obsidian.md/) vault of interconnected notes on ma
 
 ## What's inside
 
-- **Core ML** — classical algorithms, validation, regularization, bias-variance trade-off
+- **General ML** — classical algorithms, validation, regularization, bias-variance trade-off
 - **Deep learning** — attention, recommendation architectures, parameter-efficient training (LoRA)
 - **NLP** — word embeddings, Transformer, BERT, Retrieval-Augmented Generation
 - **Metrics and losses** — classification, regression, ranking/recsys, computer vision, and NLP metrics; general, NLP, and computer vision loss functions

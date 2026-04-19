@@ -25,7 +25,7 @@ graph LR
 ```
 
 1. Embed documents. Default: `all-MiniLM-L6-v2` via `sentence-transformers`. Any embedding model is acceptable — domain-specific encoders often outperform general-purpose ones.
-2. Reduce dimensionality. UMAP is commonly used here because it tends to preserve neighborhood structure useful for clustering.. Typical target: 5–10 dimensions.
+2. Reduce dimensionality. UMAP is commonly used here because it tends to preserve neighborhood structure useful for clustering. Typical target: 5–10 dimensions.
 3. Cluster with HDBSCAN. Density-based; does not require $K$; assigns outlier documents to cluster `-1` instead of forcing them into a topic.
 4. Extract topic words with c-TF-IDF (see below).
 5. (Optional) Fine-tune representations using a representation model — `KeyBERTInspired`, `MaximalMarginalRelevance`, or an LLM — to replace c-TF-IDF output with more descriptive labels.
@@ -65,9 +65,9 @@ For visual examples of these features, the [BERTopic visualization docs](https:/
 
 ## Failure modes
 
-- UMAP is stochastic, this means different runs produce different topic counts. You need to fix `random_state`.
+- UMAP is stochastic; this means different runs produce different topic counts. You need to fix `random_state`.
 - HDBSCAN's noise cluster can get too many documents. You may need to lower min_cluster_size and/or min_samples.
-- Topics inherit embedding model biases. You may need to find a domain-relevant encoder, fine-tune it on your corpus, use task-specific encodings
+- Topics inherit embedding model biases. You may need to find a domain-relevant encoder, fine-tune it on your corpus, use task-specific encodings.
 
 ## Inductive inference on new documents
 
@@ -90,13 +90,13 @@ seed_topic_list = [
 topic_model = BERTopic(seed_topic_list=seed_topic_list)
 ```
 
-The pipeline biases the vectorizer and c-TF-IDF computation toward these seeds, increasing the chance that a topic containing those anchor words emerges. Other topics are discovered freely. Useful when domain knowledge is partial and you want guaranteed coverage of known categories without full supervision.
+The pipeline biases the vectorizer and c-TF-IDF computation toward these seeds, increasing the chance that a topic containing those anchor words emerges. Other topics are discovered freely. Useful when domain knowledge is partial, and you want guaranteed coverage of known categories without full supervision.
 
 ## Advantages and disadvantages
 
 Advantages: minimal preprocessing (the transformer handles semantics), automatic $K$ via HDBSCAN, many features (dynamic / hierarchical / guided / online modes in one library).
 
-Disadvantages: hard clustering by default (soft assignment requires the extra `.approximate_distribution()` step), computationally heavier than classical methods, UMAP memory grows roughly quadratically, embedding quality is the bottleneck for specialized domains.
+Disadvantages: hard clustering by default (soft assignment requires an extra `.approximate_distribution()` step), computationally heavier than classical methods, UMAP memory grows roughly quadratically, embedding quality is a bottleneck in specialized domains.
 
 > [!example]- Code example (BERTopic with LLM-based topic labels)
 > ```python
