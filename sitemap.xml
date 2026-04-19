@@ -50,6 +50,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://dswok.com/General%20DL/index</loc>
+    <lastmod>2026-04-19</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://dswok.com/General%20DL/logQ%20correction</loc>
     <lastmod>2026-04-18</lastmod>
     <priority>0.8</priority>
@@ -125,6 +130,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://dswok.com/General%20ML/index</loc>
+    <lastmod>2026-04-19</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://dswok.com/Interview_preparation/Behavioral%20interviews</loc>
     <lastmod>2025-02-27</lastmod>
     <priority>0.8</priority>
@@ -162,6 +172,11 @@
   <url>
     <loc>https://dswok.com/Interview_preparation/Statistics%20questions</loc>
     <lastmod>2026-04-18</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dswok.com/Interview_preparation/index</loc>
+    <lastmod>2026-04-19</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -216,6 +231,11 @@
   </url>
   <url>
     <loc>https://dswok.com/Metrics%20and%20losses/f1%20score</loc>
+    <lastmod>2026-04-19</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dswok.com/Metrics%20and%20losses/index</loc>
     <lastmod>2026-04-19</lastmod>
     <priority>0.8</priority>
   </url>
@@ -290,7 +310,17 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://dswok.com/NLP/index</loc>
+    <lastmod>2026-04-19</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://dswok.com/Use_cases/Recommendation%20system</loc>
+    <lastmod>2026-04-19</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dswok.com/Use_cases/index</loc>
     <lastmod>2026-04-19</lastmod>
     <priority>0.8</priority>
   </url>
@@ -306,7 +336,7 @@
   </url>
   <url>
     <loc>https://dswok.com/index</loc>
-    <lastmod>2026-04-11</lastmod>
+    <lastmod>2026-04-19</lastmod>
     <priority>0.8</priority>
   </url>
 </urlset>
