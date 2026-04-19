@@ -1,10 +1,10 @@
 ---
 title: NLP
 order: 3
-description: Word embeddings through Transformers, BERT, and Retrieval-Augmented Generation.
+description: NLP concepts from word embeddings to LLM.
 start_with:
   - "[[RAG]]"
   - "[[Transformer]]"
 ---
 
-Word embeddings through Transformers, BERT, and Retrieval-Augmented Generation.
+NLP concepts from word embeddings to LLM.
