@@ -6,6 +6,8 @@ tags:
   - concept
   - fine-tuning
   - pre-trained
+prereqs:
+  - "[[Transformer]]"
 ---
 LoRA (Low-Rank Adaptation) is a parameter-efficient fine-tuning technique that allows to adapt large pre-trained models to specific tasks while minimizing computational resources.
 

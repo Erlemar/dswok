@@ -4,6 +4,8 @@ tags:
   - algorithm
   - architecture
   - transformer
+prereqs:
+  - "[[Transformer]]"
 ---
  Most of the information is available in the [BERT paper](https://arxiv.org/abs/1810.04805).
  

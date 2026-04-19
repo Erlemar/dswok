@@ -2,6 +2,8 @@
 tags:
   - concept
   - evaluation
+prereqs:
+  - "[[Validation]]"
 ---
 The bias-variance trade-off is a fundamental concept in machine learning that describes the balance between a model's ability to fit the training data (low bias) and its ability to generalize to new, unseen data (low variance).
 

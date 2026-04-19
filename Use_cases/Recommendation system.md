@@ -4,6 +4,9 @@ aliases:
 tags:
   - recsys
   - concept
+prereqs:
+  - "[[Two-tower]]"
+  - "[[Confusion matrix]]"
 ---
 This note is similar to [[ML System design]] but it is more practical and with less focus on the interviews. This note is about practical approaches to developing a recommendation system.
 

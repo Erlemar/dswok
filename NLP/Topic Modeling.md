@@ -7,6 +7,9 @@ tags:
 aliases:
   - Topic Modeling
   - Topic Models
+prereqs:
+  - "[[Term Frequency-Inverse Document Frequency]]"
+  - "[[Word Embeddings]]"
 ---
 Topic modeling is an unsupervised technique for discovering abstract themes in a document collection, where a document is whatever unit of text you are analyzing (article, review, tweet, paragraph, support ticket). Each theme (topic) is expressed through a distribution over words (classical methods) or a cluster in embedding space labeled by representative words (embedding-based methods).
 
