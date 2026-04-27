@@ -5,11 +5,11 @@ tags:
 ---
 ## Model fundamentals
 
-Q: Is it possible to build a linear model to predict XOR operation?
+Q: Is it possible to build a linear model to predict the XOR operation?
 A: No. XOR is not linearly separable: no hyperplane separates $(0,0), (1,1)$ from $(0,1), (1,0)$. Adding an interaction feature such as $x_1 \cdot x_2$, or any polynomial feature map, makes the problem linearly separable in the expanded space: essentially what a kernel [[SVM]] does via the kernel trick.
 
 Q: Beyond the train/val gap, what else signals overfitting or underfitting?
-A: Train and validation errors both high and close together suggest underfitting: adding complexity still helps both. A widening train–validation gap over epochs suggests overfitting. Other signals: unstable coefficients across CV folds, heavy reliance on a handful of noisy features, and a big performance gap between near-identical model complexities. More data and [[Regularization]] address variance; richer features or more complex models address bias.
+A: Train and validation errors, both high and close together, suggest underfitting: adding complexity still helps both. A widening train–validation gap over epochs suggests overfitting. Other signals: unstable coefficients across CV folds, heavy reliance on a handful of noisy features, and a big performance gap between near-identical model complexities. More data and [[Regularization]] address variance; richer features or more complex models address bias.
 
 Q: What is the bias (intercept) term in a linear model, and why is it needed?
 A: The intercept lets the decision boundary shift away from the origin. Without it, the model is forced to predict zero when all inputs are zero.
@@ -23,7 +23,7 @@ A: Bagging helps high-variance base learners (deep trees in [[Random Forest]], n
 Q: Why can a deeper decision tree overfit while a shallow one underfits?
 A: A shallow [[Decision Tree]] partitions the feature space too coarsely to capture real structure (high bias). A very deep tree can create leaves with a single training sample and memorize noise (high variance). Beyond depth and pruning, single trees are unstable: small changes in the training set can change their structure significantly, which is why they are usually ensembled ([[Random Forest]], [[Gradient boosting]]).
 
-Q: What is the difference between parametric vs non-parametric models?
+Q: What is the difference between parametric and non-parametric models?
 A: Parametric models have a fixed-capacity ([[Linear Regression]], [[Logistic regression]]): small parameter count, better sample efficiency, cheaper deployment, but limited flexibility. Non-parametric models ([[K-Nearest Neighbors]], [[Decision Tree]]) grow capacity with data: more flexible but memory-heavy at inference and weaker at extrapolating outside of the training range.
 
 Q: How to choose between generative and discriminative models?
@@ -71,7 +71,7 @@ Q: How do you detect and prevent data leakage?
 A: Check that every feature is computable at prediction time using only information available then; fit preprocessing (scalers, target encoders, imputers) inside CV folds rather than on the full dataset; verify no group (user, entity, session) appears in both train and test; and treat suspiciously high AUC as a leakage signal until disproved. See [[Validation]].
 
 Q: How do you detect train/test distribution shift?
-A: Adversarial validation: train a binary classifier to distinguish train from test; an AUC well above 0.5 indicates shift, and the highest-importance features point to what changed. Complement with PSI or KL divergence on key features and feature-wise drift analysis.
+A: Adversarial validation: train a binary classifier to distinguish train from test; an AUC well above 0.5 indicates a shift, and the highest-importance features point to what changed. Complement with PSI or KL divergence on key features and feature-wise drift analysis.
 
 Q: When to use calibration vs ranking?
 A: ROC-AUC measures pairwise ranking (the probability that a random positive scores higher than a random negative) and is invariant to monotonic transforms of the score. PR-AUC summarizes precision-recall behavior across thresholds and emphasizes the positive class. Calibration is a separate concept: do predicted probabilities match observed frequencies? Calibration matters for thresholding, cost-sensitive decisions, and blending probabilities across models; ranking alone suffices for top-k selection. Isotonic regression or Platt scaling fix miscalibration without changing the ranking.
@@ -88,13 +88,13 @@ A: Class-weighted loss, resampling (up, down, SMOTE), decision-threshold tuning,
 Q: When does accuracy mislead, and what do you use instead?
 A: Under heavy class imbalance (a 99% negative dataset scores 99% for free), when positive and negative errors carry different costs, and when the positive class is ill-defined. Use [[Confusion matrix]]-derived metrics — precision, recall, [[f1 score]], PR-AUC — or a business metric such as cost per false positive.
 
-Q: Offline metrics improved but the online A/B test was flat or negative — what happened?
-A: The offline metric is a proxy that doesn't track the business metric closely enough. Training data came from a different policy than the one now being A/B tested, so offline evaluation was optimistic (policy mismatch). Train/serve feature skew means the model sees different inputs online. The A/B segment differs from the offline sample. Novelty effects inflate the initial lift and fade. Mitigations: counterfactual or off-policy evaluation, shadow deployment with real-time feature logging, and picking an offline proxy that has historically correlated with the target online metric on past launches.
+Q: Offline metrics improved, but the online A/B test was flat or negative — what happened?
+A: The offline metric is a proxy that doesn't track the business metric closely enough. Training data came from a different policy than the one now being A/B tested, so offline evaluation was optimistic (policy mismatch). Train/serve feature skew means the model sees different inputs online. The A/B segment differs from the offline sample. Novelty effects inflate the initial lift and fade. Mitigations: counterfactual or off-policy evaluation, shadow deployment with real-time feature logging, and picking an offline proxy that has historically correlated with the target online metric on past launches. See [[AB Tests]] for the full online-experimentation reference.
 
 ## Model selection and tuning
 
 Q: Which hyperparameter tuning approaches to use?
-A: Grid search for small, low-dimensional spaces; random search when you have to tune many hyperparameters; Bayesian optimization (Optuna, scikit-optimize) for expensive objectives; Hyperband or BOHB when training cost varies widely and bad configurations can be early-stopped. Bayesian methods assume a reasonably smooth objective; very noisy metrics can mislead them.
+A: Grid search for small, low-dimensional spaces; random search when you have to tune many hyperparameters; Bayesian optimization (Optuna, scikit-optimize) for expensive objectives; Hyperband or BOHB when training cost varies widely, and bad configurations can be early-stopped. Bayesian methods assume a reasonably smooth objective; very noisy metrics can mislead them.
 
 Q: How to choose L1 vs L2 vs ElasticNet vs early stopping?
 A: L1 for sparsity and implicit feature selection; L2 for general shrinkage and stabilizing coefficients under multicollinearity; ElasticNet when both matter; early stopping as implicit regularization on gradient-trained models. See [[Regularization]] for more information.
@@ -108,18 +108,18 @@ Q: How do you evaluate a clustering model when you have no labels?
 A: With no labels, internal metrics (silhouette score, Davies-Bouldin, Calinski-Harabasz) trade off compactness within clusters against separation between clusters. If a labeled subset exists, extrinsic metrics (adjusted Rand index, V-measure, cluster purity) are stronger. Beyond metrics: inspect cluster sizes, stability under subsampling, and whether the clusters map to human-meaningful segments. Silhouette favors convex, globular clusters, so it can pick $k=2$ on data whose real structure is five non-convex clusters. See [[K-means clustering]].
 
 Q: When would you use dimensionality reduction, and which technique?
-A: For compression and denoising before a downstream model (PCA when the structure is roughly linear), for visualization of high-dimensional data (t-SNE and UMAP, where UMAP often preserves more global structure than t-SNE), and to break the [[Distance calculation]] issues that hurts high-dimensional [[K-Nearest Neighbors]] or [[K-means clustering]]. Avoid using t-SNE distances as features, the algorithm optimizes for local neighborhoods and the distances it produces aren't meaningful. See [[Dimensionality Reduction]].
+A: For compression and denoising before a downstream model (PCA when the structure is roughly linear), for visualization of high-dimensional data (t-SNE and UMAP, where UMAP often preserves more global structure than t-SNE), and to break the [[Distance calculation]] issues that hurt high-dimensional [[K-Nearest Neighbors]] or [[K-means clustering]]. Avoid using t-SNE distances as features; the algorithm optimizes for local neighborhoods, and the distances it produces aren't meaningful. See [[Dimensionality Reduction]].
 
 ## Production and deployment
 
-Q: What is training-serving skew and how do you catch it?
+Q: What is training-serving skew, and how do you catch it?
 A: The offline pipeline and the online feature service compute features differently — different libraries, different missing-value handling, timezone mismatches, clipping or scaling applied in one but not the other. Catch it by logging served features and replaying them through the training pipeline, comparing distributions, and running a shadow model in production before launch.
 
 Q: Covariate shift, label shift, and concept drift — what's the difference?
 A:
-- Covariate shift (data drift): $P(x)$ changes but $P(y \mid x)$ still holds. Inputs look different, the mapping is intact. Sometimes harmless.
-- Label shift (prior shift): $P(y)$ changes but $P(x \mid y)$ stays — class prevalence moves (fraud spikes, churn seasonality). Fixable by reweighting.
-- Concept drift: $P(y \mid x)$ itself changes — the same features now predict a different outcome (user preferences shift, fraud strategies mutate). This typically hurts and requires updating the emodel.
+- Covariate shift (data drift): $P(x)$ changes, but $P(y \mid x)$ still holds. Inputs look different, the mapping is intact. Sometimes harmless.
+- Label shift (prior shift): $P(y)$ changes, but $P(x \mid y)$ stays — class prevalence moves (fraud spikes, churn seasonality). Fixable by reweighting.
+- Concept drift: $P(y \mid x)$ itself changes — the same features now predict a different outcome (user preferences shift, fraud strategies mutate). This typically hurts and requires updating the model.
 
 Detect concept drift via rolling performance on delayed labels and backtests of the current model on recent windows; detect distribution-only shifts via PSI, KL divergence, or feature-wise distribution checks.
 
@@ -127,9 +127,9 @@ Q: What are the causes of label lag and feedback loops?
 A: Delayed ground truth means the most recent training labels are missing or noisy, and a model trained naively lags the true signal. Feedback loops appear when model decisions shape future data: a ranking model never exposes certain items, so they disappear from training; a fraud model blocks borderline transactions that would have labeled themselves. Mitigations include explore-exploit policies, counterfactual logging, and inverse-propensity reweighting.
 
 Q: What is model cannibalization?
-A: A new or updated model degrades the performance of other models in the same system by competing for the same surface: two recommenders fighting for the same feed slot, or a new ranker absorbing clicks that would otherwise have been credited to another model. The symptom is that the new model looks good in isolation but the overall product metric is flat or down. Monitoring should include per-model attribution, not just the new model's metric.
+A: A new or updated model degrades the performance of other models in the same system by competing for the same surface: two recommenders fighting for the same feed slot, or a new ranker absorbing clicks that would otherwise have been credited to another model. The symptom is that the new model looks good in isolation, but the overall product metric is flat or down. Monitoring should include per-model attribution, not just the new model's metric.
 
 ## Applied reasoning
 
 Q: You are given two time series: BTC prices and news sentiments. How would you measure if there's a price prediction signal in sentiments? How can you verify the causal relation?
-A: Start with EDA for lead-lag patterns and cross-correlation at several lags. Test Granger causality from sentiment to price, and run the reverse direction as a sanity check — if price also Granger-causes sentiment, that could be feedback, shared drivers, or different lag structures, so don't take the forward test at face value. Control for obvious confounders (overall market moves, macro news) so that both series aren't simply reacting to a third variable. Then test whether lagged sentiment features predict future returns out-of-sample with [[Time-series validation]], never leaking future information. Granger causality is statistical association under prediction, not true causation; for stronger claims, move to causal ML methods (double ML, synthetic controls) or a randomized intervention, which for public markets isn't feasible but for on-platform experiments is.
+A: Start with EDA for lead-lag patterns and cross-correlation at several lags. Test Granger causality from sentiment to price, and run the reverse direction as a sanity check — if price also Granger-causes sentiment, that could be feedback, shared drivers, or different lag structures, so don't take the forward test at face value. Control for obvious confounders (overall market moves, macro news) so that both series aren't simply reacting to a third variable. Then test whether lagged sentiment features predict future returns out-of-sample with [[Time-series validation]], never leaking future information. Granger causality is a statistical association under prediction, not true causation; for stronger claims, move to causal ML methods (double ML, synthetic controls) or a randomized intervention, which, for public markets, isn't feasible but for on-platform experiments is.

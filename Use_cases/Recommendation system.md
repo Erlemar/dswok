@@ -6,50 +6,72 @@ tags:
   - concept
 prereqs:
   - "[[Two-tower]]"
-  - "[[Confusion matrix]]"
+  - "[[Calibration]]"
+  - "[[Training-serving skew]]"
+  - "[[Negative sampling]]"
+  - "[[AB Tests]]"
 ---
-This note is similar to [[ML System design]] but it is more practical and with less focus on the interviews. This note is about practical approaches to developing a recommendation system.
+This note covers how recommendation systems are designed, built, evaluated, deployed, and debugged in production. It overlaps with [[ML System design]] but focuses on practical engineering rather than interview framing.
 
-Recommendation systems are a type of machine learning systems designed to suggest items to users based on their preferences, behavior, and context.
-### Problem definition, scope and requirements
-The business objective:
-- Increasing user engagement and interaction time
-- Driving more purchases or conversions
-- Improving user retention and reducing churn
-- Enhancing user experience and satisfaction
-- Increasing content discovery and diversity
-- Maximizing revenue per user
+Recommendation systems suggest items to users based on preferences, behavior, and context. In production, they are pipelines with retrieval, ranking, re-ranking, data preparation, experimentation, and monitoring around one or more models.
 
-The business metrics:
-- Click-Through Rate (CTR)
-- Daily/Monthly Active Users (DAU/MAU)
-- Session duration and depth
-- Conversion rate
-- Revenue per user
-- Retention/churn rates
-- Direct feedback from users (likes/dislikes, comments, complaints, surveys)
-- Diversity of consumed content
-- Customer Lifetime Value (LTV)
-- Overall platform growth
-- Brand satisfaction
+## Problem definition, scope, and requirements
 
-The scope:
-- Target users: all users or specific segments
-- Item universe: entire catalog or specific categories
-- Cold-start handling: separate solutions for new users/items
-- Real-time requirements: immediate or batch processing
-- Personalization level: group-based or individual
+### Business objective
 
+- Increasing engagement and time spent
+- Driving purchases or conversions
+- Improving retention and reducing churn
+- Improving discovery and catalog coverage
+- Maximizing revenue or LTV per user
 
-Performance-related questions:
-- Real-time vs. batch predictions: Time-sensitive recommendations may require real-time processing, while others can use batch processing. It is possible to adopt a hybrid approach, for example, candidates could be predicted in batches and ranking could be done real-time
-- Latency requirements: Maximum acceptable response time for recommendations
-- Computing resources: CPU/GPU/memory needs for serving
-- Scalability: Handling growing user base and item catalogs
-- Caching strategy: Pre-computing common recommendations vs. on-demand calculation
+### Product questions
 
-### High-level design and diagrams
-The specifics of a system will depend of the specific use case, but in general the design should include data collection for training, training flow (data collection, model training, deployment), the general logic of the pipeline in production.
+- What exactly are we recommending: products, videos, posts, ads, creators, notifications?
+- Where is the recommendation shown: home feed, related items, search, emails, push?
+- Is the goal retrieval, ranking, reordering an existing list, or all of them?
+- Single objective or multiple?
+- What constraints exist: freshness, fairness, safety, policy, legal, inventory, budget?
+- Real-time adaptation required, or is batch scoring enough?
+- Explicit, implicit, or mixed feedback?
+
+### Business metrics
+
+**Optimization metrics** — targets the system is tuned against:
+
+- CTR, conversion rate, watch time, dwell time
+- DAU / MAU, session depth, retention
+- Revenue per user, GMV, LTV
+
+**Guardrail metrics** — things that must not regress:
+
+- Latency (P95 / P99)
+- Error rate, content-policy violations
+- Negative feedback: hide, dislike, report, unsubscribe
+- Diversity and ecosystem concentration
+
+CTR can rise while satisfaction or long-term retention falls.
+
+### Scope
+
+- Target users: all, a segment, or cold-start only
+- Item universe: full catalog or a subset
+- Cold-start regime: how many users or items are new on a given day
+- Real-time vs batch: candidates are typically batch-friendly, ranking is typically real-time
+- Personalization level: segment-level or individual
+
+### Performance-related questions
+
+- Acceptable P95 / P99 end-to-end latency
+- Throughput and peak traffic
+- CPU / GPU / memory limits
+- Candidate set size at each stage
+- Caching strategy: pre-compute for head users, compute on-demand for tail
+- Fallback when features or models are unavailable
+
+## High-level system design
+
+Three pipelines (training, feature, and inference) form a closed loop through a model registry and a feature store: serving produces the user behavior that trains the next model. The inference pipeline runs a four-stage funnel: hard filtering, retrieval, ranking, re-ranking.
 
 ```mermaid
 flowchart TD
@@ -68,197 +90,326 @@ flowchart TD
     subgraph Feature Pipeline
         direction TB
         UB[User Behavior] --> SP[Stream Processing]
-        CP[Content Posts] --> BP[Batch Processing]
+        CP[Content / Items] --> BP[Batch Processing]
         SP --> FS[(Feature Store)]
         BP --> FS
     end
 
     subgraph Inference Pipeline
         direction TB
-        UR[User Request] --> RF[Real-time Features]
-        RF --> RM[Retrieval Model]
-        RM --> CC[Candidate Creation]
-        CC --> RankM[Ranking Model]
-        RankM --> RS[Ranked Stories]
-        RS --> Serve[Serve to User and
-        log predictions,
-        metadata
-        and features]
-        
-        FS --> RF
-        DR --> RM
-        DR --> RankM
+        UR[User Request] --> HF[Hard filtering]
+        HF --> RET[Retrieval]
+        RET --> RANK[Ranking]
+        RANK --> RER[Re-ranking / Business Rules]
+        RER --> Serve[Serve and log predictions, features, metadata]
+
+        FS --> RET
+        FS --> RANK
+        DR --> RET
+        DR --> RANK
     end
+
+    Serve -->|Feedback loop| UB
 ```
-### Candidate Generation and Ranking
 
-Modern recommendation systems typically use a multi-stage approach:
+## Multi-stage pipeline
 
-1. Candidate Generation: Efficiently selecting a subset of items (hundreds to thousands) from the entire catalog (which might contain millions of items)
-2. Ranking: Scoring and ordering these candidates to present the most relevant items first
+### Funnel shape
 
-This two-stage architecture helps balance computational efficiency with recommendation quality.
+An example of the funnel: catalog of 1M–100M items, retrieval narrows to 100–1000 candidates, ranking scores all of them, and the top 10–50 are shown.
 
-Initial candidate selection (before candidate generation) can be done using filtering rules, for example selecting items in the relevant location or time period. In case of reordering models, we select only the items that the user interacted with before.
+### Hard filtering
 
-The target variable is a certain action (view, click, order). Positive samples are cases when the user had a positive interaction with an item. [[Negative sampling]] is a separate topic, but in general we can sample randomly from all available candidates, sample items from the user history they didn't interact with or do in-batch sampling. For in-batch sampling, it can be important to apply [[logQ correction]] to tackle bias.
-### Data preparation, analysis and feature engineering
-For candidate generation/retrieval, modern approaches usually use [[Two-tower]] architecture. It has separate towers for users and items.
+Before the models, the candidate space is reduced with deterministic constraints:
+- Locale, language, geography
+- Availability and inventory
+- Freshness or age window
+- Policy and safety rules (a substantial subsystem in its own right, with its own classifiers, allowlists, and review loops)
+- User-specific exclusions (already-seen, blocklist)
 
-Usually, the items are represented as [[Word Embeddings]] for the item tower. Text descriptions can be embedded with any common embedder from the [MTEB: Massive Text Embedding Benchmark](https://huggingface.co/spaces/mteb/leaderboard) or by openai API. Images can be embedded using [[Contrastive Language-Image Pre-training|CLIP]]. 
+### Candidate generation and retrieval
 
-User tower can have various ways of representing the users:
-- Treating user_ids as separate tokens and training their embeddings from scratch. This is simple, but it is possible that there is not enough data; the "vocab" size could be too large and it won't generalize for the new users.
-- Concatenate user features (demographic, location, any other data) and pass them through MLP - the output will be an embedding.
-- Take the user history (last N items) and aggregate the item embeddings: averaging, averaging with attention, [[RNN]].
-- Add contextual features: location, time of the day, day.
+Retrieval is recall-oriented; it aims to return a high-recall candidate set containing most items the ranker would place near the top.
 
-For ranking model, we need fine-grained features to capture the detailed preferences.
-
-#### Data sources
-
-There are mainly two sources of data: historical data of the previous interactions and the data logged during the predictions.
-
-When a recommendation system makes predictions, we can log all the features, metadata and other information to use them in the models directly. The main benefit is that all the data is already actual at the moment of logging.
-
-In practice, when we are only creating a new system, we need to take historical data, which could be captured at different time granularity. In this case it is crucial to process it carefully and prepare the data for training so that the features show actual values at the moment of the user-item interaction.
-**User Data:**
-- Explicit feedback: ratings, reviews, likes
-- Implicit feedback: views, clicks, dwell time, purchase history
-- Demographic information
-- Search queries
-- Device and context information
-
-**Item Data:**
-- Metadata: categories, tags, attributes
-- Content features: text descriptions, images, videos
-- Popularity metrics
-- Creation time
-- Price and availability
-
-**Interaction Data:**
-- User-item interactions (views, clicks, purchases)
-- Timestamps, sequence information and other session-level information
-- Context of interaction (device, location, time)
-
-#### Feature engineering
-The features may include: embedding extraction, user/item/creator features (numerical and categorical), metadata, context, graph-based features, interaction features, etc. 
-
-**User Features**
-
-- Demographics: Age, gender, location, language
-- Behavioral Patterns: Active hours, session frequency, browsing patterns
-- Interests: Categories frequently engaged with, short-term and long-term interests
-- Time Gaps: Intervals between interactions
-- Aggregated Interaction Statistics: Average rating, engagement frequency
-
-**Item/content Features**
-
-- Textual Features: Keywords, topics, the texts [[embeddings]]
-- Visual Features: Image embeddings (for example, [[Contrastive Language-Image Pre-training|CLIP]])
-- Popularity Metrics: Global popularity, popularity within segments, virality scores
-- Temporal Features: Recency, seasonality
-- Creator/Brand Features: Authorship, brand reputation, connections, categories
-- Quality Indicators: Rating distribution, like-to-view ratio, comment sentiment
-
-**User-item Interaction Features**
-- Historical Interactions: Past engagement between user and similar items or the brand/creator
-- Similarity Scores: Content similarity to previously liked items
-- Collaborative Signals: Behavior of similar users
-- Contextual Matches: Language/genre/topic alignment
-- Social Graph Features: Friend interactions, network effects
-
-**Contextual Features**
-- Time Features: Time of day, day of week, seasonality
-- Location Features: Geographic proximity, cultural relevance
-- Device Features: Mobile vs. desktop, app vs. web
-- Session Context: Current session length, previous interactions
-
-Videos are usually are treated as a sequence of frames. Categories can be encoded or embedded.
-
-### Models and evaluation
-
-**Retrieval models:**
-- Item-Item / User-User [[Collaborative Filtering]], [[Content-Based Filtering]]
+Common retrievers:
+- Popularity-based and recency-based baselines
+- Item-item or user-user [[Collaborative Filtering]], [[Content-Based Filtering]]
 - [[Matrix Factorization]]
-- Clustering-based methods
-- [[Two-tower]] which is usually trained using [[contrastive learning]]
+- [[Two-tower]] trained with [[contrastive learning]]
+- Graph retrievers for graph-structured catalogs
+- Generative retrieval (emerging; some models generate item IDs autoregressively from user context)
 
-**Ranking models:**
-- [[Logistic regression]], [[Gradient boosting]], [[Factorization Machines]]
-- [[Deep Factorization Machines]]
-- [[Neural Collaborative Filtering]]
-- [[Deep & Cross Network]]
-- [[Wide & Deep Learning]]
-- [[Deep Learning Recommendation Model]]
+Production systems often merge several retrieval sources: personalized, trending, fresh, exploratory. It can be necessary to deduplicate candidates and normalize the scores from different sources.
 
-Retrieval model usually provides embeddings for users and items, then we need to retrieve top-relevant items for the users. If the number of the users and the items is small enough, we can just do dot-multiplication. In practice, similarity search is used.
+For embedding-based retrieval at scale, dot product over the full catalog is replaced by approximate nearest-neighbor search (FAISS, ScaNN, HNSW). Index refresh cadence determines how quickly new items become retrievable. 
 
-Many recommendation systems optimize for more than one objective simultaneously (e.g. predicting clicks, likes, and long-term retention)
+### Ranking
 
-Often, ranking with models isn't enough:
-- we may need to push certain advertised items
-- we may need to diversify user recommendations to ensure we don't overexploit the same predictions
+Ranking scores candidates with a heavier model that can use more expensive features.
 
-Usually, the model evaluation is performed on time-based evaluation split.
+Common ranking models:
 
-**Offline Evaluation:**
-- Ranking Metrics: [[NDCG]]@k, [[MRR]], [[MAP]], [[Precision@k]], [[Recall@k]], Hit Rate
-- Classification Metrics: [[AUC]], [[Accuracy]], [[Precision]], [[Recall]], [[f1 score]]
-- Regression Metrics: [[RMSE]], [[MAE]]
-- Diversity and Coverage Metrics: Item coverage, user coverage, category coverage
-- Novelty and Serendipity Metrics: Unexpectedness, discovery rate
+- [[Logistic regression]] (baseline) and [[Gradient boosting]] (LightGBM, Catboost or XGBoost)
+- [[Deep & Cross Network]], [[Deep Learning Recommendation Model]]
+- Sequential rankers (SASRec, HSTU): model user history as a sequence
+- Multi-task architectures (Shared-Bottom, MMoE): one model predicts several targets with partially shared representations
 
-**Online Evaluation:**
-- [[AB Tests]]: Comparing variants with controlled experiments
-- User Satisfaction: Explicit feedback, surveys, qualitative assessment
+When retrieval returns more candidates than the heavy ranker can score within the latency budget, a lightweight pre-ranker is added between the two stages to narrow the set (e.g., 10K → 1K).
+
+Multi-task is common in production. A production ranker typically predicts several targets (click, dwell, like, conversion) with per-task heads and shared lower layers, and the final served score combines task scores. Common forms: weighted sum (`α·pCTR + β·pDwell + γ·pConv`) for additive blending, or multiplicative for value estimation (`pCTR × pConv × value`); weights are tuned against online metrics. MMoE adds per-task gating so tasks can specialize.
+
+### Re-ranking
+
+Re-ranking applies cross-item constraints and business logic, and may include full listwise optimization:
+
+- Business rules: ad pacing, boost factors for new items, category quotas, blocklists
+- Diversity: MMR and Determinantal Point Processes (DPP)
+- Exploration slots: reserve a fraction of positions for under-explored items; with correctly logged propensities, these produce less policy-biased evaluation data
+- Score combination: blend predictions from several rankers with different objectives
+- Deduplication, safety filtering, inventory, and pacing logic
+
+## Data and features
+
+### Prefer logged features
+
+When the live system makes a prediction, log every input feature, the prediction, and the metadata. Training on logged serving-time features greatly reduces point-in-time reconstruction errors and training-serving skew, but does not remove all sources of mismatch (feature-definition drift, missing logging, late-arriving updates, serving-only transformations still break parity).
+
+Impression logging is important too: log each shown item with its position, candidate source, and the scores that produced it. This information is useful for exposure-bias correction, negative-example construction, and counterfactual evaluation.
+
+### Point-in-time correctness
+
+When there is no logging set up, you need to collect the data manually. Every feature must be computed using only data available before the interaction timestamp. A feature like `user_7d_click_count` that accidentally includes post-impression clicks is a leak. See [[Training-serving skew]] for the specific patterns: point-in-time joins, online/offline parity, staleness alignment, schema drift, shadow-log-and-diff.
+
+### Feature examples
+
+**User features:**
+
+- Demographics: age, gender, location, language
+- Behavioral patterns: active hours, session frequency, dwell distributions
+- Interests: engaged categories, short-term vs long-term interest splits
+- Recency: time since last interaction, inter-event gaps
+- Aggregates: historical CTR, conversion rate, per-category engagement
+
+**Item features:**
+
+- Text via [[Word Embeddings]]
+- Visual via [[Contrastive Language-Image Pre-training|CLIP]] or domain-specific image encoders
+- Popularity: global, segment, virality, trending
+- Temporal: item age, seasonality
+- Creator or brand: authorship, quality score, historical CTR
+- Quality: rating distribution, like-to-view ratio, comment sentiment
+
+**User-item interaction features:**
+
+- Past engagement between this user and this item, similar items, or the same creator
+- Content similarity to previously-liked items
+- Collaborative signals from similar users
+- Contextual alignment: language, genre, topic match
+- Retrieval-tower embeddings and their dot product
+
+**Contextual features:**
+
+- Time of day, day of week, local seasonality
+- Device: mobile vs desktop, app vs web
+- Session length, previous item, scroll position
+- Geography
+
+Video items are represented by metadata plus precomputed multimodal embeddings; usually done by frame-sequence models (attention, [[RNN]], transformer). High-cardinality categoricals (item IDs, creator IDs) get their own embedding tables, usually sharded.
+
+### Feature-store schema split
+
+Online feature stores can have various key types:
+
+- User-keyed: profile, long-term aggregates, user embeddings
+- Item-keyed: metadata, popularity, item embeddings
+- User × item joined: historical cross-features, affinity scores
+
+### Negative sampling
+
+Positive samples are the actions users took. Negatives are chosen from non-interactions, where the label signal is ambiguous. The main choices: random from catalog (easy, weak), in-batch within a mini-batch (efficient, popularity-biased, mitigated by [[logQ correction]]), hard negatives from similar items (improves ranking, destabilizes training), and items shown but not clicked (even though the item may simply not have been noticed). "Not clicked" is a meaningful negative only when the item was actually exposed with a reasonable chance of being noticed; position and exposure bias contaminate it otherwise.
+
+Strategies, trade-offs, and applications beyond recsys in [[Negative sampling]].
+
+### Retrieval representations
+
+Retrieval towers produce user and item embeddings that can be compared with dot product or cosine.
+
+**Item tower inputs** typically combine:
+
+- Learned ID embeddings
+- Metadata embeddings
+- Text embeddings
+- Image or multi-modal embeddings
+- Creator or brand features
+
+**User tower inputs** typically combine:
+
+- Learned user ID embedding
+- Aggregated history: average of recent item embeddings, with or without attention
+- Sequence model over interactions
+- Static profile features through an MLP
+- Short-term and long-term towers combined with gating
+
+## Objectives, losses and calibration
+
+Models are often trained on multiple objectives: CTR + dwell time, click + save + purchase, engagement + long-term retention, relevance + diversity + fairness. Combination approaches include multi-task learning with shared representations, a weighted sum of task scores at serving, cascaded models (one model's output feeds another), and separate models per surface.
+
+Raw model scores are often miscalibrated. Calibration matters when scores feed into auctions, combine arithmetically (`pCTR × pConv × value`), or cross a probability threshold. Standard fixes are Platt scaling, isotonic regression, and temperature scaling. Calibration should be monitored per segment because it varies across country, device, and cohort, and drifts within each over time. See [[Calibration]].
+
+## Evaluation
+
+### Offline metrics
+
+Always evaluate on a time-based split.
+
+- Retrieval metrics: [[Recall@k]], Hit Rate@k, [[NDCG]]@k
+- Ranking metrics: [[NDCG]]@k, [[MRR]], [[MAP]], [[Precision@k]], [[AUC]], log-loss
+- Regression metrics: [[RMSE]], [[MAE]] for dwell-time or rating targets
+- Coverage and diversity: item, user, and category coverage; intra-list diversity
+
+It is a good idea to report not only overall metrics, but also metrics by segments/groups: country, device, user tenure, item type, and head vs tail.
+
+### Counterfactual evaluation
+
+Offline evaluation on logged data is biased: the log only contains items that the current serving policy chose. Counterfactual methods estimate how a candidate policy would behave using propensity corrections (IPS, doubly robust, replay). They break down when the candidate policy diverges far from the logging policy or when propensities are small. See [[Counterfactual evaluation]].
+
+### Online evaluation
+
+Controlled experiments are the standard online evaluation method. Online metrics to track:
+
+- CTR, conversion, watch time, dwell time
+- Session depth, retention, churn
+- Negative feedback rate
+- Revenue and marketplace effects
+- Creator-side or seller-side effects
+- Latency and stability guardrails
+
+### A/B testing notes
+
+Common A/B failures:
+
+- **Interference.** Users in control see items shaped by treatment users in two-sided marketplaces or shared-inventory surfaces.
+- **Novelty effects.** Users respond to novelty immediately, and it takes time for them to return to the stable state.
+- **Triggered vs intent-to-treat analysis.** Compute impact on users who actually saw a different result, not on the full randomization bucket.
+- **Surfacing changes.** Layout, thumbnail, caption, and slot count affect CTR independently of score order; treatments that change both surfacing and ranking together cannot isolate the ranker's contribution.
+
+CUPED, peeking, long-term holdouts, ecosystem metrics, and heterogeneous effects are covered in [[AB Tests]].
+
+## Specialized subproblems
+
 ### Cold start
-**For New Users:**
-- Non-personalized recommendations (popularity-based)
-- Onboarding questionnaires to collect initial preferences
-- Demographic-based recommendations
-- Content-based recommendations based on explicit interests or demographics
 
-**For New Items:**
-- Content-based similarity to existing items
-- Metadata-based matching
-- Controlled exploration (showing new items to a subset of users)
+Cold start has two sub-problems: new users (no interaction history to personalize against) and new items (no collaborative signal). New users can use context, onboarding signals, and bandits; new items can use content embeddings, creator priors, and guaranteed-exposure budgets. See [[Cold start]].
 
-### Deployment
-**Data Storage and Processing:**
-- Feature stores for efficient feature management
-- Vector databases for embedding similarity search
-- Stream processing for real-time events
-- Batch processing for historical data
+### Bias and feedback loops
 
-**Model Serving:**
-- Low-latency serving infrastructure (TensorFlow Serving, TorchServe, Triton)
-- Caching for common recommendations
+A deployed recsys generates the data it will be trained on next. Popular items get more impressions, which produces more interactions, which pushes them higher in the next training cycle. The long tail collapses unless exploration forces diversity. Mitigations include exploration, IPS weighting during training, diversity constraints at re-ranking, and counterfactual evaluation before A/B. Position bias in click-trained rankers is commonly mitigated by modeling position as a feature during training and setting it to a constant at inference. See [[Bias and feedback loops]].
+
+### Exploration vs exploitation
+
+Every recommendation is a choice between a known-good item and an under-tested one. Pure exploitation maximizes short-term engagement but makes new items and users receive less signal; pure exploration wastes impressions. The approaches to handle this include: bandit policies for cold users, guaranteed-exposure budgets for cold items, exploration slots in re-ranking, and randomization during model rollouts. Without logged exploration data, the next training cycle only sees what the current policy preferred.
+
+### Fairness and ecosystem health
+
+Recommendations affect both users and the supply side (creators, sellers, content producers). Concentrating impressions on the head of the creator distribution reduces supply diversity over time, degrading the catalog and the user experience downstream. Typical metrics: Gini coefficient or HHI on creator impression share, new-creator impression rate, category and topic coverage. Fairness constraints enter at re-ranking (exposure caps, per-segment quotas) or as auxiliary training objectives. Users want relevance, creators want exposure, platforms want long-term ecosystem health.
+
+## Deployment
+
+### Data storage and processing
+
+- Feature stores for consistent online and offline feature access
+- Vector database or ANN index (FAISS, ScaNN, HNSW)
+- Stream processing (Flink) for real-time events
+- Batch processing (Spark) for historical aggregates
+- Model registry and versioning
+
+### Model serving
+
+- Low-latency model servers
+- Caching for head users and popular queries
 - Load balancing and auto-scaling
-- Quantization and model optimization for low-latency requirements
+- Quantization, pruning, and distillation on latency-sensitive paths
+- Fallback when features or models are unavailable: use cached recommendations or the popularity baseline
 
-**Gradual Rollout:**
-- Shadow deployment: Run model in parallel without affecting users
-- Canary testing: Expose a small percentage of traffic to new model
-- A/B testing: Compare performance against control
-- Progressive rollout: Incrementally increase traffic to new model
+### Gradual rollout
 
-### Post-deployment
-**Monitoring and Alerting:**
-- Model performance metrics: CTR, conversion, user engagement
-- System performance: Latency, throughput, error rates
-- Data quality: Distribution shifts, missing values
-- Business metrics: Revenue, user satisfaction, model cannibalization
+- Shadow deployment: compute predictions without serving them; diff against the champion
+- Canary: route 1% of traffic to the new model for a fixed window
+- A/B ramp-up: Incrementally move traffic to the new model
+- Kill-switches tied to guardrail metrics (latency, error rate, engagement drop)
 
+## Monitoring
 
-Scheduled retraining: Daily, weekly, or monthly updates
+### System
 
-**Feedback Loop Management:**
-- Bias correction in logged data
-- Counterfactual evaluation
-- Exploration policies to prevent feedback loops (force show diverse content, random exploration, bandits, simply insert random items into recommendations)
+- P50 / P95 / P99 latency, error rate, throughput
+- ANN recall against the exact top-k for the retrieval stage
+- Feature freshness and missingness
+- Cache hit rate
+- Candidate counts and score distributions per retrieval source and per stage
 
-### Practical examples
-- [Alibaba paper](https://arxiv.org/abs/1803.02349) generates user embeddings through random walks on session-level user-item interactions
-### Links
-- 
+### Model
+
+- Online CTR, conversion, engagement, broken down by slice (country, device, user tenure, item type)
+- Calibration drift per slice (ECE)
+- Feature drift (PSI, KS) on each feature
+- Prediction drift: distribution of model outputs; a sudden shift without a feature shift is usually an infra bug
+- Embedding drift: cosine distance for the same items' (or users') embeddings across model versions
+
+### Business
+
+- Engagement, conversion, revenue
+- Negative feedback: hide, report, unsubscribe
+- Creator-side or seller-side impression share and concentration
+- Cannibalization: new model steals clicks from existing models rather than generating incremental ones
+
+### Data quality
+
+- Broken joins and missing keys
+- Impression logging gaps
+- Label delays (conversions arrive hours to days after clicks; attribution windows must match between training and serving)
+- Duplicated events
+- Counter resets and schema changes
+
+### Retraining
+
+Frequency depends on content decay: daily or weekly for fast-moving content (news, social), weekly or monthly for slower-moving catalogs. An automated retraining pipeline includes:
+
+- Data validation
+- Feature validation
+- Offline evaluation against the champion
+- Calibration check
+- Shadow serving
+- Canary rollout
+
+## Failure modes and debugging
+
+### Common failure modes
+
+- Same items for everyone: embedding collapse or over-reliance on popularity priors. Check embedding norm distributions and retrieval diversity.
+- New items never served: new items aren't included in the actual ANN index
+- Offline metrics increase, online metrics decrease: training-serving skew, label leakage, or novelty masking the real signal.
+- Metrics improve, users complain: proxy metric (clicks) diverging from the true goal (satisfaction). Add a long-term holdout or survey-based metric.
+- Recommendations worsen over time without system changes: feedback-loop collapse, upstream feature drift, or ANN index staleness.
+- Latency spikes after a model update: feature logic changed.
+
+### Debugging checklist
+
+When a recommender degrades, useful questions:
+
+- Did retrieval recall drop?
+- Did a candidate source stop producing items?
+- Did feature freshness degrade?
+- Is there training-serving skew?
+- Did item inventory or policy filters change?
+- Did calibration drift?
+- Did the serving distribution shift by geography, platform, or traffic source?
+- Did the experiment trigger or logging change?
+- Did the system switch to a fallback?
+
+## Practical examples
+
+- [Alibaba paper](https://arxiv.org/abs/1803.02349): user embeddings from random walks on session-level user-item interactions
+- [Pinterest PinSAGE](https://arxiv.org/abs/1806.01973): graph convolutional networks at web scale
+- [Meta DLRM](https://arxiv.org/abs/1906.00091): canonical large-scale ranking architecture
+- [YouTube two-tower](https://research.google/pubs/pub48840/): reference implementation for two-tower retrieval at scale
