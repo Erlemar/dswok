@@ -23,11 +23,11 @@ Recommendation systems suggest items to users based on preferences, behavior, an
 - Driving purchases or conversions
 - Improving retention and reducing churn
 - Improving discovery and catalog coverage
-- Maximizing revenue or LTV per user
+- Maximizing revenue or lifetime value (LTV) per user
 
 ### Product questions
 
-- What exactly are we recommending: products, videos, posts, ads, creators, notifications?
+- What exactly is being recommended: products, videos, posts, ads, creators, notifications?
 - Where is the recommendation shown: home feed, related items, search, emails, push?
 - Is the goal retrieval, ranking, reordering an existing list, or all of them?
 - Single objective or multiple?
@@ -37,13 +37,13 @@ Recommendation systems suggest items to users based on preferences, behavior, an
 
 ### Business metrics
 
-**Optimization metrics** — targets the system is tuned against:
+**Optimization metrics** (targets the system is tuned against):
 
 - CTR, conversion rate, watch time, dwell time
-- DAU / MAU, session depth, retention
-- Revenue per user, GMV, LTV
+- Daily / monthly active users (DAU / MAU), session depth, retention
+- Revenue per user, gross merchandise value (GMV), LTV
 
-**Guardrail metrics** — things that must not regress:
+**Guardrail metrics** (things that must not regress):
 
 - Latency (P95 / P99)
 - Error rate, content-policy violations
@@ -151,8 +151,8 @@ Common ranking models:
 
 - [[Logistic regression]] (baseline) and [[Gradient boosting]] (LightGBM, Catboost or XGBoost)
 - [[Deep & Cross Network]], [[Deep Learning Recommendation Model]]
-- Sequential rankers (SASRec, HSTU): model user history as a sequence
-- Multi-task architectures (Shared-Bottom, MMoE): one model predicts several targets with partially shared representations
+- Sequential rankers (Self-Attentive Sequential Recommendation (SASRec), Hierarchical Sequential Transduction Unit (HSTU)): model user history as a sequence
+- Multi-task architectures (Shared-Bottom, Multi-gate Mixture-of-Experts (MMoE)): one model predicts several targets with partially shared representations
 
 When retrieval returns more candidates than the heavy ranker can score within the latency budget, a lightweight pre-ranker is added between the two stages to narrow the set (e.g., 10K → 1K).
 
@@ -163,7 +163,7 @@ Multi-task is common in production. A production ranker typically predicts sever
 Re-ranking applies cross-item constraints and business logic, and may include full listwise optimization:
 
 - Business rules: ad pacing, boost factors for new items, category quotas, blocklists
-- Diversity: MMR and Determinantal Point Processes (DPP)
+- Diversity: Maximal Marginal Relevance (MMR) and Determinantal Point Processes (DPP)
 - Exploration slots: reserve a fraction of positions for under-explored items; with correctly logged propensities, these produce less policy-biased evaluation data
 - Score combination: blend predictions from several rankers with different objectives
 - Deduplication, safety filtering, inventory, and pacing logic
@@ -178,7 +178,7 @@ Impression logging is important too: log each shown item with its position, cand
 
 ### Point-in-time correctness
 
-When there is no logging set up, you need to collect the data manually. Every feature must be computed using only data available before the interaction timestamp. A feature like `user_7d_click_count` that accidentally includes post-impression clicks is a leak. See [[Training-serving skew]] for the specific patterns: point-in-time joins, online/offline parity, staleness alignment, schema drift, shadow-log-and-diff.
+When logging is absent, the data has to be collected manually. Every feature must be computed using only data available before the interaction timestamp. A feature like `user_7d_click_count` that accidentally includes post-impression clicks is a leak. See [[Training-serving skew]] for the specific patterns: point-in-time joins, online/offline parity, staleness alignment, schema drift, shadow-log-and-diff.
 
 ### Feature examples
 
@@ -202,7 +202,7 @@ When there is no logging set up, you need to collect the data manually. Every fe
 **User-item interaction features:**
 
 - Past engagement between this user and this item, similar items, or the same creator
-- Content similarity to previously-liked items
+- Content similarity to previously liked items
 - Collaborative signals from similar users
 - Contextual alignment: language, genre, topic match
 - Retrieval-tower embeddings and their dot product
@@ -267,11 +267,11 @@ Always evaluate on a time-based split.
 - Regression metrics: [[RMSE]], [[MAE]] for dwell-time or rating targets
 - Coverage and diversity: item, user, and category coverage; intra-list diversity
 
-It is a good idea to report not only overall metrics, but also metrics by segments/groups: country, device, user tenure, item type, and head vs tail.
+Report metrics by segment as well as overall: country, device, user tenure, item type, and head vs tail.
 
 ### Counterfactual evaluation
 
-Offline evaluation on logged data is biased: the log only contains items that the current serving policy chose. Counterfactual methods estimate how a candidate policy would behave using propensity corrections (IPS, doubly robust, replay). They break down when the candidate policy diverges far from the logging policy or when propensities are small. See [[Counterfactual evaluation]].
+Offline evaluation on logged data is biased: the log only contains items that the current serving policy chose. Counterfactual methods estimate how a candidate policy would behave using propensity corrections (Inverse Propensity Scoring (IPS), doubly robust, replay). They break down when the candidate policy diverges far from the logging policy or when propensities are small. See [[Counterfactual evaluation]].
 
 ### Online evaluation
 
@@ -288,10 +288,10 @@ Controlled experiments are the standard online evaluation method. Online metrics
 
 Common A/B failures:
 
-- **Interference.** Users in control see items shaped by treatment users in two-sided marketplaces or shared-inventory surfaces.
-- **Novelty effects.** Users respond to novelty immediately, and it takes time for them to return to the stable state.
-- **Triggered vs intent-to-treat analysis.** Compute impact on users who actually saw a different result, not on the full randomization bucket.
-- **Surfacing changes.** Layout, thumbnail, caption, and slot count affect CTR independently of score order; treatments that change both surfacing and ranking together cannot isolate the ranker's contribution.
+- Interference: users in control see items shaped by treatment users in two-sided marketplaces or shared-inventory surfaces.
+- Novelty effects: users respond to novelty immediately, and it takes time for them to return to the stable state.
+- Triggered vs intent-to-treat analysis: compute impact on users who actually saw a different result, not on the full randomization bucket.
+- Surfacing changes: layout, thumbnail, caption, and slot count affect CTR independently of score order; treatments that change both surfacing and ranking together cannot isolate the ranker's contribution.
 
 CUPED, peeking, long-term holdouts, ecosystem metrics, and heterogeneous effects are covered in [[AB Tests]].
 
@@ -311,14 +311,14 @@ Every recommendation is a choice between a known-good item and an under-tested o
 
 ### Fairness and ecosystem health
 
-Recommendations affect both users and the supply side (creators, sellers, content producers). Concentrating impressions on the head of the creator distribution reduces supply diversity over time, degrading the catalog and the user experience downstream. Typical metrics: Gini coefficient or HHI on creator impression share, new-creator impression rate, category and topic coverage. Fairness constraints enter at re-ranking (exposure caps, per-segment quotas) or as auxiliary training objectives. Users want relevance, creators want exposure, platforms want long-term ecosystem health.
+Recommendations affect both users and the supply side (creators, sellers, content producers). Concentrating impressions on the head of the creator distribution reduces supply diversity over time, degrading the catalog and the user experience downstream. Typical metrics: Gini coefficient or Herfindahl-Hirschman Index (HHI) on creator impression share, new-creator impression rate, category and topic coverage. Fairness constraints enter at re-ranking (exposure caps, per-segment quotas) or as auxiliary training objectives.
 
 ## Deployment
 
 ### Data storage and processing
 
 - Feature stores for consistent online and offline feature access
-- Vector database or ANN index (FAISS, ScaNN, HNSW)
+- Vector database or approximate nearest-neighbor (ANN) index (FAISS, ScaNN, HNSW)
 - Stream processing (Flink) for real-time events
 - Batch processing (Spark) for historical aggregates
 - Model registry and versioning
@@ -335,7 +335,7 @@ Recommendations affect both users and the supply side (creators, sellers, conten
 
 - Shadow deployment: compute predictions without serving them; diff against the champion
 - Canary: route 1% of traffic to the new model for a fixed window
-- A/B ramp-up: Incrementally move traffic to the new model
+- A/B ramp-up: incrementally move traffic to the new model
 - Kill-switches tied to guardrail metrics (latency, error rate, engagement drop)
 
 ## Monitoring
@@ -351,8 +351,8 @@ Recommendations affect both users and the supply side (creators, sellers, conten
 ### Model
 
 - Online CTR, conversion, engagement, broken down by slice (country, device, user tenure, item type)
-- Calibration drift per slice (ECE)
-- Feature drift (PSI, KS) on each feature
+- Calibration drift per slice (Expected Calibration Error, ECE)
+- Feature drift (Population Stability Index (PSI), Kolmogorov-Smirnov (KS)) on each feature
 - Prediction drift: distribution of model outputs; a sudden shift without a feature shift is usually an infra bug
 - Embedding drift: cosine distance for the same items' (or users') embeddings across model versions
 
@@ -395,7 +395,7 @@ Frequency depends on content decay: daily or weekly for fast-moving content (new
 
 ### Debugging checklist
 
-When a recommender degrades, useful questions:
+Useful questions when a recommender degrades:
 
 - Did retrieval recall drop?
 - Did a candidate source stop producing items?
@@ -407,7 +407,9 @@ When a recommender degrades, useful questions:
 - Did the experiment trigger or logging change?
 - Did the system switch to a fallback?
 
-## Practical examples
+## Links
+
+Reference implementations to study:
 
 - [Alibaba paper](https://arxiv.org/abs/1803.02349): user embeddings from random walks on session-level user-item interactions
 - [Pinterest PinSAGE](https://arxiv.org/abs/1806.01973): graph convolutional networks at web scale
