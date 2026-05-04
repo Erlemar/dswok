@@ -45,6 +45,7 @@ These act on top of any model-family tendency:
 - Delayed and censored labels: conversions, churn, refunds, and chargebacks arrive late. Calibration measured before labels mature is biased; the calibration target specifies a label window (1-day click, 7-day conversion, 30-day churn).
 - Selection and exposure bias: in [[Recommendation system]] settings, labels exist only for items that were shown. Calibration is for the exposed distribution and is conditional on the logging/serving policy. A policy change can move the exposure distribution and break calibration even when feature distributions look stable.
 - [[Training-serving skew]]: feature transformations, missing-value defaults, normalization, or freshness differing between training and serving create skew that calibration can mask but not fix.
+- Privacy and aggregation constraints: when per-impression label linkage is severed by privacy policy, per-impression recalibration breaks. The fallback is aggregate ratio calibration over a cohort window: compare summed predictions to summed realized events per privacy-respecting bucket and apply the ratio as a multiplicative correction.
 
 ## Measuring calibration
 
@@ -93,6 +94,8 @@ Platt scaling fits a logistic regression on raw model scores ([Platt 1999](https
 $$p_{\text{calibrated}} = \frac{1}{1 + \exp\!\big(-(\alpha s + \beta)\big)}$$
 
 where $s$ is the raw model score and $\alpha, \beta$ are scalar parameters fit on a held-out set by minimizing log loss. Stable on small validation sets, but assumes a sigmoidal miscalibration shape. Originally targeted [[SVM]] decision values; also used for shallow models with smooth score distributions and for AdaBoost-style classifiers whose miscalibration is sigmoidal by construction.
+
+Two structural reasons make logistic regression the natural calibrator. Log-loss-trained LR has a guaranteed training-set calibration property: at the optimum, the zero-gradient condition implies that the mean predicted probability equals the empirical positive rate, broken down by each categorical feature. The sigmoid is also monotonic in the raw score, so calibrated probabilities preserve the ordering of inputs and rank-based metrics like AUC are unchanged.
 
 ### Isotonic regression
 
@@ -154,6 +157,12 @@ Production monitoring tracks ECE and reliability diagrams per slice in addition 
 
 Per-segment calibrators can change cross-segment ordering even when each per-segment mapping is monotonic. This matters when downstream systems compare scores across segments: a global threshold, a unified review queue, or an auction that ranks across user types. In those settings, the per-segment calibrators have to be kept consistent at decision boundaries, or the ranking step has to operate on pre-calibration scores.
 
+## Multi-calibration
+
+Per-segment recalibration is empirical: fit a calibrator per slice and pool when slices are sparse. Multi-calibration ([Hébert-Johnson et al. 2018](https://proceedings.mlr.press/v80/hebert-johnson18a.html)) formalizes the goal. A model is multi-calibrated if it is calibrated for every subgroup identifiable by a chosen class of computations, including overlapping intersectional subgroups. The framework gives theoretical guarantees that simple per-slice fits do not.
+
+[MCGrad](https://arxiv.org/abs/2509.19884) is a recent scalable implementation: a recursive gradient-boosting procedure that auto-discovers miscalibrated subgroups via tree leaves, without manual segment specification. It often improves discrimination metrics (log loss, PRAUC) alongside calibration rather than trading them off.
+
 ## Practical considerations
 
 - Calibration set independence: the calibration set is held out from training and from any model selection that touched it. Use a true three-way split (train, calibrate, test); reusing the validation set for both selection and calibration produces optimistic calibration estimates. For time-dependent systems, split by time.
@@ -161,7 +170,8 @@ Per-segment calibrators can change cross-segment ordering even when each per-seg
 - Refresh cadence: refit on a recent window (daily, weekly, or per release) when the production distribution drifts.
 - Online ECE: streaming binning with windowed or exponentially decayed counts catches drift as it happens; offline ECE on historical batches catches it after the fact.
 - Continuous training: the calibration window slides with the training window. Tracking $T$ (or the Platt slope) over time exposes drift early. A sudden swing in fitted parameters usually signals data or pipeline issues before downstream metrics move.
-- Multi-task heads: a multi-task ranker (pCTR + pConv + dwell) typically has each head trained on differently sampled data and emits uncalibrated probabilities. Per-head recalibration is needed before scores are combined.
+- Multi-task or composite scores: a ranker that combines per-head outputs (e.g. `pCTR × pConv × dwell` for ad eCPM, or a sum of per-objective heads) can have a calibrated composite while each component is miscalibrated, because component errors compensate. Per-component recalibration before combination catches the bias at the source; calibrating only the composite hides it.
+- Closed-loop online recalibration: refit the calibrator on a streaming log of (prediction, realized outcome) pairs and redeploy on a short cadence (e.g. every ~30 minutes), with an automated rollback to the last known-good snapshot if calibration error breaches a threshold.
 - Ensembles of calibrated models: averaging two already-calibrated models produces an output that is no longer calibrated. The ensemble needs its own recalibration step on a held-out set.
 
 ## Limitations
@@ -211,7 +221,9 @@ Per-segment calibrators can change cross-segment ordering even when each per-seg
 - [Niculescu-Mizil & Caruana — *Predicting Good Probabilities With Supervised Learning* (ICML 2005)](https://doi.org/10.1145/1102351.1102430)
 - [Guo, Pleiss, Sun, Weinberger — *On Calibration of Modern Neural Networks* (ICML 2017)](https://arxiv.org/abs/1706.04599)
 - [Kull, Filho, Flach — *Beta Calibration* (AISTATS 2017)](https://proceedings.mlr.press/v54/kull17a.html)
+- [Hébert-Johnson, Kim, Reingold, Rothblum — *Multicalibration: Calibration for the (Computationally-Identifiable) Masses* (ICML 2018)](https://proceedings.mlr.press/v80/hebert-johnson18a.html)
 - [Kull et al. — *Beyond Temperature Scaling: Dirichlet Calibration* (NeurIPS 2019)](https://arxiv.org/abs/1910.12656)
+- [Tax et al. — *MCGrad: Multicalibration at Web Scale* (KDD 2026)](https://arxiv.org/abs/2509.19884)
 - [Nixon et al. — *Measuring Calibration in Deep Learning* (CVPR Workshops 2019)](https://arxiv.org/abs/1904.01685)
 - [Popordanoska, Sayer, Blaschko — *A Consistent and Differentiable Lp Canonical Calibration Error Estimator* (NeurIPS 2022)](https://arxiv.org/abs/2210.07810)
 - [Roelofs et al. — *Mitigating Bias in Calibration Error Estimation* (AISTATS 2022)](https://arxiv.org/abs/2012.08668)
