@@ -60,8 +60,18 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://dswok.com/Excalidraw/calibration_recalibration_methods.excalidraw</loc>
+    <lastmod>2026-05-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dswok.com/Excalidraw/calibration_reliability_diagram.excalidraw</loc>
+    <lastmod>2026-05-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://dswok.com/General%20ML/AB%20Tests</loc>
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-04</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -116,7 +126,7 @@
   </url>
   <url>
     <loc>https://dswok.com/General%20ML/Multi-armed%20bandits</loc>
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-04</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -137,6 +147,11 @@
   <url>
     <loc>https://dswok.com/General%20ML/Time-series%20validation</loc>
     <lastmod>2026-04-18</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dswok.com/General%20ML/Training-serving%20skew</loc>
+    <lastmod>2026-05-03</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -192,6 +207,11 @@
   <url>
     <loc>https://dswok.com/Interview_preparation/index</loc>
     <lastmod>2026-04-19</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dswok.com/Metrics%20and%20losses/Calibration</loc>
+    <lastmod>2026-05-04</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -350,23 +370,13 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://dswok.com/drafts/Recommendation-system</loc>
-    <lastmod>2026-04-22</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://dswok.com/drafts/note_improvements</loc>
-    <lastmod>2026-04-23</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://dswok.com/drafts/recommendation_merge_plan</loc>
-    <lastmod>2026-04-22</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://dswok.com/drafts/recommendation_system_revised</loc>
-    <lastmod>2026-04-21</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <priority>0.8</priority>
   </url>
   <url>

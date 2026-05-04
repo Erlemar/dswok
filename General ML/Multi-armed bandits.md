@@ -42,7 +42,7 @@ When a context $x_t$ is observed before each action (user features, query, time-
 
 Common variants:
 
-- LinUCB: linear reward model with a UCB-style exploration bonus based on covariance of the parameter estimate.
+- LinUCB: linear reward model with a UCB-style exploration bonus based on the covariance of the parameter estimate.
 - Contextual Thompson sampling: posterior over the parameter vector, sample and choose the best action under the sample.
 - Neural bandits: deep model for $\mu_a(x)$ with exploration via dropout, ensembles, or bootstrap.
 

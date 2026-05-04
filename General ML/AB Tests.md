@@ -44,13 +44,13 @@ For cluster randomization (households, geos, users with many sessions), the effe
 
 $$\text{DEFF} = 1 + (\bar{m} - 1)\rho$$
 
-where $\bar{m}$ is the average cluster size and $\rho$ is the intra-cluster correlation. Effective $n$ is $n/\text{DEFF}$. For high-correlation clusters DEFF can exceed 100, which is why geo and switchback experiments are often underpowered even when the raw sample looks adequate. When cluster sizes are skewed (New York versus Wyoming), $\bar{m}$ should be a size-weighted average: the unweighted mean understates DEFF.
+where $\bar{m}$ is the average cluster size and $\rho$ is the intra-cluster correlation. Effective $n$ is $n/\text{DEFF}$. For high-correlation clusters, DEFF can exceed 100, which is why geo and switchback experiments are often underpowered even when the raw sample looks adequate. When cluster sizes are skewed (New York versus Wyoming), $\bar{m}$ should be a size-weighted average: the unweighted mean understates DEFF.
 
 Sample-size targets should also fit calendar cycles. Running experiments in full 7-day increments controls for day-of-week seasonality; stopping mid-week introduces weekday/weekend bias even when the target is already hit. Experiments spanning holidays, paydays, or product-specific seasonality can be biased by unrepresentative traffic; the standard fix is to anchor the analysis window to a representative period and exclude holiday weeks.
 
 ### Allocation
 
-50/50 is the default. Uneven splits (for example 90/10) trade estimation precision for risk mitigation during early ramps. Stratified assignment balances a known covariate across buckets and reduces variance when the covariate correlates with the primary metric.
+50/50 is the default. Uneven splits (for example, 90/10) trade estimation precision for risk mitigation during early ramps. Stratified assignment balances a known covariate across buckets and reduces variance when the covariate correlates with the primary metric.
 
 ### Population definition
 
@@ -78,7 +78,7 @@ Testing $k$ metrics independently at $\alpha = 0.05$ gives family-wise error $1 
 - Holm: step-down Bonferroni. Uniformly more powerful with the same FWER control.
 - Benjamini-Hochberg: controls the false discovery rate (expected proportion of false positives among rejections). More powerful, but a different guarantee.
 
-Pragmatic rule: use FWER control (Bonferroni, Holm) when several confirmatory primary metrics are tested together and any false positive would cause a bad ship decision; use FDR control (Benjamini-Hochberg) for secondary and exploratory metrics where hypothesis discovery matters more than individual false positives. A pre-registered single primary metric avoids multiple-testing correction for the confirmatory decision, provided the remaining metrics are treated as diagnostic rather than confirmatory.
+Pragmatic rule: use FWER control (Bonferroni, Holm) when several confirmatory primary metrics are tested together, and any false positive would cause a bad ship decision; use FDR control (Benjamini-Hochberg) for secondary and exploratory metrics where hypothesis discovery matters more than individual false positives. A pre-registered single primary metric avoids multiple-testing correction for the confirmatory decision, provided the remaining metrics are treated as diagnostic rather than confirmatory.
 
 ### Bayesian framing
 
@@ -98,7 +98,7 @@ Balance assignment across known segments (country, platform, tenure). Reduces va
 
 ### Cluster-robust inference
 
-When the analysis unit is finer than the randomization unit (randomize at user, analyze at session) standard errors computed under IID assumptions are wrong and Type I error is inflated. Fixes: aggregate to the randomization unit, use cluster-robust standard errors, or use block bootstrap at the cluster level.
+When the analysis unit is finer than the randomization unit (randomize at user, analyze at session), standard errors computed under IID assumptions are wrong, and Type I error is inflated. Fixes: aggregate to the randomization unit, use cluster-robust standard errors, or use block bootstrap at the cluster level.
 
 ### Outlier capping
 
@@ -110,7 +110,7 @@ When the meaningful effect is on the tail itself (P95 session length changes whi
 
 ### Trigger-based analysis
 
-Many features only affect users in a specific code path (clicked a button, saw an item, entered a flow). Restricting analysis to triggered users increases per-user effect size and removes dilution from users the change never touched. This is safe when the trigger is defined independently of treatment. When the trigger depends on treatment, counterfactual triggering (also called ghost logging or shadow logging) can recover an unbiased or substantially less biased analysis by logging the trigger condition for both arms regardless of which path was taken, provided eligibility is defined symmetrically and logged reliably. See the Triggered vs intent-to-treat failure mode below for the bias case.
+Many features only affect users in a specific code path (clicking a button, seeing an item, entering a flow). Restricting analysis to triggered users increases per-user effect size and removes dilution from users the change never touched. This is safe when the trigger is defined independently of treatment. When the trigger depends on treatment, counterfactual triggering (also called ghost logging or shadow logging) can recover an unbiased or substantially less biased analysis by logging the trigger condition for both arms regardless of which path was taken, provided eligibility is defined symmetrically and logged reliably. See the Triggered vs intent-to-treat failure mode below for the bias case.
 
 ## Failure modes
 
@@ -120,7 +120,7 @@ Checking significance repeatedly and stopping at $p < 0.05$ inflates Type I erro
 
 ### Novelty and primacy
 
-- Novelty: users react to change itself; treatment effect inflates for days to weeks, then fades.
+- Novelty: users react to the change itself; treatment effect inflates for days to weeks, then fades.
 - Primacy (also called change aversion): users are slower to engage with unfamiliar interfaces; treatment looks flat or negative initially, then improves.
 
 Plotting the treatment effect over time distinguishes a steady-state lift from a transient; major launches often run long enough to observe both phases.
@@ -167,7 +167,7 @@ A change can lift a local metric (clicks on a new widget) while leaving the glob
 
 ### Heterogeneous treatment effects
 
-The average treatment effect can hide opposing effects across segments. Pre-registered segment analyses are valid for the confirmatory decision; post-hoc "slice until a segment is significant" is p-hacking under a different name. Drill-down for understanding why a change works is legitimate and often necessary, and it is distinct from drill-down for go/no-go: slicing to explain a mechanism informs the next iteration but is not the basis for shipping to the newly-found segment. Causal forests and uplift models estimate the Conditional Average Treatment Effect (CATE) without per-segment multiple-comparisons correction, but need enough data per segment.
+The average treatment effect can hide opposing effects across segments. Pre-registered segment analyses are valid for the confirmatory decision; post-hoc "slice until a segment is significant" is p-hacking under a different name. Drill-down for understanding why a change works is legitimate and often necessary, and it is distinct from drill-down for go/no-go: slicing to explain a mechanism informs the next iteration, but is not the basis for shipping to the newly-found segment. Causal forests and uplift models estimate the Conditional Average Treatment Effect (CATE) without per-segment multiple-comparisons correction, but need enough data per segment.
 
 ### Winner's curse and regression to the mean
 
@@ -197,11 +197,11 @@ Run treatment equal to control as a platform sanity check. Over many A/A tests, 
 
 ### Sequential testing
 
-mSPRT, group-sequential designs, and confidence sequences allow continuous monitoring without alpha inflation. These are useful when waiting for the fixed horizon is expensive or risky. When the upper bound of the confidence interval after a partial sample is already below the MDE, continuing wastes the slot.
+mSPRT, group-sequential designs, and confidence sequences allow continuous monitoring without alpha inflation. These are useful when waiting for a fixed horizon is expensive or risky. When the upper bound of the confidence interval after a partial sample is already below the MDE, continuing wastes the slot.
 
 ### Switchback experiments
 
-Alternate treatment and control over time on the entire population. Standard in marketplaces (pricing, dispatch, matching) where user-level randomization violates SUTVA. Block length must exceed the time for treatment effects to stabilize; otherwise carryover between blocks contaminates the estimate. A washout period (discarding the first several minutes of data at the start of each block) removes the carryover residue.
+Alternate treatment and control over time on the entire population. Standard in marketplaces (pricing, dispatch, matching) where user-level randomization violates SUTVA. Block length must exceed the time for treatment effects to stabilize; otherwise, carryover between blocks contaminates the estimate. A washout period (discarding the first several minutes of data at the start of each block) removes the carryover residue.
 
 ![[switchback_timeline.svg]]
 
@@ -241,7 +241,7 @@ Standard capabilities:
 
 ### Decision framework
 
-Ship when the primary metric moves in the pre-registered direction by at least the MDE, guardrails are neutral, and pre-registered segments do not flag. Iterate when the primary is flat but a diagnostic metric explains why. Kill when guardrails regress or the primary moves against the direction. Borderline wins go to a confirmatory second experiment before any ship decision.
+Ship when the primary metric moves in the pre-registered direction by at least the MDE, guardrails are neutral, and pre-registered segments do not flag. Iterate when the primary is flat, but a diagnostic metric explains why. Kill when guardrails regress or the primary moves against the direction. Borderline wins go to a confirmatory second experiment before any ship decision.
 
 ```mermaid
 flowchart TD
