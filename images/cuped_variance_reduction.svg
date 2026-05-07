@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" width="900" height="600" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" style="background:#ffffff">
+<text x="450.0" y="40" font-size="26" font-weight="600" text-anchor="middle" fill="#1e1e1e">CUPED variance reduction = ρ²</text>
+<line x1="110" y1="520" x2="840" y2="520" stroke="#1e1e1e" stroke-width="2"/>
+<line x1="110" y1="520" x2="110" y2="80" stroke="#1e1e1e" stroke-width="2"/>
+<polyline points="110.00,520.00 117.30,519.96 124.60,519.82 131.90,519.60 139.20,519.30 146.50,518.90 153.80,518.42 161.10,517.84 168.40,517.18 175.70,516.44 183.00,515.60 190.30,514.68 197.60,513.66 204.90,512.56 212.20,511.38 219.50,510.10 226.80,508.74 234.10,507.28 241.40,505.74 248.70,504.12 256.00,502.40 263.30,500.60 270.60,498.70 277.90,496.72 285.20,494.66 292.50,492.50 299.80,490.26 307.10,487.92 314.40,485.50 321.70,483.00 329.00,480.40 336.30,477.72 343.60,474.94 350.90,472.08 358.20,469.14 365.50,466.10 372.80,462.98 380.10,459.76 387.40,456.46 394.70,453.08 402.00,449.60 409.30,446.04 416.60,442.38 423.90,438.64 431.20,434.82 438.50,430.90 445.80,426.90 453.10,422.80 460.40,418.62 467.70,414.36 475.00,410.00 482.30,405.56 489.60,401.02 496.90,396.40 504.20,391.70 511.50,386.90 518.80,382.02 526.10,377.04 533.40,371.98 540.70,366.84 548.00,361.60 555.30,356.28 562.60,350.86 569.90,345.36 577.20,339.78 584.50,334.10 591.80,328.34 599.10,322.48 606.40,316.54 613.70,310.52 621.00,304.40 628.30,298.20 635.60,291.90 642.90,285.52 650.20,279.06 657.50,272.50 664.80,265.86 672.10,259.12 679.40,252.30 686.70,245.40 694.00,238.40 701.30,231.32 708.60,224.14 715.90,216.88 723.20,209.54 730.50,202.10 737.80,194.58 745.10,186.96 752.40,179.26 759.70,171.48 767.00,163.60 774.30,155.64 781.60,147.58 788.90,139.44 796.20,131.22 803.50,122.90 810.80,114.50 818.10,106.00 825.40,97.42 832.70,88.76 840.00,80.00" fill="none" stroke="#1971c2" stroke-width="3"/>
+<line x1="256.0" y1="520" x2="256.0" y2="526" stroke="#1e1e1e" stroke-width="1.5"/>
+<text x="256.0" y="546" font-size="14" text-anchor="middle" fill="#555">0.2</text>
+<line x1="104" y1="432.0" x2="110" y2="432.0" stroke="#1e1e1e" stroke-width="1.5"/>
+<text x="98" y="437.0" font-size="14" text-anchor="end" fill="#555">0.2</text>
+<line x1="402.0" y1="520" x2="402.0" y2="526" stroke="#1e1e1e" stroke-width="1.5"/>
+<text x="402.0" y="546" font-size="14" text-anchor="middle" fill="#555">0.4</text>
+<line x1="104" y1="344.0" x2="110" y2="344.0" stroke="#1e1e1e" stroke-width="1.5"/>
+<text x="98" y="349.0" font-size="14" text-anchor="end" fill="#555">0.4</text>
+<line x1="548.0" y1="520" x2="548.0" y2="526" stroke="#1e1e1e" stroke-width="1.5"/>
+<text x="548.0" y="546" font-size="14" text-anchor="middle" fill="#555">0.6</text>
+<line x1="104" y1="256.0" x2="110" y2="256.0" stroke="#1e1e1e" stroke-width="1.5"/>
+<text x="98" y="261.0" font-size="14" text-anchor="end" fill="#555">0.6</text>
+<line x1="694.0" y1="520" x2="694.0" y2="526" stroke="#1e1e1e" stroke-width="1.5"/>
+<text x="694.0" y="546" font-size="14" text-anchor="middle" fill="#555">0.8</text>
+<line x1="104" y1="168.0" x2="110" y2="168.0" stroke="#1e1e1e" stroke-width="1.5"/>
+<text x="98" y="173.0" font-size="14" text-anchor="end" fill="#555">0.8</text>
+<line x1="840.0" y1="520" x2="840.0" y2="526" stroke="#1e1e1e" stroke-width="1.5"/>
+<text x="840.0" y="546" font-size="14" text-anchor="middle" fill="#555">1</text>
+<line x1="104" y1="80.0" x2="110" y2="80.0" stroke="#1e1e1e" stroke-width="1.5"/>
+<text x="98" y="85.0" font-size="14" text-anchor="end" fill="#555">1</text>
+<text x="98" y="542" font-size="14" text-anchor="end" fill="#555">0</text>
+<text x="870" y="526" font-size="22" font-style="italic" fill="#1e1e1e">ρ</text>
+<text x="40" y="60" font-size="16" fill="#1e1e1e">Variance reduction (ρ²)</text>
+<circle cx="329.00" cy="480.40" r="6" fill="#c92a2a" stroke="#7a1a1a" stroke-width="1"/>
+<text x="343.00" y="472.40" font-size="14" text-anchor="start" fill="#1e1e1e">ρ=0.3 → 9%</text>
+<circle cx="475.00" cy="410.00" r="6" fill="#c92a2a" stroke="#7a1a1a" stroke-width="1"/>
+<text x="489.00" y="402.00" font-size="14" text-anchor="start" fill="#1e1e1e">ρ=0.5 → 25%</text>
+<circle cx="621.00" cy="304.40" r="6" fill="#c92a2a" stroke="#7a1a1a" stroke-width="1"/>
+<text x="607.00" y="326.40" font-size="14" text-anchor="end" fill="#1e1e1e">ρ=0.7 → 49%</text>
+<circle cx="767.00" cy="163.60" r="6" fill="#c92a2a" stroke="#7a1a1a" stroke-width="1"/>
+<text x="753.00" y="185.60" font-size="14" text-anchor="end" fill="#1e1e1e">ρ=0.9 → 81%</text>
+</svg>

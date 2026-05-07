@@ -30,6 +30,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://dswok.com/Deep%20Learning/Negative%20sampling</loc>
+    <lastmod>2026-05-07</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://dswok.com/Deep%20Learning/Neural%20Collaborative%20Filtering</loc>
     <lastmod>2026-04-19</lastmod>
     <priority>0.8</priority>
@@ -60,8 +65,28 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://dswok.com/Excalidraw/calibration_recalibration_methods.excalidraw</loc>
+    <lastmod>2026-05-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dswok.com/Excalidraw/calibration_reliability_diagram.excalidraw</loc>
+    <lastmod>2026-05-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dswok.com/General%20ML/AB%20Tests</loc>
+    <lastmod>2026-05-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://dswok.com/General%20ML/Bias-Variance%20Trade-off</loc>
     <lastmod>2026-04-19</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dswok.com/General%20ML/CUPED</loc>
+    <lastmod>2026-05-02</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -105,6 +130,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://dswok.com/General%20ML/Multi-armed%20bandits</loc>
+    <lastmod>2026-05-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://dswok.com/General%20ML/Random%20Forest</loc>
     <lastmod>2026-04-18</lastmod>
     <priority>0.8</priority>
@@ -122,6 +152,11 @@
   <url>
     <loc>https://dswok.com/General%20ML/Time-series%20validation</loc>
     <lastmod>2026-04-18</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dswok.com/General%20ML/Training-serving%20skew</loc>
+    <lastmod>2026-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -146,7 +181,7 @@
   </url>
   <url>
     <loc>https://dswok.com/Interview_preparation/General%20ML%20questions</loc>
-    <lastmod>2026-04-21</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -161,7 +196,7 @@
   </url>
   <url>
     <loc>https://dswok.com/Interview_preparation/ML%20System%20design</loc>
-    <lastmod>2025-09-26</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -177,6 +212,11 @@
   <url>
     <loc>https://dswok.com/Interview_preparation/index</loc>
     <lastmod>2026-04-19</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dswok.com/Metrics%20and%20losses/Calibration</loc>
+    <lastmod>2026-05-04</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -207,6 +247,11 @@
   <url>
     <loc>https://dswok.com/Metrics%20and%20losses/Metrics%20and%20losses</loc>
     <lastmod>2026-04-18</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dswok.com/Metrics%20and%20losses/NDCG</loc>
+    <lastmod>2026-04-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -246,7 +291,7 @@
   </url>
   <url>
     <loc>https://dswok.com/NLP/BERTopic</loc>
-    <lastmod>2026-04-19</lastmod>
+    <lastmod>2026-05-02</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -256,7 +301,7 @@
   </url>
   <url>
     <loc>https://dswok.com/NLP/LDA</loc>
-    <lastmod>2026-04-19</lastmod>
+    <lastmod>2026-05-02</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -281,12 +326,12 @@
   </url>
   <url>
     <loc>https://dswok.com/NLP/Topic%20Modeling%20Methods</loc>
-    <lastmod>2026-04-19</lastmod>
+    <lastmod>2026-05-02</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://dswok.com/NLP/Topic%20Modeling</loc>
-    <lastmod>2026-04-19</lastmod>
+    <lastmod>2026-05-02</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -316,7 +361,7 @@
   </url>
   <url>
     <loc>https://dswok.com/Use_cases/Recommendation%20system</loc>
-    <lastmod>2026-04-19</lastmod>
+    <lastmod>2026-05-02</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -326,12 +371,17 @@
   </url>
   <url>
     <loc>https://dswok.com/content_plan</loc>
-    <lastmod>2026-04-19</lastmod>
+    <lastmod>2026-04-21</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://dswok.com/drafts/note_improvements</loc>
-    <lastmod>2026-04-18</lastmod>
+    <lastmod>2026-05-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dswok.com/drafts/recommendation_merge_plan</loc>
+    <lastmod>2026-05-03</lastmod>
     <priority>0.8</priority>
   </url>
   <url>

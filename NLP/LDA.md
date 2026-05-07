@@ -10,7 +10,7 @@ aliases:
 ---
 Latent Dirichlet Allocation ([Blei, Ng, Jordan, 2003](https://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf)) is the canonical probabilistic topic model. It fixes the overfitting of its predecessor [[Topic Modeling Methods#Probabilistic LSA (pLSA)|pLSA]] by placing Dirichlet priors on both the document-topic and topic-word distributions. Every modern topic model still gets compared to LDA as a baseline.
 
-For the broader picture — when LDA makes sense versus other methods — see the [[Topic Modeling]].
+For the broader picture (when LDA makes sense versus other methods), see [[Topic Modeling]].
 
 ## Generative process
 
@@ -46,15 +46,15 @@ graph LR
     class w observed
 ```
 
-Formal plate notation (with $D$ documents, $K$ topics, $N_d$ words per document) is the standard way to draw this in the literature — see the [Wikipedia LDA page](https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#Model) for the canonical figure.
+Formal plate notation (with $D$ documents, $K$ topics, $N_d$ words per document) is the standard way to draw this in the literature; see the [Wikipedia LDA page](https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#Model) for the canonical figure.
 
 ## Inference
 
 Inference recovers the hidden $\theta_d$ and $\phi_k$ from the observed words. Three common approaches:
 
-- Collapsed Gibbs sampling — analytically integrates out $\theta$ and $\phi$, then iteratively reassigns each word's topic by sampling from the conditional posterior. Used in Mallet and Gensim's `LdaModel`. More accurate, but slow on large corpora.
-- Variational Bayes — approximates the posterior with a tractable family and optimizes the Evidence Lower Bound (ELBO). Used in scikit-learn. Faster, but the approximation can bias results.
-- Online Variational Bayes ([Hoffman et al., 2010](https://papers.nips.cc/paper/2010/hash/71f6278d140af599e06ad9bf1ba03cb0-Abstract.html)) — processes documents in mini-batches, enabling streaming updates. The default for `LdaModel` in recent Gensim versions.
+- Collapsed Gibbs sampling: analytically integrates out $\theta$ and $\phi$, then iteratively reassigns each word's topic by sampling from the conditional posterior. Used in Mallet and Gensim's `LdaModel`. More accurate, but slow on large corpora.
+- Variational Bayes: approximates the posterior with a tractable family and optimizes the Evidence Lower Bound (ELBO). Used in scikit-learn. Faster, but the approximation can bias results.
+- Online Variational Bayes ([Hoffman et al., 2010](https://papers.nips.cc/paper/2010/hash/71f6278d140af599e06ad9bf1ba03cb0-Abstract.html)): processes documents in mini-batches, enabling streaming updates. The default for `LdaModel` in recent Gensim versions.
 
 Mallet is often preferred when users want collapsed Gibbs sampling and are willing to trade speed for topic quality.
 
@@ -76,31 +76,31 @@ Contrast with [[Topic Modeling Methods#Non-negative Matrix Factorization (NMF)|N
 
 ## Inductive inference on new documents
 
-LDA uses folding-in: freeze the topic-word distributions $\phi_k$ learned during training, then run variational inference (or a few Gibbs sweeps) on the new document alone to infer its topic distribution $\theta_{\text{new}}$.  Contrast with [[BERTopic]], where assignment is a single nearest-centroid lookup after the embedding is computed.
+LDA uses folding-in: freeze the topic-word distributions $\phi_k$ learned during training, then run variational inference (or a few Gibbs sweeps) on the new document alone to infer its topic distribution $\theta_{\text{new}}$. Contrast with [[BERTopic]], where assignment is a single nearest-centroid lookup after the embedding is computed.
 
 ## Guided and supervised variants
 
-Real-world projects often have partial domain knowledge — you know one topic should be about "payments" and another about "refunds", and you want the model to respect that.
+Real-world projects often carry partial domain knowledge: one topic should be about "payments" and another about "refunds", and the model should respect that.
 
-- Seeded/Guided LDA — pre-set a few words per topic as anchors. The model is biased toward producing topics that contain those anchor words, while still discovering the remaining topics freely. Python library: `GuidedLDA`.
-- CorEx (Correlation Explanation) — not strictly LDA, but an information-theoretic alternative that accepts anchor words per topic and is often easier to steer than Seeded LDA. Library: `corextopic`.
-- Labeled LDA / SLDA — supervised variants that condition topics on document labels. Useful when you have partial labels and want topic discovery within each labeled group.
+- Seeded/Guided LDA: pre-set a few words per topic as anchors. The model is biased toward producing topics that contain those anchor words, while still discovering the remaining topics freely. Python library: `GuidedLDA`.
+- CorEx (Correlation Explanation): not strictly LDA, but an information-theoretic alternative that accepts anchor words per topic and is often easier to steer than Seeded LDA. Library: `corextopic`.
+- Labeled LDA / SLDA (Supervised LDA): supervised variants that condition topics on document labels. Useful with partial labels when topic discovery should stay within each labeled group.
 
-If you mainly want interpretable themes biased by a seed list, CorEx is frequently the best starting point; if you want a probabilistic LDA-style model with anchors, use Seeded LDA.
+For interpretable themes biased by a seed list, CorEx is frequently the best starting point; for a probabilistic LDA-style model with anchors, Seeded LDA is the more direct choice.
 
 ## Advantages and disadvantages
 
 **Advantages:** theoretically grounded, interpretable per-document topic mixtures, well-studied, cheap to train and serve compared to embedding-based methods, mature library support.
 
-**Disadvantages:** must pre-specify $K$, bag-of-words ignores word order, results vary across runs (Gibbs sampling is stochastic — fix the random seed for reproducibility), sensitive to preprocessing, struggles on short texts, cannot capture semantic similarity (for LDA, "car" and "automobile" are just two unrelated tokens).
+**Disadvantages:** must pre-specify $K$, bag-of-words ignores word order, results vary across runs (Gibbs sampling is stochastic, so the random seed needs to be fixed for reproducibility), sensitive to preprocessing, struggles on short texts, cannot capture semantic similarity (for LDA, "car" and "automobile" are just two unrelated tokens).
 
-## When LDA still earns its keep
+## When LDA is still appropriate
 
-- You want explicit probabilistic per-document topic mixtures (not hard cluster assignments).
-- Your documents are medium-length and well-formed (news articles, papers, reports).
-- You need a model that's cheap to train and serve, with a predictable inference cost per document.
-- You have an established pipeline, and changing tools would cost more than improving LDA.
-- You want topic distributions as features for a downstream classifier — LDA's $\theta_d$ vectors are natural inputs.
+- The use case calls for explicit probabilistic per-document topic mixtures rather than hard cluster assignments.
+- Documents are medium-length and well-formed (news articles, papers, reports).
+- A model that is cheap to train and serve with a predictable inference cost per document is the priority.
+- An established pipeline already runs on LDA, and changing tools would cost more than improving the existing model.
+- Topic distributions are needed as features for a downstream classifier: LDA's $\theta_d$ vectors are natural inputs.
 
 When LDA fails, the next steps are: NMF (for cleaner topics on short/noisy text), BERTopic (for semantic similarity), or ETM (for large vocabularies with rare words).
 
@@ -137,7 +137,7 @@ When LDA fails, the next steps are: NMF (for cleaner topics on short/noisy text)
 > print(new_topics)
 > ```
 
-### Links
+## Links
 
 - [Blei, Ng, Jordan — Latent Dirichlet Allocation (2003)](https://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf)
 - [Hoffman, Blei, Bach — Online Learning for Latent Dirichlet Allocation (2010)](https://papers.nips.cc/paper/2010/hash/71f6278d140af599e06ad9bf1ba03cb0-Abstract.html)

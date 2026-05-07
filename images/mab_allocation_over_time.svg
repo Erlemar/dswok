@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 600" width="1100" height="600" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" style="background:#ffffff">
+<text x="550.0" y="40" font-size="24" font-weight="600" text-anchor="middle" fill="#1e1e1e">Allocation over time: A/B vs bandit</text>
+<text x="280.0" y="82" font-size="20" font-weight="600" text-anchor="middle" fill="#1e1e1e">A/B test</text>
+<rect x="60" y="100" width="440" height="380" fill="none" stroke="#888" stroke-width="1" stroke-dasharray="4,3"/>
+<rect x="60" y="100" width="88" height="190" fill="#a5d8ff" stroke="#1971c2" stroke-width="1"/>
+<rect x="60" y="290" width="88" height="190" fill="#ffc9c9" stroke="#c92a2a" stroke-width="1"/>
+<rect x="148" y="100" width="88" height="190" fill="#a5d8ff" stroke="#1971c2" stroke-width="1"/>
+<rect x="148" y="290" width="88" height="190" fill="#ffc9c9" stroke="#c92a2a" stroke-width="1"/>
+<rect x="236" y="100" width="88" height="190" fill="#a5d8ff" stroke="#1971c2" stroke-width="1"/>
+<rect x="236" y="290" width="88" height="190" fill="#ffc9c9" stroke="#c92a2a" stroke-width="1"/>
+<rect x="324" y="100" width="88" height="190" fill="#a5d8ff" stroke="#1971c2" stroke-width="1"/>
+<rect x="324" y="290" width="88" height="190" fill="#ffc9c9" stroke="#c92a2a" stroke-width="1"/>
+<rect x="412" y="100" width="88" height="190" fill="#a5d8ff" stroke="#1971c2" stroke-width="1"/>
+<rect x="412" y="290" width="88" height="190" fill="#ffc9c9" stroke="#c92a2a" stroke-width="1"/>
+<text x="280.0" y="190" font-size="16" font-weight="500" text-anchor="middle" fill="#0b3d70">Arm A — 50%</text>
+<text x="280.0" y="390" font-size="16" font-weight="500" text-anchor="middle" fill="#7a1a1a">Arm B — 50%</text>
+<text x="280.0" y="508" font-size="14" text-anchor="middle" fill="#555">time →</text>
+<text x="820.0" y="82" font-size="20" font-weight="600" text-anchor="middle" fill="#1e1e1e">Multi-armed bandit</text>
+<rect x="600" y="100" width="440" height="380" fill="none" stroke="#888" stroke-width="1" stroke-dasharray="4,3"/>
+<rect x="600" y="100" width="88" height="190" fill="#a5d8ff" stroke="#1971c2" stroke-width="1"/>
+<rect x="600" y="290" width="88" height="190" fill="#ffc9c9" stroke="#c92a2a" stroke-width="1"/>
+<text x="644.0" y="96" font-size="12" text-anchor="middle" fill="#0b3d70">50%</text>
+<rect x="688" y="100" width="88" height="209" fill="#a5d8ff" stroke="#1971c2" stroke-width="1"/>
+<rect x="688" y="309" width="88" height="171" fill="#ffc9c9" stroke="#c92a2a" stroke-width="1"/>
+<text x="732.0" y="96" font-size="12" text-anchor="middle" fill="#0b3d70">55%</text>
+<rect x="776" y="100" width="88" height="247" fill="#a5d8ff" stroke="#1971c2" stroke-width="1"/>
+<rect x="776" y="347" width="88" height="133" fill="#ffc9c9" stroke="#c92a2a" stroke-width="1"/>
+<text x="820.0" y="96" font-size="12" text-anchor="middle" fill="#0b3d70">65%</text>
+<rect x="864" y="100" width="88" height="285" fill="#a5d8ff" stroke="#1971c2" stroke-width="1"/>
+<rect x="864" y="385" width="88" height="95" fill="#ffc9c9" stroke="#c92a2a" stroke-width="1"/>
+<text x="908.0" y="96" font-size="12" text-anchor="middle" fill="#0b3d70">75%</text>
+<rect x="952" y="100" width="88" height="323" fill="#a5d8ff" stroke="#1971c2" stroke-width="1"/>
+<rect x="952" y="423" width="88" height="57" fill="#ffc9c9" stroke="#c92a2a" stroke-width="1"/>
+<text x="996.0" y="96" font-size="12" text-anchor="middle" fill="#0b3d70">85%</text>
+<text x="820.0" y="508" font-size="14" text-anchor="middle" fill="#555">time →</text>
+<text x="550.0" y="580" font-size="13" text-anchor="middle" fill="#555">A/B holds 50/50 across the run; bandit shifts traffic toward the better arm as evidence accumulates.</text>
+</svg>

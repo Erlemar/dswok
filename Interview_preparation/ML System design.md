@@ -86,7 +86,7 @@ This will depend on the infrastructure of the specific company, but there are ma
 * Model scaling - will the model work fine on 2x of expected traffic, 10x, 100x? What would be necessary to ensure it?
 * Handling of failures - what should we do if the input is invalid, if we can't get the data, or if the prediction can't be produced?
 Next is rolling the model into production.
-- A/B tests to check the model performance. Discuss how you would organize it
+- [[AB Tests|A/B tests]] to check the model performance. Discuss how you would organize it
 - Smoke tests - making predictions but not acting on them, then calculating metrics
 - Canary deployment - gradual rollout
 - Bandits

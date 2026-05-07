@@ -9,7 +9,7 @@ aliases:
 ---
 A survey of the main topic modeling methods, ordered roughly by historical development (matrix factorization → probabilistic generative models → neural → embedding-based). For information on when to use topic modeling, how to evaluate results, and other things, see [[Topic Modeling]].
 
-## Classical Methods
+## Classical methods
 
 ### Latent Semantic Analysis (LSA / LSI)
 
@@ -35,13 +35,13 @@ Disadvantages: topic dimensions can have negative weights (hard to interpret as 
 
 $$P(w \mid d) = \sum_{k=1}^{K} P(w \mid z_k) \, P(z_k \mid d)$$
 
-where $z_k$ is a latent topic. Trained via Expectation-Maximization. pLSA bridges LSA and LDA historically — it introduced documents-as-topic-mixtures, but lacks priors on the document-topic distributions, so the number of parameters grows linearly with corpus size, and the model cannot assign probabilities to unseen documents.
+where $z_k$ is a latent topic. Trained via Expectation-Maximization. pLSA bridges LSA and LDA historically: it introduced documents-as-topic-mixtures, but lacks priors on the document-topic distributions, so the number of parameters grows linearly with corpus size, and the model cannot assign probabilities to unseen documents.
 
 ### Latent Dirichlet Allocation (LDA)
 
 [Blei, Ng, Jordan, 2003](https://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf). The canonical probabilistic topic model. Fixes pLSA's overfitting by adding Dirichlet priors to both document-topic and topic-word distributions. Each document's topic distribution $\theta_d$ and each topic's word distribution $\phi_k$ are inferred from observed words via Gibbs sampling or variational inference.
 
-See [[LDA]] for mode information.
+See [[LDA]] for more information.
 
 ### Non-negative Matrix Factorization (NMF)
 
@@ -58,13 +58,13 @@ Scikit-learn solver tip: use `solver='cd'` (coordinate descent) with the default
 Advantages: fast, deterministic given initialization, clean sparse topics, works well with TF-IDF.
 Disadvantages: requires specifying $K$, no probabilistic interpretation, results depend on initialization.
 
-## Neural Topic Models
+## Neural topic models
 
 ### ProdLDA
 
-[Srivastava & Sutton, 2017](https://arxiv.org/abs/1703.01488). The first effective neural variational inference approach for LDA. Uses a VAE architecture: an encoder maps bag-of-words input to topic proportions, a decoder reconstructs the document.
+[Srivastava & Sutton, 2017](https://arxiv.org/abs/1703.01488). The first effective neural variational inference approach for LDA. Uses a Variational Autoencoder (VAE) architecture: an encoder maps bag-of-words input to topic proportions, a decoder reconstructs the document.
 
-The key innovation is approximating the Dirichlet prior with a logistic normal distribution, avoiding the "component collapsing" problem where earlier neural approaches produced degenerate topics. Trained by maximizing the ELBO. Much faster inference than Gibbs sampling, and handles new documents without retraining.
+The key innovation is approximating the Dirichlet prior with a logistic normal distribution, avoiding the "component collapsing" problem where earlier neural approaches produced degenerate topics. Trained by maximizing the Evidence Lower Bound (ELBO). Much faster inference than Gibbs sampling, and handles new documents without retraining.
 
 ### Embedded Topic Model (ETM)
 
@@ -74,18 +74,18 @@ $$P(w \mid k) \propto \exp(\mathbf{e}_w^\top \mathbf{t}_k)$$
 
 where $\mathbf{e}_w$ is the word embedding and $\mathbf{t}_k$ is the topic embedding. Can use pre-trained embeddings ([[Word2Vec]], [[GloVe]]) or learn them jointly. Handles large vocabularies and rare words better than standard LDA because semantically similar words share embedding structure.
 
-### Contextualized Topic Models (CTM / CombinedTM)
+### Contextualized Topic Models (CombinedTM, ZeroShotTM)
 
 [Bianchi et al., 2021](https://aclanthology.org/2021.eacl-main.143/). Extends ProdLDA by feeding sentence-transformer embeddings into the encoder alongside (or instead of) bag-of-words representations. Two variants:
 
-- CombinedTM — BoW + sentence embeddings. Typically best coherence.
-- ZeroShotTM — sentence embeddings only. Enables cross-lingual topic modeling: train on English, infer topics on German text without parallel corpora.
+- CombinedTM: BoW + sentence embeddings. Typically reports the higher coherence of the two on standard benchmarks.
+- ZeroShotTM: sentence embeddings only. Enables cross-lingual topic modeling: train on English, infer topics on German text without parallel corpora.
 
-## Embedding-based Methods
+## Embedding-based methods
 
 ### BERTopic
 
-[Grootendorst, 2022](https://arxiv.org/abs/2203.05794). A modular pipeline — embed documents with sentence-transformers, reduce dimensionality with UMAP, cluster with HDBSCAN, and label clusters with class-based TF-IDF. Automatically determines the number of topics and supports dynamic, hierarchical, guided, and online modes.
+[Grootendorst, 2022](https://arxiv.org/abs/2203.05794). A modular pipeline: embed documents with sentence-transformers, reduce dimensionality with UMAP, cluster with HDBSCAN, and label clusters with class-based TF-IDF. Automatically determines the number of topics and supports dynamic, hierarchical, guided, and online modes.
 
 See [[BERTopic]] for more details.
 
@@ -93,11 +93,11 @@ See [[BERTopic]] for more details.
 
 [Angelov, 2020](https://arxiv.org/abs/2008.09470). Jointly embeds documents and words, applies UMAP + HDBSCAN to find dense clusters. Topic vectors are cluster centroids; topic words are the nearest words in embedding space. Similar philosophy to BERTopic, predates it, and uses embedding distance rather than c-TF-IDF for topic representation.
 
-## LLM-assisted Topic Discovery
+## LLM-assisted topic discovery
 
 A practical hybrid that works well: run BERTopic for clustering, then use an LLM as the representation model to label each cluster. This gives the scalability of embedding-based clustering with human-readable LLM-generated labels, without paying per-document LLM costs.
 
-Fully LLM-based approaches (TopicGPT) use an LLM to generate topic labels directly from document samples, optionally in a hierarchical refinement loop. Labels are immediately readable, and you can specify granularity in natural language, but the cost scales with corpus size, and results are non-deterministic.
+Fully LLM-based approaches (TopicGPT) use an LLM to generate topic labels directly from document samples, optionally in a hierarchical refinement loop. Labels are immediately readable, and granularity can be specified in natural language, but the cost scales with corpus size and results are non-deterministic.
 
 ## Short-text variants
 
@@ -107,11 +107,11 @@ Fully LLM-based approaches (TopicGPT) use an LLM to generate topic labels direct
 
 Trades per-document topic proportions for better topic quality on short text. Available in the original C++ implementation and Python ports (`bitermplus`, `biterm`).
 
-## Other Notable Approaches
+## Other notable approaches
 
 ### BigARTM
 
-[Vorontsov & Potapenko, 2015](https://www.jmlr.org/papers/volume18/16-296/16-296.pdf). Extends pLSA with additive regularization — multiple regularizers (sparsity, decorrelation, hierarchy, label supervision) combine into a single objective:
+[Vorontsov & Potapenko, 2015](https://www.jmlr.org/papers/volume18/16-296/16-296.pdf). Extends pLSA with additive regularization (ARTM): multiple regularizers (sparsity, decorrelation, hierarchy, label supervision) combine into a single objective:
 
 $$L(\Phi, \Theta) + \sum_i \tau_i R_i(\Phi, \Theta) \to \max$$
 
@@ -130,18 +130,18 @@ Captures how topics change meaning over time. Available in Gensim (`DtmModel`) a
 - [Hierarchical LDA (hLDA)](https://proceedings.neurips.cc/paper/2003/file/7b41bfa5085806f1b4378907ec5a5993-Paper.pdf). Discovers a tree-structured topic hierarchy using the nested Chinese Restaurant Process. Does not require specifying $K$ or tree depth.
 - [Hierarchical Dirichlet Process (HDP)](https://doi.org/10.1198/016214506000000302). Nonparametric extension of LDA that infers $K$ from data. Available in Gensim and tomotopy.
 - [Correlated Topic Model (CTM)](https://arxiv.org/abs/1206.3098). Replaces the Dirichlet prior with a logistic normal, allowing topics to be correlated (e.g., "genetics" and "biology" co-occur more often than "genetics" and "cooking").
-- Structural Topic Model (STM) — incorporates document-level metadata (date, source, author) as covariates that affect topic prevalence and content. Useful when topics are not independent of document attributes.
+- Structural Topic Model (STM): incorporates document-level metadata (date, source, author) as covariates that affect topic prevalence and content. Useful when topics are not independent of document attributes.
 
-## When to Use What
+## When to use what
 
 | Scenario | Recommended |
 |---|---|
 | Short texts (tweets, reviews) | BERTopic, Top2Vec |
 | Long documents (papers, articles) | LDA, NMF, BERTopic |
-| Mixed-membership (document in multiple topics) | LDA, NMF, CTM |
+| Mixed-membership (document in multiple topics) | LDA, NMF, CombinedTM |
 | Automatic number of topics | BERTopic, Top2Vec, HDP |
 | Resource-constrained / fast results | NMF (fastest), LDA |
-| State-of-the-art coherence | BERTopic |
+| Highest reported coherence on standard benchmarks | BERTopic, CombinedTM |
 | Temporal topic evolution | BERTopic `.topics_over_time()`, DTM |
 | Cross-lingual topics | ZeroShotTM / CombinedTM |
 | Large vocabulary with rare words | ETM |
@@ -152,9 +152,11 @@ Captures how topics change meaning over time. Available in Gensim (`DtmModel`) a
 | LLM-quality labels at scale | BERTopic with LLM representation model |
 | One-shot theme summary, small corpus | Prompt an LLM directly |
 
-In current practice, BERTopic is the default starting point for new projects. LDA and NMF remain relevant for resource-constrained settings, mixed-membership requirements, and established pipelines.
+BERTopic is a common starting point for new projects in current practice. LDA and NMF remain relevant for resource-constrained settings, mixed-membership requirements, and established pipelines.
 
-## Tools and Libraries
+## Tools and libraries
+
+In the table below, `CTM` refers to the Correlated Topic Model (logistic-normal prior); `CombinedTM` and `ZeroShotTM` are the Contextualized Topic Models. `DTM` is Dynamic Topic Model, `SLDA` is Supervised LDA, `LLDA` is Labeled LDA.
 
 | Library | Methods | Notes |
 |---|---|---|
@@ -204,9 +206,7 @@ In current practice, BERTopic is the default starting point for new projects. LD
 > topic_model.get_topic_info()
 > ```
 
-For a BERTopic example with LLM-based labels and soft assignment, see [[BERTopic]]. For a gensim LDA example with folding-in for new documents, see [[LDA]].
-
-### Links
+## Links
 
 - [Blei, Ng, Jordan — Latent Dirichlet Allocation (2003)](https://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf)
 - [Grootendorst — BERTopic: Neural topic modeling with a class-based TF-IDF procedure (2022)](https://arxiv.org/abs/2203.05794)
