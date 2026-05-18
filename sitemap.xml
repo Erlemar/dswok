@@ -181,7 +181,7 @@
   </url>
   <url>
     <loc>https://dswok.com/General%20ML/K-means%20clustering</loc>
-    <lastmod>2026-04-18</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -356,7 +356,7 @@
   </url>
   <url>
     <loc>https://dswok.com/Metrics%20and%20losses/RMSE</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -521,21 +521,6 @@
   </url>
   <url>
     <loc>https://dswok.com/drafts/note_improvements</loc>
-    <lastmod>2026-05-18</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://dswok.com/drafts/note_versions/RMSE</loc>
-    <lastmod>2026-05-18</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://dswok.com/drafts/note_versions/RMSE_revised</loc>
-    <lastmod>2026-05-18</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://dswok.com/drafts/note_versions/rmse_updated</loc>
     <lastmod>2026-05-18</lastmod>
     <priority>0.8</priority>
   </url>
