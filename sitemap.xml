@@ -10,6 +10,16 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://dswok.com/Deep%20Learning/Collaborative%20Filtering</loc>
+    <lastmod>2026-05-16</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dswok.com/Deep%20Learning/Content-Based%20Filtering</loc>
+    <lastmod>2026-05-16</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://dswok.com/Deep%20Learning/Contrastive%20Language-Image%20Pre-training</loc>
     <lastmod>2026-04-19</lastmod>
     <priority>0.8</priority>
@@ -30,13 +40,23 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://dswok.com/Deep%20Learning/Matrix%20Factorization</loc>
+    <lastmod>2026-05-16</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://dswok.com/Deep%20Learning/Negative%20sampling</loc>
-    <lastmod>2026-05-07</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://dswok.com/Deep%20Learning/Neural%20Collaborative%20Filtering</loc>
     <lastmod>2026-04-19</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dswok.com/Deep%20Learning/ReLU</loc>
+    <lastmod>2026-05-16</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -50,6 +70,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://dswok.com/Deep%20Learning/contrastive%20learning</loc>
+    <lastmod>2026-05-16</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://dswok.com/Deep%20Learning/index</loc>
     <lastmod>2026-04-19</lastmod>
     <priority>0.8</priority>
@@ -57,6 +82,11 @@
   <url>
     <loc>https://dswok.com/Deep%20Learning/logQ%20correction</loc>
     <lastmod>2026-04-19</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dswok.com/Deep%20Learning/sigmoid</loc>
+    <lastmod>2026-05-16</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -75,8 +105,33 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://dswok.com/Excalidraw/negative_sampling_embedding_zones.excalidraw</loc>
+    <lastmod>2026-05-18</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dswok.com/Excalidraw/negative_sampling_in_batch_mask.excalidraw</loc>
+    <lastmod>2026-05-18</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dswok.com/Excalidraw/negative_sampling_long_tail_samplers.excalidraw</loc>
+    <lastmod>2026-05-18</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dswok.com/Excalidraw/negative_sampling_sgns_vs_softmax.excalidraw</loc>
+    <lastmod>2026-05-18</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://dswok.com/General%20ML/AB%20Tests</loc>
     <lastmod>2026-05-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dswok.com/General%20ML/Bias%20and%20feedback%20loops</loc>
+    <lastmod>2026-05-16</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -87,6 +142,16 @@
   <url>
     <loc>https://dswok.com/General%20ML/CUPED</loc>
     <lastmod>2026-05-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dswok.com/General%20ML/Cold%20start</loc>
+    <lastmod>2026-05-18</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dswok.com/General%20ML/Counterfactual%20evaluation</loc>
+    <lastmod>2026-05-16</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -116,7 +181,7 @@
   </url>
   <url>
     <loc>https://dswok.com/General%20ML/K-means%20clustering</loc>
-    <lastmod>2026-04-18</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -215,6 +280,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://dswok.com/Metrics%20and%20losses/AUC</loc>
+    <lastmod>2026-05-16</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://dswok.com/Metrics%20and%20losses/Calibration</loc>
     <lastmod>2026-05-04</lastmod>
     <priority>0.8</priority>
@@ -245,6 +315,21 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://dswok.com/Metrics%20and%20losses/MAE</loc>
+    <lastmod>2026-05-16</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dswok.com/Metrics%20and%20losses/MAP</loc>
+    <lastmod>2026-05-18</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dswok.com/Metrics%20and%20losses/MRR</loc>
+    <lastmod>2026-05-16</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://dswok.com/Metrics%20and%20losses/Metrics%20and%20losses</loc>
     <lastmod>2026-04-18</lastmod>
     <priority>0.8</priority>
@@ -262,6 +347,21 @@
   <url>
     <loc>https://dswok.com/Metrics%20and%20losses/NLP%20metrics</loc>
     <lastmod>2026-04-19</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dswok.com/Metrics%20and%20losses/Precision%40k</loc>
+    <lastmod>2026-05-16</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dswok.com/Metrics%20and%20losses/RMSE</loc>
+    <lastmod>2026-05-18</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dswok.com/Metrics%20and%20losses/Recall%40k</loc>
+    <lastmod>2026-05-16</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -295,6 +395,21 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://dswok.com/NLP/ELMo</loc>
+    <lastmod>2026-05-16</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dswok.com/NLP/GPT</loc>
+    <lastmod>2026-05-16</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dswok.com/NLP/GRU</loc>
+    <lastmod>2026-05-16</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://dswok.com/NLP/GloVe</loc>
     <lastmod>2026-04-18</lastmod>
     <priority>0.8</priority>
@@ -302,6 +417,16 @@
   <url>
     <loc>https://dswok.com/NLP/LDA</loc>
     <lastmod>2026-05-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dswok.com/NLP/LSTM</loc>
+    <lastmod>2026-05-16</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dswok.com/NLP/Large%20Language%20Models</loc>
+    <lastmod>2026-05-16</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -320,8 +445,18 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://dswok.com/NLP/T5</loc>
+    <lastmod>2026-05-16</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://dswok.com/NLP/Term%20Frequency-Inverse%20Document%20Frequency</loc>
     <lastmod>2026-04-18</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dswok.com/NLP/Tokenization</loc>
+    <lastmod>2026-05-16</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -360,6 +495,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://dswok.com/Untitled</loc>
+    <lastmod>2026-05-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://dswok.com/Use_cases/Recommendation%20system</loc>
     <lastmod>2026-05-02</lastmod>
     <priority>0.8</priority>
@@ -370,13 +510,18 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://dswok.com/audit_report_2026-05-08</loc>
+    <lastmod>2026-05-08</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://dswok.com/content_plan</loc>
     <lastmod>2026-04-21</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://dswok.com/drafts/note_improvements</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -387,6 +532,11 @@
   <url>
     <loc>https://dswok.com/index</loc>
     <lastmod>2026-04-19</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dswok.com/prompts</loc>
+    <lastmod>2026-05-18</lastmod>
     <priority>0.8</priority>
   </url>
 </urlset>

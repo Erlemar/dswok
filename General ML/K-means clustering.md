@@ -51,7 +51,7 @@ Typically uses Euclidean distance: $d(x, y) = \sqrt{\sum_{i=1}^n (x_i - y_i)^2}$
 
 1. Needs to specify K beforehand
 2. Sensitive to initial centroid placement
-5. Sensitive to outliers
+3. Sensitive to outliers
 
 ## Variations
 ### K-means++
