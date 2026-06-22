@@ -105,6 +105,26 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://dswok.com/Excalidraw/cayley_bucket_distribution.excalidraw</loc>
+    <lastmod>2026-06-18</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dswok.com/Excalidraw/cayley_sa_operators.excalidraw</loc>
+    <lastmod>2026-06-18</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dswok.com/Excalidraw/cayley_spmd_sharding.excalidraw</loc>
+    <lastmod>2026-06-18</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dswok.com/Excalidraw/cayley_sym_ensemble.excalidraw</loc>
+    <lastmod>2026-06-18</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://dswok.com/Excalidraw/negative_sampling_embedding_zones.excalidraw</loc>
     <lastmod>2026-05-18</lastmod>
     <priority>0.8</priority>
@@ -356,7 +376,7 @@
   </url>
   <url>
     <loc>https://dswok.com/Metrics%20and%20losses/RMSE</loc>
-    <lastmod>2026-05-18</lastmod>
+    <lastmod>2026-05-21</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -507,6 +527,26 @@
   <url>
     <loc>https://dswok.com/Use_cases/index</loc>
     <lastmod>2026-04-19</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dswok.com/analytics/.venv/lib/python3.13/site-packages/idna-3.18.dist-info/licenses/LICENSE</loc>
+    <lastmod>2026-06-14</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dswok.com/analytics/.venv/lib/python3.13/site-packages/pip/_vendor/idna/LICENSE</loc>
+    <lastmod>2026-06-14</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dswok.com/analytics/.venv/lib/python3.13/site-packages/pip-26.1.2.dist-info/licenses/src/pip/_vendor/idna/LICENSE</loc>
+    <lastmod>2026-06-14</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dswok.com/analytics/.venv/lib/python3.13/site-packages/pyparsing/ai/best_practices</loc>
+    <lastmod>2026-06-14</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
