@@ -4,3 +4,12 @@
 /.claude/
 claude.md
 missing_notes.md
+
+# Analytics tooling — personal scripts, not published
+analytics/
+**/__pycache__/
+
+# Service-account credentials — never commit
+ga-reader*.json
+**/*service-account*.json
+secrets/

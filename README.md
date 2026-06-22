@@ -30,3 +30,7 @@ Additionally, I write paper reviews on [my blog](https://andlukyane.com/tag/pape
 You get the full Obsidian experience: graph view, backlinks, and interactive search.
 
 **Read on GitHub.** Every note is a plain markdown file. Browse the folders directly if you don't need the cross-linked view.
+
+## License
+
+© Andrey Lukyanenko. The content is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/): you're free to share and adapt it, including commercially, as long as you give appropriate credit. See [LICENSE](LICENSE) for the full text.
